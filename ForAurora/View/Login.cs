@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ForAurora.View;
+using ForAurora.Model;
 
 namespace ForAurora
 {
@@ -42,6 +43,12 @@ namespace ForAurora
         {
             this.Close();
             View.ViewGlobal.courseForm.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new OperateDB().connectDB();
+            Console.WriteLine("插入操作结束了");
         }
     }
 }
