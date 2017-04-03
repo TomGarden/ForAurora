@@ -28,22 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseForm));
             this.gbCourseList = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.gbCroupInfo = new System.Windows.Forms.GroupBox();
-            this.tvCourseName = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefreshCourse = new System.Windows.Forms.Button();
+            this.btnSearchCourse = new System.Windows.Forms.Button();
+            this.btnEditCourse = new System.Windows.Forms.Button();
+            this.btnDelCourse = new System.Windows.Forms.Button();
+            this.btnAddCourse = new System.Windows.Forms.Button();
+            this.lvCourse = new System.Windows.Forms.ListView();
+            this.contextMenuStrip_Course = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.添加课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbCourseInfo = new System.Windows.Forms.GroupBox();
+            this.tbCourseName = new System.Windows.Forms.TextBox();
+            this.btnRight = new System.Windows.Forms.Button();
             this.gbOthrer = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbOther = new System.Windows.Forms.RichTextBox();
             this.gbTextbook = new System.Windows.Forms.GroupBox();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.lvTextbook = new System.Windows.Forms.ListView();
             this.gbTeacher = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.lvTeacher = new System.Windows.Forms.ListView();
+            this.btnRefreshTecher = new System.Windows.Forms.Button();
+            this.btnAddTeacher = new System.Windows.Forms.Button();
+            this.btnDelTeacher = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnRefreshTextbook = new System.Windows.Forms.Button();
+            this.btnAddTextbook = new System.Windows.Forms.Button();
+            this.btnDelbook = new System.Windows.Forms.Button();
             this.gbCourseList.SuspendLayout();
-            this.gbCroupInfo.SuspendLayout();
+            this.contextMenuStrip_Course.SuspendLayout();
+            this.gbCourseInfo.SuspendLayout();
             this.gbOthrer.SuspendLayout();
             this.gbTextbook.SuspendLayout();
             this.gbTeacher.SuspendLayout();
@@ -51,7 +68,12 @@
             // 
             // gbCourseList
             // 
-            this.gbCourseList.Controls.Add(this.listView1);
+            this.gbCourseList.Controls.Add(this.btnRefreshCourse);
+            this.gbCourseList.Controls.Add(this.btnSearchCourse);
+            this.gbCourseList.Controls.Add(this.btnEditCourse);
+            this.gbCourseList.Controls.Add(this.btnDelCourse);
+            this.gbCourseList.Controls.Add(this.btnAddCourse);
+            this.gbCourseList.Controls.Add(this.lvCourse);
             this.gbCourseList.Location = new System.Drawing.Point(12, 12);
             this.gbCourseList.Name = "gbCourseList";
             this.gbCourseList.Size = new System.Drawing.Size(225, 538);
@@ -59,63 +81,141 @@
             this.gbCourseList.TabStop = false;
             this.gbCourseList.Text = "课程列表";
             // 
-            // listView1
+            // btnRefreshCourse
             // 
-            this.listView1.Location = new System.Drawing.Point(6, 34);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(213, 498);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.btnRefreshCourse.AutoSize = true;
+            this.btnRefreshCourse.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshCourse.Location = new System.Drawing.Point(194, 509);
+            this.btnRefreshCourse.Name = "btnRefreshCourse";
+            this.btnRefreshCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshCourse.TabIndex = 5;
+            this.btnRefreshCourse.UseVisualStyleBackColor = true;
+            this.btnRefreshCourse.Click += new System.EventHandler(this.btnRefreshCourse_Click);
             // 
-            // gbCroupInfo
+            // btnSearchCourse
             // 
-            this.gbCroupInfo.Controls.Add(this.tvCourseName);
-            this.gbCroupInfo.Controls.Add(this.button2);
-            this.gbCroupInfo.Controls.Add(this.button1);
-            this.gbCroupInfo.Controls.Add(this.gbOthrer);
-            this.gbCroupInfo.Controls.Add(this.gbTextbook);
-            this.gbCroupInfo.Controls.Add(this.gbTeacher);
-            this.gbCroupInfo.Controls.Add(this.label2);
-            this.gbCroupInfo.Location = new System.Drawing.Point(263, 12);
-            this.gbCroupInfo.Name = "gbCroupInfo";
-            this.gbCroupInfo.Size = new System.Drawing.Size(509, 538);
-            this.gbCroupInfo.TabIndex = 2;
-            this.gbCroupInfo.TabStop = false;
-            this.gbCroupInfo.Text = "课程详情";
+            this.btnSearchCourse.AutoSize = true;
+            this.btnSearchCourse.BackgroundImage = global::ForAurora.Properties.Resources.search;
+            this.btnSearchCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearchCourse.Location = new System.Drawing.Point(147, 509);
+            this.btnSearchCourse.Name = "btnSearchCourse";
+            this.btnSearchCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnSearchCourse.TabIndex = 4;
+            this.btnSearchCourse.UseVisualStyleBackColor = true;
             // 
-            // tvCourseName
+            // btnEditCourse
             // 
-            this.tvCourseName.BackColor = System.Drawing.SystemColors.Control;
-            this.tvCourseName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tvCourseName.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tvCourseName.Location = new System.Drawing.Point(113, 57);
-            this.tvCourseName.Name = "tvCourseName";
-            this.tvCourseName.Size = new System.Drawing.Size(300, 22);
-            this.tvCourseName.TabIndex = 9;
-            this.tvCourseName.Text = "课程名";
-            this.tvCourseName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnEditCourse.AutoSize = true;
+            this.btnEditCourse.BackgroundImage = global::ForAurora.Properties.Resources.edit;
+            this.btnEditCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEditCourse.Location = new System.Drawing.Point(100, 509);
+            this.btnEditCourse.Name = "btnEditCourse";
+            this.btnEditCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnEditCourse.TabIndex = 3;
+            this.btnEditCourse.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnDelCourse
             // 
-            this.button2.Location = new System.Drawing.Point(347, 509);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "编辑";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDelCourse.AutoSize = true;
+            this.btnDelCourse.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelCourse.Location = new System.Drawing.Point(53, 509);
+            this.btnDelCourse.Name = "btnDelCourse";
+            this.btnDelCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnDelCourse.TabIndex = 2;
+            this.btnDelCourse.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnAddCourse
             // 
-            this.button1.Location = new System.Drawing.Point(428, 509);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "打开";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddCourse.AutoSize = true;
+            this.btnAddCourse.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddCourse.Location = new System.Drawing.Point(6, 509);
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnAddCourse.TabIndex = 1;
+            this.btnAddCourse.UseVisualStyleBackColor = true;
+            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
+            // 
+            // lvCourse
+            // 
+            this.lvCourse.BackColor = System.Drawing.SystemColors.Window;
+            this.lvCourse.ContextMenuStrip = this.contextMenuStrip_Course;
+            this.lvCourse.Location = new System.Drawing.Point(6, 34);
+            this.lvCourse.Name = "lvCourse";
+            this.lvCourse.Size = new System.Drawing.Size(213, 469);
+            this.lvCourse.TabIndex = 0;
+            this.lvCourse.UseCompatibleStateImageBehavior = false;
+            this.lvCourse.SelectedIndexChanged += new System.EventHandler(this.lvCourse_SelectedIndexChanged);
+            // 
+            // contextMenuStrip_Course
+            // 
+            this.contextMenuStrip_Course.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.添加课程ToolStripMenuItem,
+            this.修改课程ToolStripMenuItem,
+            this.删除课程ToolStripMenuItem});
+            this.contextMenuStrip_Course.Name = "contextMenuStrip_Course";
+            this.contextMenuStrip_Course.Size = new System.Drawing.Size(125, 70);
+            // 
+            // 添加课程ToolStripMenuItem
+            // 
+            this.添加课程ToolStripMenuItem.Name = "添加课程ToolStripMenuItem";
+            this.添加课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.添加课程ToolStripMenuItem.Text = "添加课程";
+            // 
+            // 修改课程ToolStripMenuItem
+            // 
+            this.修改课程ToolStripMenuItem.Name = "修改课程ToolStripMenuItem";
+            this.修改课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.修改课程ToolStripMenuItem.Text = "修改课程";
+            // 
+            // 删除课程ToolStripMenuItem
+            // 
+            this.删除课程ToolStripMenuItem.Name = "删除课程ToolStripMenuItem";
+            this.删除课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除课程ToolStripMenuItem.Text = "删除课程";
+            // 
+            // gbCourseInfo
+            // 
+            this.gbCourseInfo.Controls.Add(this.tbCourseName);
+            this.gbCourseInfo.Controls.Add(this.btnLeft);
+            this.gbCourseInfo.Controls.Add(this.btnRight);
+            this.gbCourseInfo.Controls.Add(this.gbOthrer);
+            this.gbCourseInfo.Controls.Add(this.gbTextbook);
+            this.gbCourseInfo.Controls.Add(this.gbTeacher);
+            this.gbCourseInfo.Controls.Add(this.label2);
+            this.gbCourseInfo.Location = new System.Drawing.Point(263, 12);
+            this.gbCourseInfo.Name = "gbCourseInfo";
+            this.gbCourseInfo.Size = new System.Drawing.Size(509, 538);
+            this.gbCourseInfo.TabIndex = 2;
+            this.gbCourseInfo.TabStop = false;
+            this.gbCourseInfo.Text = "课程详情";
+            // 
+            // tbCourseName
+            // 
+            this.tbCourseName.BackColor = System.Drawing.SystemColors.Control;
+            this.tbCourseName.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbCourseName.Location = new System.Drawing.Point(113, 57);
+            this.tbCourseName.Name = "tbCourseName";
+            this.tbCourseName.ReadOnly = true;
+            this.tbCourseName.Size = new System.Drawing.Size(300, 29);
+            this.tbCourseName.TabIndex = 9;
+            this.tbCourseName.Text = "课程名";
+            this.tbCourseName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnRight
+            // 
+            this.btnRight.Location = new System.Drawing.Point(428, 509);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(75, 23);
+            this.btnRight.TabIndex = 7;
+            this.btnRight.Text = "打开";
+            this.btnRight.UseVisualStyleBackColor = true;
             // 
             // gbOthrer
             // 
-            this.gbOthrer.Controls.Add(this.richTextBox1);
+            this.gbOthrer.Controls.Add(this.rtbOther);
             this.gbOthrer.Location = new System.Drawing.Point(50, 361);
             this.gbOthrer.Name = "gbOthrer";
             this.gbOthrer.Size = new System.Drawing.Size(408, 123);
@@ -123,17 +223,21 @@
             this.gbOthrer.TabStop = false;
             this.gbOthrer.Text = "未尽事项";
             // 
-            // richTextBox1
+            // rtbOther
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 21);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(396, 96);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.rtbOther.Location = new System.Drawing.Point(6, 21);
+            this.rtbOther.Name = "rtbOther";
+            this.rtbOther.ReadOnly = true;
+            this.rtbOther.Size = new System.Drawing.Size(396, 96);
+            this.rtbOther.TabIndex = 0;
+            this.rtbOther.Text = "";
             // 
             // gbTextbook
             // 
-            this.gbTextbook.Controls.Add(this.listView3);
+            this.gbTextbook.Controls.Add(this.lvTextbook);
+            this.gbTextbook.Controls.Add(this.btnRefreshTextbook);
+            this.gbTextbook.Controls.Add(this.btnAddTextbook);
+            this.gbTextbook.Controls.Add(this.btnDelbook);
             this.gbTextbook.Location = new System.Drawing.Point(288, 150);
             this.gbTextbook.Name = "gbTextbook";
             this.gbTextbook.Size = new System.Drawing.Size(170, 180);
@@ -141,17 +245,20 @@
             this.gbTextbook.TabStop = false;
             this.gbTextbook.Text = "相关教材";
             // 
-            // listView3
+            // lvTextbook
             // 
-            this.listView3.Location = new System.Drawing.Point(6, 24);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(158, 150);
-            this.listView3.TabIndex = 4;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.lvTextbook.Location = new System.Drawing.Point(6, 24);
+            this.lvTextbook.Name = "lvTextbook";
+            this.lvTextbook.Size = new System.Drawing.Size(158, 150);
+            this.lvTextbook.TabIndex = 4;
+            this.lvTextbook.UseCompatibleStateImageBehavior = false;
             // 
             // gbTeacher
             // 
-            this.gbTeacher.Controls.Add(this.listView2);
+            this.gbTeacher.Controls.Add(this.lvTeacher);
+            this.gbTeacher.Controls.Add(this.btnRefreshTecher);
+            this.gbTeacher.Controls.Add(this.btnAddTeacher);
+            this.gbTeacher.Controls.Add(this.btnDelTeacher);
             this.gbTeacher.Location = new System.Drawing.Point(50, 150);
             this.gbTeacher.Name = "gbTeacher";
             this.gbTeacher.Size = new System.Drawing.Size(170, 180);
@@ -159,13 +266,47 @@
             this.gbTeacher.TabStop = false;
             this.gbTeacher.Text = "执教老师";
             // 
-            // listView2
+            // lvTeacher
             // 
-            this.listView2.Location = new System.Drawing.Point(6, 24);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(158, 150);
-            this.listView2.TabIndex = 4;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.lvTeacher.Location = new System.Drawing.Point(6, 24);
+            this.lvTeacher.Name = "lvTeacher";
+            this.lvTeacher.Size = new System.Drawing.Size(158, 121);
+            this.lvTeacher.TabIndex = 4;
+            this.lvTeacher.UseCompatibleStateImageBehavior = false;
+            // 
+            // btnRefreshTecher
+            // 
+            this.btnRefreshTecher.AutoSize = true;
+            this.btnRefreshTecher.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshTecher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshTecher.Location = new System.Drawing.Point(140, 151);
+            this.btnRefreshTecher.Name = "btnRefreshTecher";
+            this.btnRefreshTecher.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshTecher.TabIndex = 10;
+            this.btnRefreshTecher.UseVisualStyleBackColor = true;
+            // 
+            // btnAddTeacher
+            // 
+            this.btnAddTeacher.AutoSize = true;
+            this.btnAddTeacher.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddTeacher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddTeacher.Location = new System.Drawing.Point(6, 151);
+            this.btnAddTeacher.Name = "btnAddTeacher";
+            this.btnAddTeacher.Size = new System.Drawing.Size(23, 23);
+            this.btnAddTeacher.TabIndex = 6;
+            this.btnAddTeacher.UseVisualStyleBackColor = true;
+            this.btnAddTeacher.Click += new System.EventHandler(this.btnAddTeacher_Click);
+            // 
+            // btnDelTeacher
+            // 
+            this.btnDelTeacher.AutoSize = true;
+            this.btnDelTeacher.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelTeacher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelTeacher.Location = new System.Drawing.Point(73, 151);
+            this.btnDelTeacher.Name = "btnDelTeacher";
+            this.btnDelTeacher.Size = new System.Drawing.Size(23, 23);
+            this.btnDelTeacher.TabIndex = 7;
+            this.btnDelTeacher.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -175,12 +316,55 @@
             this.label2.Size = new System.Drawing.Size(300, 1);
             this.label2.TabIndex = 2;
             // 
+            // btnLeft
+            // 
+            this.btnLeft.Location = new System.Drawing.Point(347, 509);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(75, 23);
+            this.btnLeft.TabIndex = 8;
+            this.btnLeft.Text = "编辑";
+            this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnRefreshTextbook
+            // 
+            this.btnRefreshTextbook.AutoSize = true;
+            this.btnRefreshTextbook.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshTextbook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshTextbook.Location = new System.Drawing.Point(140, 151);
+            this.btnRefreshTextbook.Name = "btnRefreshTextbook";
+            this.btnRefreshTextbook.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshTextbook.TabIndex = 13;
+            this.btnRefreshTextbook.UseVisualStyleBackColor = true;
+            // 
+            // btnAddTextbook
+            // 
+            this.btnAddTextbook.AutoSize = true;
+            this.btnAddTextbook.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddTextbook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddTextbook.Location = new System.Drawing.Point(6, 151);
+            this.btnAddTextbook.Name = "btnAddTextbook";
+            this.btnAddTextbook.Size = new System.Drawing.Size(23, 23);
+            this.btnAddTextbook.TabIndex = 11;
+            this.btnAddTextbook.UseVisualStyleBackColor = true;
+            // 
+            // btnDelbook
+            // 
+            this.btnDelbook.AutoSize = true;
+            this.btnDelbook.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelbook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelbook.Location = new System.Drawing.Point(73, 151);
+            this.btnDelbook.Name = "btnDelbook";
+            this.btnDelbook.Size = new System.Drawing.Size(23, 23);
+            this.btnDelbook.TabIndex = 12;
+            this.btnDelbook.UseVisualStyleBackColor = true;
+            // 
             // CourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.gbCroupInfo);
+            this.Controls.Add(this.gbCourseInfo);
             this.Controls.Add(this.gbCourseList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CourseForm";
@@ -188,11 +372,15 @@
             this.Text = "课程";
             this.Shown += new System.EventHandler(this.CourseForm_Shown);
             this.gbCourseList.ResumeLayout(false);
-            this.gbCroupInfo.ResumeLayout(false);
-            this.gbCroupInfo.PerformLayout();
+            this.gbCourseList.PerformLayout();
+            this.contextMenuStrip_Course.ResumeLayout(false);
+            this.gbCourseInfo.ResumeLayout(false);
+            this.gbCourseInfo.PerformLayout();
             this.gbOthrer.ResumeLayout(false);
             this.gbTextbook.ResumeLayout(false);
+            this.gbTextbook.PerformLayout();
             this.gbTeacher.ResumeLayout(false);
+            this.gbTeacher.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -200,17 +388,32 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbCourseList;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.GroupBox gbCroupInfo;
+        private System.Windows.Forms.ListView lvCourse;
+        private System.Windows.Forms.GroupBox gbCourseInfo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gbTeacher;
         private System.Windows.Forms.GroupBox gbTextbook;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView lvTextbook;
+        private System.Windows.Forms.ListView lvTeacher;
+        private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.GroupBox gbOthrer;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox tvCourseName;
+        private System.Windows.Forms.RichTextBox rtbOther;
+        private System.Windows.Forms.TextBox tbCourseName;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Course;
+        private System.Windows.Forms.ToolStripMenuItem 添加课程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 修改课程ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除课程ToolStripMenuItem;
+        private System.Windows.Forms.Button btnAddCourse;
+        private System.Windows.Forms.Button btnDelCourse;
+        private System.Windows.Forms.Button btnEditCourse;
+        private System.Windows.Forms.Button btnSearchCourse;
+        private System.Windows.Forms.Button btnRefreshCourse;
+        private System.Windows.Forms.Button btnRefreshTecher;
+        private System.Windows.Forms.Button btnAddTeacher;
+        private System.Windows.Forms.Button btnDelTeacher;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRefreshTextbook;
+        private System.Windows.Forms.Button btnAddTextbook;
+        private System.Windows.Forms.Button btnDelbook;
     }
 }

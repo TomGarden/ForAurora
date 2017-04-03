@@ -8,6 +8,9 @@ namespace ForAurora.View
 {
     public static class ViewGlobal
     {
+        public static int smallBtnHeight = 29;
         public static CourseForm courseForm;
+        
+
     }
 }

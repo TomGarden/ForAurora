@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using ForAurora.Model.Entry;
 
 /// <summary>
 /// 操作Database的专用类
@@ -12,6 +13,7 @@ namespace ForAurora.Model
 {
     class OperateDB
     {
+        public static string ConnectStr = "Database='for_aurora';Data Source='localhost';User Id='root';Password='root';charset='utf8'";
         public void connectDB()
         {
 
@@ -27,6 +29,22 @@ namespace ForAurora.Model
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+
+        public static MySqlDataReader QueryAll(string queryStr)
+        {
+            if (queryStr.Equals("") || queryStr == null)
+            {
+                throw new Exception("参数错误！");
+            }
+
+            MySqlConnection mySqlConnection = new MySqlConnection(ConnectStr);
+            mySqlConnection.Open();
+
+            MySqlCommand mySqlCommand = new MySqlCommand(queryStr, mySqlConnection);
+            MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+
+            return mySqlDataReader;
         }
 
     }
