@@ -90,6 +90,12 @@
     <Compile Include="View\MyDialog.Designer.cs">
       <DependentUpon>MyDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ProblemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProblemForm.Designer.cs">
+      <DependentUpon>ProblemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewGlobal.cs" />
     <EmbeddedResource Include="View\AddTeacher.resx">
       <DependentUpon>AddTeacher.cs</DependentUpon>
@@ -115,6 +121,9 @@
     </Compile>
     <EmbeddedResource Include="View\MyDialog.resx">
       <DependentUpon>MyDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProblemForm.resx">
+      <DependentUpon>ProblemForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

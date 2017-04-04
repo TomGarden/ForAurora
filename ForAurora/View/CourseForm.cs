@@ -275,5 +275,12 @@ namespace ForAurora
             AddTeacherForm addTeacherForm = new AddTeacherForm(this.TeacherList);
             addTeacherForm.ShowDialog();
         }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            ProblemForm problemForm = new ProblemForm();
+            problemForm.Show();
+            this.Hide();
+        }
     }
 }

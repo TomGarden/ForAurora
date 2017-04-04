@@ -37,8 +37,8 @@ namespace ForAurora.View
 
             string insertSql = "INSERT INTO teacher (teacher.id, teacher.utc8_create, teacher.utc8_modify, teacher.`name`, teacher.office, teacher.other, teacher.contact) VALUES (@ID,@Create,@Modify,@Name,@Office,@Other,@Contact)";
             MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
-            MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
             mySqlConnection.Open();
+            MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
 
             try
             {
