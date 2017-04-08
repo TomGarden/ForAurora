@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model.Entry.Relation
 {
-    class TeacherTeachCourse:Entry
+   public class TeacherTeachCourse:Entry
     {
         private string ukTeacherId;
         private string ukCourseId;

@@ -110,8 +110,9 @@ namespace ForAurora.Model
                 cmd.Parameters.Clear();
                 return reader;
             }
-            catch
+            catch(Exception exception)
             {
+                Console.WriteLine(exception.ToString());
                 //关闭连接，抛出异常
                 conn.Close();
                 throw;

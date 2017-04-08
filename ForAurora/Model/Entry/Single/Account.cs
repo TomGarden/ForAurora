@@ -9,7 +9,7 @@ namespace ForAurora.Model.Entry
     /// <summary>
     /// 用户账户
     /// </summary>
-    class Account :Entry
+    public class Account :Entry
     {
         private string username;
         private string pwd;

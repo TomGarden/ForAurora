@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model.Entry
 {
-    class Textbook:Entry
+   public  class Textbook:Entry
     {
         private string name;
         private string uk_isbn;

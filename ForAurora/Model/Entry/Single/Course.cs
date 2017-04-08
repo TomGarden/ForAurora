@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model.Entry
 {
-    class Course:Entry
+  public  class Course:Entry
     {
         private string name;
 

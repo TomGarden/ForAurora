@@ -57,12 +57,17 @@
     <Compile Include="Model\MySqlHelper.cs" />
     <Compile Include="Model\OperateDB.cs" />
     <Compile Include="Model\OperateTeacher.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplCourseFormReq.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplTeacherFormReq.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplTextbookFormReq.cs" />
+    <Compile Include="Presenter\OperateTable\OperTeacherTeachCourse.cs" />
     <Compile Include="Utils\StringUtil.cs" />
-    <Compile Include="View\AddTeacher.cs">
+    <Compile Include="View\Requirement\ITextbookFormReq.cs" />
+    <Compile Include="View\TeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddTeacher.Designer.cs">
-      <DependentUpon>AddTeacher.cs</DependentUpon>
+    <Compile Include="View\TeacherForm.Designer.cs">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CourseForm.cs">
       <SubType>Form</SubType>
@@ -70,17 +75,17 @@
     <Compile Include="View\CourseForm.Designer.cs">
       <DependentUpon>CourseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\KnowledgePointAndProblem.cs">
+    <Compile Include="View\KnowledgePointForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\KnowledgePointAndProblem.Designer.cs">
-      <DependentUpon>KnowledgePointAndProblem.cs</DependentUpon>
+    <Compile Include="View\KnowledgePointForm.Designer.cs">
+      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Login.cs">
+    <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="View\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenter\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,18 +101,26 @@
     <Compile Include="View\ProblemForm.Designer.cs">
       <DependentUpon>ProblemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Requirement\ICourseFormReq.cs" />
+    <Compile Include="View\Requirement\ITeacherFormReq.cs" />
+    <Compile Include="View\TextbookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TextbookForm.Designer.cs">
+      <DependentUpon>TextbookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewGlobal.cs" />
-    <EmbeddedResource Include="View\AddTeacher.resx">
-      <DependentUpon>AddTeacher.cs</DependentUpon>
+    <EmbeddedResource Include="View\TeacherForm.resx">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CourseForm.resx">
       <DependentUpon>CourseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\KnowledgePointAndProblem.resx">
-      <DependentUpon>KnowledgePointAndProblem.cs</DependentUpon>
+    <EmbeddedResource Include="View\KnowledgePointForm.resx">
+      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="View\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,6 +138,9 @@
     <EmbeddedResource Include="View\ProblemForm.resx">
       <DependentUpon>ProblemForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\TextbookForm.resx">
+      <DependentUpon>TextbookForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,7 +157,11 @@
   <ItemGroup>
     <None Include="Resources\north.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Presenter\ImplViewReq\ReadMe.txt" />
+    <Content Include="Presenter\OperateTable\ReadMe.txt" />
+    <Content Include="View\Requirement\ReadMe.txt" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
   </ItemGroup>

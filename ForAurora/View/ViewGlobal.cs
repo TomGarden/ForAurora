@@ -10,7 +10,7 @@ namespace ForAurora.View
     {
         public static int smallBtnHeight = 29;
         public static CourseForm courseForm;
-        
 
+        public static string ERROR = "错误";
     }
 }
