@@ -80,9 +80,9 @@ namespace ForAurora.Presenter.ImplViewReq
             while (mySqlDataReader.Read())
             {
                 Course course = new Course();
-                course.Id = mySqlDataReader.GetString(0);
-                course.Name = mySqlDataReader.GetString(1);
-                course.Other = mySqlDataReader.GetString(2);
+                course.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                course.Name = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                course.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
                 CourseList.Add(course);
             }
             mySqlDataReader.Close();
@@ -101,8 +101,9 @@ namespace ForAurora.Presenter.ImplViewReq
             while (mySqlDataReader.Read())
             {
                 Teacher teacher = new Teacher();
-                teacher.Name = mySqlDataReader.GetString(1);
-                teacher.Id = mySqlDataReader.GetString(0);TeacherList.Add(teacher);
+                teacher.Name = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                teacher.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                TeacherList.Add(teacher);
             }
             mySqlDataReader.Close();
 
@@ -121,8 +122,8 @@ namespace ForAurora.Presenter.ImplViewReq
             while (mSqlReader.Read())
             {
                 Textbook textbook = new Textbook();
-                textbook.Id = mSqlReader.GetString(0);
-                textbook.Name = mSqlReader.GetString(1);
+                textbook.Id = mSqlReader.IsDBNull(0) ? "" : mSqlReader.GetString(0);
+                textbook.Name = mSqlReader.IsDBNull(1) ? "" : mSqlReader.GetString(1);
                 TextbookList.Add(textbook);
             }
             mSqlReader.Close();

@@ -38,13 +38,12 @@ namespace ForAurora
         private Course CurrentlCourse = null;
 
         private string pleaseOperateOneCourse = "请尝试对“1”堂课程进行操作";
-        private string isClickOrAddState = "正处于“编辑”或“添加”状态状态";
         private string btnEditStr = "编辑";
         private string btnSubmitStr = "提交";
         private string btnCancelStr = "取消";
         private string btnOpenStr = "打开";
 
-        private bool IsAdd = false;
+        //private bool IsAdd = false;
         private bool IsEdit = false;
 
 
@@ -171,12 +170,12 @@ namespace ForAurora
 
         private void btnRefreshCourse_Click(object sender, EventArgs e)
         {
-            if (this.IsAdd)
+            /*if (this.IsAdd)
             {
                 MessageBox.Show("尚未添加完成");
                 return;
             }
-            else if (this.IsEdit)
+            else*/ if (this.IsEdit)
             {
                 MessageBox.Show("尚未编辑完成");
                 return;
@@ -187,18 +186,18 @@ namespace ForAurora
         //我们的添加也要走编辑的路线，所以取消走删除路线
         private void btnAddCourse_Click(object sender, EventArgs e)
         {
-            if (this.IsAdd)
-            {
-                MessageBox.Show("尚未添加完成");
-                return;
-            }
-            else if (this.IsEdit)
+            //if (this.IsAdd)
+            //{
+            //    MessageBox.Show("尚未添加完成");
+            //    return;
+            //}
+             if (this.IsEdit)
             {
                 MessageBox.Show("尚未编辑完成");
                 return;
             }
 
-            this.IsAdd = true;
+            //this.IsAdd = true;
 
             this.tbCourseName.Text = "课程名";
             this.tbCourseName.ReadOnly = false;
@@ -214,6 +213,18 @@ namespace ForAurora
             this.rtbOther.ReadOnly = false;
             this.btnRight.Text = this.btnCancelStr;
             this.btnLeft.Text = this.btnSubmitStr;
+
+            Course course = new Course();
+            course.Id = Guid.NewGuid().ToString("N");
+            course.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            course.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            course.Name = "有待完善";
+
+            this.ICourseFormReq.AddOneCourse(course);
+
+            this.CurrentlCourse = course;
+
+            this.IsEdit = true;
         }
 
         private void lvCourse_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,12 +234,12 @@ namespace ForAurora
                 return;
             }
 
-            if (this.IsAdd)
+            /*if (this.IsAdd)
             {
                 MessageBox.Show("尚未添加完成");
                 return;
             }
-            else if (this.IsEdit)
+            else*/ if (this.IsEdit)
             {
                 MessageBox.Show("尚未编辑完成");
                 return;
@@ -283,15 +294,15 @@ namespace ForAurora
                     course.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     course.Name = tbCourseName.Text.Trim();
                     course.Other = rtbOther.Text.Trim();
-                    if (IsAdd)
-                    {
-                        course.Id = Guid.NewGuid().ToString("N");
-                        course.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        //MessageBox.Show("添加新客户才能");
-                        this.ICourseFormReq.AddOneCourse(course);
+                    //if (IsAdd)
+                    //{
+                    //    course.Id = Guid.NewGuid().ToString("N");
+                    //    course.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    //    //MessageBox.Show("添加新客户才能");
+                    //    this.ICourseFormReq.AddOneCourse(course);
                         
-                        this.IsAdd = false;
-                    }
+                    //    this.IsAdd = false;
+                    //}
                     if (IsEdit)
                     {
                         course.Id = this.CurrentlCourse.Id;
@@ -322,12 +333,12 @@ namespace ForAurora
             switch (this.btnRight.Text)
             {
                 case "打开":
-                    if (this.IsAdd)
+                    /*if (this.IsAdd)
                     {
                         MessageBox.Show("尚未添加完成");
                         return;
                     }
-                    else if (this.IsEdit)
+                    else*/ if (this.IsEdit)
                     {
                         MessageBox.Show("尚未编辑完成");
                         return;
@@ -347,7 +358,7 @@ namespace ForAurora
                     this.btnLeft.Text = this.btnEditStr;
 
                     int currentIndex = this.CourseList.IndexOf(this.CurrentlCourse);
-                    this.IsAdd = false;
+                    //this.IsAdd = false;
                     this.IsEdit = false;
                     this.lvCourse.Items[currentIndex].Selected = false;
                     this.lvCourse.Items[currentIndex].Selected = true;
@@ -491,12 +502,12 @@ namespace ForAurora
 
         private void btnDelCourse_Click(object sender, EventArgs e)
         {
-            if (this.IsAdd)
+            /*if (this.IsAdd)
             {
                 MessageBox.Show("尚未添加完成");
                 return;
             }
-            else if (this.IsEdit)
+            else*/ if (this.IsEdit)
             {
                 MessageBox.Show("尚未编辑完成");
                 return;
