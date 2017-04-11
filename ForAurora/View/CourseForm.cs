@@ -343,8 +343,8 @@ namespace ForAurora
                         MessageBox.Show("尚未编辑完成");
                         return;
                     }
-                    ProblemForm problemForm = new ProblemForm();
-                    problemForm.Show();
+                    KnowledgePointAndProblem knowlAndProblem = new KnowledgePointAndProblem(this.CurrentlCourse.Id);
+                    knowlAndProblem.Show();
                     this.Hide();
                     break;
                 case "取消":

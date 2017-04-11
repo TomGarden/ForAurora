@@ -47,21 +47,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Entry\Relation\CourseSpreadKnowl.cs" />
+    <Compile Include="Model\Entry\Relation\KnowlComposeProblem.cs" />
+    <Compile Include="Model\Entry\Relation\ProblemComposePapers.cs" />
     <Compile Include="Model\Entry\Relation\TeacherTeachCourse.cs" />
     <Compile Include="Model\Entry\Relation\TextbookBelongCourse.cs" />
     <Compile Include="Model\Entry\Single\Account.cs" />
     <Compile Include="Model\Entry\Single\Course.cs" />
     <Compile Include="Model\Entry\Entry.cs" />
+    <Compile Include="Model\Entry\Single\KnowledgePoint.cs" />
     <Compile Include="Model\Entry\Single\Teacher.cs" />
     <Compile Include="Model\Entry\Single\Textbook.cs" />
     <Compile Include="Model\MySqlHelper.cs" />
     <Compile Include="Model\OperateDB.cs" />
     <Compile Include="Model\OperateTeacher.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplCourseFormReq.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplKnowltAndProblemFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplTeacherFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplTextbookFormReq.cs" />
     <Compile Include="Presenter\OperateTable\OperTeacherTeachCourse.cs" />
     <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="View\KnowledgePointEidtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\KnowledgePointEidtForm.Designer.cs">
+      <DependentUpon>KnowledgePointEidtForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\KnowledgePointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\KnowledgePointForm.Designer.cs">
+      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Requirement\IKnowltAndProblemReq.cs" />
     <Compile Include="View\Requirement\ITextbookFormReq.cs" />
     <Compile Include="View\TeacherForm.cs">
       <SubType>Form</SubType>
@@ -75,11 +93,11 @@
     <Compile Include="View\CourseForm.Designer.cs">
       <DependentUpon>CourseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\KnowledgePointForm.cs">
+    <Compile Include="View\KnowledgePointAndProblem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\KnowledgePointForm.Designer.cs">
-      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    <Compile Include="View\KnowledgePointAndProblem.Designer.cs">
+      <DependentUpon>KnowledgePointAndProblem.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -110,14 +128,20 @@
       <DependentUpon>TextbookForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ViewGlobal.cs" />
+    <EmbeddedResource Include="View\KnowledgePointEidtForm.resx">
+      <DependentUpon>KnowledgePointEidtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\KnowledgePointForm.resx">
+      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\TeacherForm.resx">
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CourseForm.resx">
       <DependentUpon>CourseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\KnowledgePointForm.resx">
-      <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\KnowledgePointAndProblem.resx">
+      <DependentUpon>KnowledgePointAndProblem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ForAurora.Model.Entry.Relation;
+using ForAurora.Model.Entry.Single;
+using ForAurora.View.Requirement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +11,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ForAurora
+namespace ForAurora.View
 {
-    public partial class KnowledgePointAndProblem : Form
+    public partial class KnowledgePointForm : Form
     {
-        public KnowledgePointAndProblem()
+        private AddKnowlPoint addKnowlPoint = null;
+        private KnowledgePoint CurrentSelKnowl = null;
+        private string courseId;
+        public KnowledgePointForm(string courseId,AddKnowlPoint addKnowlPoint,KnowledgePoint CurrentSelKnowl)
         {
             InitializeComponent();
+            this.CurrentSelKnowl = CurrentSelKnowl;
+            this.addKnowlPoint = addKnowlPoint;
+            this.courseId = courseId;
+        }
+
+        private void btnCancelSubmit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            KnowledgePoint knowl = new KnowledgePoint();
+            knowl.Id = Guid.NewGuid().ToString("N");
+            knowl.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            knowl.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            knowl.Name = this.tbKnowlName.Text.Trim();
+            knowl.Other = this.rtbOther.Text;
+            if (this.rbRoot.Checked) { knowl.UpperKnowlId = "root"; }
+            if (this.rbNotRoot.Checked) { knowl.UpperKnowlId = this.CurrentSelKnowl.Id; }
+
+            CourseSpreadKnowl courseSpreadKnowl = new CourseSpreadKnowl();
+            courseSpreadKnowl.Id = Guid.NewGuid().ToString("N");
+            courseSpreadKnowl.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            courseSpreadKnowl.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            courseSpreadKnowl.KnowlId = knowl.Id;
+            courseSpreadKnowl.CourseId = this.courseId;
+            this.addKnowlPoint(knowl, courseSpreadKnowl);
+
+            this.Close();
         }
     }
 }
