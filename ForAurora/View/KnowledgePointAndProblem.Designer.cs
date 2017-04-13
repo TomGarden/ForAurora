@@ -30,35 +30,35 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KnowledgePointAndProblem));
             this.gbKnowledgePoint = new System.Windows.Forms.GroupBox();
+            this.btnEditKnowl = new System.Windows.Forms.Button();
+            this.btnRefreshKnowl = new System.Windows.Forms.Button();
+            this.btnDelKnowl = new System.Windows.Forms.Button();
+            this.btnAddKnowl = new System.Windows.Forms.Button();
             this.tvKnowlTree = new System.Windows.Forms.TreeView();
             this.gbProblem = new System.Windows.Forms.GroupBox();
             this.panelProblemGroup = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnEditProblem = new System.Windows.Forms.Button();
+            this.btnRefreshProblem = new System.Windows.Forms.Button();
+            this.btnDelProblem = new System.Windows.Forms.Button();
+            this.btnAddProblem = new System.Windows.Forms.Button();
             this.gbProblemInfo = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbProblemAnswer = new System.Windows.Forms.GroupBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.btnEditProblem = new System.Windows.Forms.Button();
-            this.btnRefreshProblem = new System.Windows.Forms.Button();
-            this.btnDelProblem = new System.Windows.Forms.Button();
-            this.btnAddProblem = new System.Windows.Forms.Button();
-            this.btnEditKnowl = new System.Windows.Forms.Button();
-            this.btnRefreshKnowl = new System.Windows.Forms.Button();
-            this.btnDelKnowl = new System.Windows.Forms.Button();
-            this.btnAddKnowl = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.gbKnowledgePoint.SuspendLayout();
             this.gbProblem.SuspendLayout();
             this.gbProblemInfo.SuspendLayout();
@@ -78,6 +78,54 @@
             this.gbKnowledgePoint.TabIndex = 0;
             this.gbKnowledgePoint.TabStop = false;
             this.gbKnowledgePoint.Text = "知识点";
+            // 
+            // btnEditKnowl
+            // 
+            this.btnEditKnowl.AutoSize = true;
+            this.btnEditKnowl.BackgroundImage = global::ForAurora.Properties.Resources.edit;
+            this.btnEditKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEditKnowl.Location = new System.Drawing.Point(132, 509);
+            this.btnEditKnowl.Name = "btnEditKnowl";
+            this.btnEditKnowl.Size = new System.Drawing.Size(23, 23);
+            this.btnEditKnowl.TabIndex = 9;
+            this.btnEditKnowl.UseVisualStyleBackColor = true;
+            this.btnEditKnowl.Click += new System.EventHandler(this.btnEditKnowl_Click);
+            // 
+            // btnRefreshKnowl
+            // 
+            this.btnRefreshKnowl.AutoSize = true;
+            this.btnRefreshKnowl.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshKnowl.Location = new System.Drawing.Point(195, 509);
+            this.btnRefreshKnowl.Name = "btnRefreshKnowl";
+            this.btnRefreshKnowl.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshKnowl.TabIndex = 8;
+            this.btnRefreshKnowl.UseVisualStyleBackColor = true;
+            this.btnRefreshKnowl.Click += new System.EventHandler(this.btnRefreshKnowl_Click);
+            // 
+            // btnDelKnowl
+            // 
+            this.btnDelKnowl.AutoSize = true;
+            this.btnDelKnowl.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelKnowl.Location = new System.Drawing.Point(69, 509);
+            this.btnDelKnowl.Name = "btnDelKnowl";
+            this.btnDelKnowl.Size = new System.Drawing.Size(23, 23);
+            this.btnDelKnowl.TabIndex = 7;
+            this.btnDelKnowl.UseVisualStyleBackColor = true;
+            this.btnDelKnowl.Click += new System.EventHandler(this.btnDelKnowl_Click);
+            // 
+            // btnAddKnowl
+            // 
+            this.btnAddKnowl.AutoSize = true;
+            this.btnAddKnowl.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddKnowl.Location = new System.Drawing.Point(6, 509);
+            this.btnAddKnowl.Name = "btnAddKnowl";
+            this.btnAddKnowl.Size = new System.Drawing.Size(23, 23);
+            this.btnAddKnowl.TabIndex = 6;
+            this.btnAddKnowl.UseVisualStyleBackColor = true;
+            this.btnAddKnowl.Click += new System.EventHandler(this.btnAddKnowl_Click);
             // 
             // tvKnowlTree
             // 
@@ -127,6 +175,51 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 14;
+            // 
+            // btnEditProblem
+            // 
+            this.btnEditProblem.AutoSize = true;
+            this.btnEditProblem.BackgroundImage = global::ForAurora.Properties.Resources.edit;
+            this.btnEditProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEditProblem.Location = new System.Drawing.Point(226, 509);
+            this.btnEditProblem.Name = "btnEditProblem";
+            this.btnEditProblem.Size = new System.Drawing.Size(23, 23);
+            this.btnEditProblem.TabIndex = 13;
+            this.btnEditProblem.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshProblem
+            // 
+            this.btnRefreshProblem.AutoSize = true;
+            this.btnRefreshProblem.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshProblem.Location = new System.Drawing.Point(289, 509);
+            this.btnRefreshProblem.Name = "btnRefreshProblem";
+            this.btnRefreshProblem.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshProblem.TabIndex = 12;
+            this.btnRefreshProblem.UseVisualStyleBackColor = true;
+            // 
+            // btnDelProblem
+            // 
+            this.btnDelProblem.AutoSize = true;
+            this.btnDelProblem.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelProblem.Location = new System.Drawing.Point(163, 509);
+            this.btnDelProblem.Name = "btnDelProblem";
+            this.btnDelProblem.Size = new System.Drawing.Size(23, 23);
+            this.btnDelProblem.TabIndex = 11;
+            this.btnDelProblem.UseVisualStyleBackColor = true;
+            // 
+            // btnAddProblem
+            // 
+            this.btnAddProblem.AutoSize = true;
+            this.btnAddProblem.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddProblem.Location = new System.Drawing.Point(100, 509);
+            this.btnAddProblem.Name = "btnAddProblem";
+            this.btnAddProblem.Size = new System.Drawing.Size(23, 23);
+            this.btnAddProblem.TabIndex = 10;
+            this.btnAddProblem.UseVisualStyleBackColor = true;
+            this.btnAddProblem.Click += new System.EventHandler(this.btnAddProblem_Click);
             // 
             // gbProblemInfo
             // 
@@ -193,38 +286,35 @@
             this.gbProblemAnswer.TabStop = false;
             this.gbProblemAnswer.Text = "题目解析";
             // 
-            // richTextBox2
+            // button1
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(6, 37);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(291, 210);
-            this.richTextBox2.TabIndex = 4;
-            this.richTextBox2.Text = "";
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImage = global::ForAurora.Properties.Resources.edit;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(180, 346);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.TabIndex = 20;
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // richTextBox3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "内容";
+            this.richTextBox3.Location = new System.Drawing.Point(6, 292);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(291, 48);
+            this.richTextBox3.TabIndex = 6;
+            this.richTextBox3.Text = "";
             // 
-            // label5
+            // button2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 256);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "来源";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(41, 253);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 21);
-            this.textBox2.TabIndex = 4;
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(243, 346);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 23);
+            this.button2.TabIndex = 19;
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -235,37 +325,10 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "未尽事项";
             // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(6, 292);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(291, 48);
-            this.richTextBox3.TabIndex = 6;
-            this.richTextBox3.Text = "";
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(180, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 20;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(243, 346);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 19;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.AutoSize = true;
+            this.button3.BackgroundImage = global::ForAurora.Properties.Resources.delete;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.Location = new System.Drawing.Point(117, 346);
             this.button3.Name = "button3";
@@ -276,6 +339,7 @@
             // button4
             // 
             this.button4.AutoSize = true;
+            this.button4.BackgroundImage = global::ForAurora.Properties.Resources.add;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button4.Location = new System.Drawing.Point(54, 346);
             this.button4.Name = "button4";
@@ -283,90 +347,38 @@
             this.button4.TabIndex = 17;
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // btnEditProblem
+            // textBox2
             // 
-            this.btnEditProblem.AutoSize = true;
-            this.btnEditProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEditProblem.Location = new System.Drawing.Point(226, 509);
-            this.btnEditProblem.Name = "btnEditProblem";
-            this.btnEditProblem.Size = new System.Drawing.Size(23, 23);
-            this.btnEditProblem.TabIndex = 13;
-            this.btnEditProblem.UseVisualStyleBackColor = true;
+            this.textBox2.Location = new System.Drawing.Point(41, 253);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(256, 21);
+            this.textBox2.TabIndex = 4;
             // 
-            // btnRefreshProblem
+            // label5
             // 
-            this.btnRefreshProblem.AutoSize = true;
-            this.btnRefreshProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRefreshProblem.Location = new System.Drawing.Point(289, 509);
-            this.btnRefreshProblem.Name = "btnRefreshProblem";
-            this.btnRefreshProblem.Size = new System.Drawing.Size(23, 23);
-            this.btnRefreshProblem.TabIndex = 12;
-            this.btnRefreshProblem.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 256);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "来源";
             // 
-            // btnDelProblem
+            // label4
             // 
-            this.btnDelProblem.AutoSize = true;
-            this.btnDelProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelProblem.Location = new System.Drawing.Point(163, 509);
-            this.btnDelProblem.Name = "btnDelProblem";
-            this.btnDelProblem.Size = new System.Drawing.Size(23, 23);
-            this.btnDelProblem.TabIndex = 11;
-            this.btnDelProblem.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "内容";
             // 
-            // btnAddProblem
+            // richTextBox2
             // 
-            this.btnAddProblem.AutoSize = true;
-            this.btnAddProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddProblem.Location = new System.Drawing.Point(100, 509);
-            this.btnAddProblem.Name = "btnAddProblem";
-            this.btnAddProblem.Size = new System.Drawing.Size(23, 23);
-            this.btnAddProblem.TabIndex = 10;
-            this.btnAddProblem.UseVisualStyleBackColor = true;
-            this.btnAddProblem.Click += new System.EventHandler(this.btnAddProblem_Click);
-            // 
-            // btnEditKnowl
-            // 
-            this.btnEditKnowl.AutoSize = true;
-            this.btnEditKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEditKnowl.Location = new System.Drawing.Point(132, 509);
-            this.btnEditKnowl.Name = "btnEditKnowl";
-            this.btnEditKnowl.Size = new System.Drawing.Size(23, 23);
-            this.btnEditKnowl.TabIndex = 9;
-            this.btnEditKnowl.UseVisualStyleBackColor = true;
-            this.btnEditKnowl.Click += new System.EventHandler(this.btnEditKnowl_Click);
-            // 
-            // btnRefreshKnowl
-            // 
-            this.btnRefreshKnowl.AutoSize = true;
-            this.btnRefreshKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRefreshKnowl.Location = new System.Drawing.Point(195, 509);
-            this.btnRefreshKnowl.Name = "btnRefreshKnowl";
-            this.btnRefreshKnowl.Size = new System.Drawing.Size(23, 23);
-            this.btnRefreshKnowl.TabIndex = 8;
-            this.btnRefreshKnowl.UseVisualStyleBackColor = true;
-            this.btnRefreshKnowl.Click += new System.EventHandler(this.btnRefreshKnowl_Click);
-            // 
-            // btnDelKnowl
-            // 
-            this.btnDelKnowl.AutoSize = true;
-            this.btnDelKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelKnowl.Location = new System.Drawing.Point(69, 509);
-            this.btnDelKnowl.Name = "btnDelKnowl";
-            this.btnDelKnowl.Size = new System.Drawing.Size(23, 23);
-            this.btnDelKnowl.TabIndex = 7;
-            this.btnDelKnowl.UseVisualStyleBackColor = true;
-            this.btnDelKnowl.Click += new System.EventHandler(this.btnDelKnowl_Click);
-            // 
-            // btnAddKnowl
-            // 
-            this.btnAddKnowl.AutoSize = true;
-            this.btnAddKnowl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddKnowl.Location = new System.Drawing.Point(6, 509);
-            this.btnAddKnowl.Name = "btnAddKnowl";
-            this.btnAddKnowl.Size = new System.Drawing.Size(23, 23);
-            this.btnAddKnowl.TabIndex = 6;
-            this.btnAddKnowl.UseVisualStyleBackColor = true;
-            this.btnAddKnowl.Click += new System.EventHandler(this.btnAddKnowl_Click);
+            this.richTextBox2.Location = new System.Drawing.Point(6, 37);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(291, 210);
+            this.richTextBox2.TabIndex = 4;
+            this.richTextBox2.Text = "";
             // 
             // KnowledgePointAndProblem
             // 

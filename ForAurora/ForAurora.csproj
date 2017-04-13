@@ -69,6 +69,11 @@
     <Compile Include="Presenter\ImplViewReq\ImplTeacherFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplTextbookFormReq.cs" />
     <Compile Include="Presenter\OperateTable\OperTeacherTeachCourse.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\StringUtil.cs" />
     <Compile Include="View\KnowledgePointEidtForm.cs">
       <SubType>Form</SubType>
@@ -155,6 +160,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MyDialog.resx">
       <DependentUpon>MyDialog.cs</DependentUpon>
@@ -176,28 +182,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\north.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Presenter\ImplViewReq\ReadMe.txt" />
     <Content Include="Presenter\OperateTable\ReadMe.txt" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\test_32.png" />
     <Content Include="View\Requirement\ReadMe.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\refresh.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

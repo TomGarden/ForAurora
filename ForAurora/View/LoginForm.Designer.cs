@@ -105,7 +105,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::ForAurora.Properties.Resources.north;
+            this.pictureBox1.BackgroundImage = global::ForAurora.Properties.Resources.add;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
