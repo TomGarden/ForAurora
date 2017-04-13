@@ -16,6 +16,50 @@ namespace ForAurora.Presenter.ImplViewReq
             return new ImplKnowltAndProblemFormReq();
         }
 
+        public void AddOneProblem(Problem problem)
+        {
+            throw new NotImplementedException();
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
+            string insertSql_problem = "INSERT INTO problem (problem.id,problem.utc8_create,problem.utc8_modify,problem.other,problem.content,problem.uk_problem_type_id) VALUES (@id,@create,@modife,@other,content,@typeId);";
+            string insertSql_knowledge_point_compose_problem = "INSERT INTO knowledge_point_compose_problem(knowledge_point_compose_problem.id,knowledge_point_compose_problem.utc8_create,knowledge_point_compose_problem.utc8_modify,knowledge_point_compose_problem.other,knowledge_point_compose_problem.uk_problem_id,knowledge_point_compose_problem.uk_knowledge_point_id) VALUES (@id,@create,@modife,@other,@problemId,@knowlIds);";
+            try
+            {
+                //Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql_knowledge_point,
+                //    new MySqlParameter("@id", knowlPoint.Id),
+                //    new MySqlParameter("@create", knowlPoint.Create),
+                //    new MySqlParameter("@modife", knowlPoint.Modify),
+                //    new MySqlParameter("@other", knowlPoint.Other),
+                //    new MySqlParameter("@name", knowlPoint.Name),
+                //    new MySqlParameter("@upperId", knowlPoint.UpperKnowlId));
+
+                //Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql_course_spread_knowledge_point,
+                //    new MySqlParameter("@id", courseSpreadKnowl.Id),
+                //    new MySqlParameter("@create", courseSpreadKnowl.Create),
+                //    new MySqlParameter("@modife", courseSpreadKnowl.Modify),
+                //    new MySqlParameter("@other", courseSpreadKnowl.Other),
+                //    new MySqlParameter("@knowlId", courseSpreadKnowl.KnowlId),
+                //    new MySqlParameter("@courseId", courseSpreadKnowl.CourseId));
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
+                mySqlTransaction.Rollback();
+                mySqlConnection.Close();
+                MessageBox.Show("操作失败，操作已回滚。");
+            }
+            finally
+            {
+                Console.WriteLine("操作成功，状态：" + mySqlConnection.State);
+                if (mySqlConnection.State != ConnectionState.Closed)
+                {
+                    mySqlTransaction.Commit();
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
         public void DelKnowlByID(string knowlID)
         {
             string delSql = "DELETE FROM knowledge_point WHERE knowledge_point.id = @knowlID;";

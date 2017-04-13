@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Model\Entry\Relation\CourseSpreadKnowl.cs" />
     <Compile Include="Model\Entry\Relation\KnowlComposeProblem.cs" />
+    <Compile Include="Model\Entry\Relation\ProblemAnswer.cs" />
     <Compile Include="Model\Entry\Relation\ProblemComposePapers.cs" />
     <Compile Include="Model\Entry\Relation\TeacherTeachCourse.cs" />
     <Compile Include="Model\Entry\Relation\TextbookBelongCourse.cs" />
@@ -56,8 +57,10 @@
     <Compile Include="Model\Entry\Single\Course.cs" />
     <Compile Include="Model\Entry\Entry.cs" />
     <Compile Include="Model\Entry\Single\KnowledgePoint.cs" />
+    <Compile Include="Model\Entry\Single\Problem.cs" />
     <Compile Include="Model\Entry\Single\Teacher.cs" />
     <Compile Include="Model\Entry\Single\Textbook.cs" />
+    <Compile Include="Model\Entry\Single\Type.cs" />
     <Compile Include="Model\MySqlHelper.cs" />
     <Compile Include="Model\OperateDB.cs" />
     <Compile Include="Model\OperateTeacher.cs" />
@@ -78,6 +81,12 @@
     </Compile>
     <Compile Include="View\KnowledgePointForm.Designer.cs">
       <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProblemEidtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProblemEidtForm.Designer.cs">
+      <DependentUpon>ProblemEidtForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Requirement\IKnowltAndProblemReq.cs" />
     <Compile Include="View\Requirement\ITextbookFormReq.cs" />
@@ -113,12 +122,6 @@
     <Compile Include="View\MyDialog.Designer.cs">
       <DependentUpon>MyDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ProblemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\ProblemForm.Designer.cs">
-      <DependentUpon>ProblemForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Requirement\ICourseFormReq.cs" />
     <Compile Include="View\Requirement\ITeacherFormReq.cs" />
     <Compile Include="View\TextbookForm.cs">
@@ -134,6 +137,9 @@
     <EmbeddedResource Include="View\KnowledgePointForm.resx">
       <DependentUpon>KnowledgePointForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ProblemEidtForm.resx">
+      <DependentUpon>ProblemEidtForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\TeacherForm.resx">
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,19 +154,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="View\MyDialog.resx">
       <DependentUpon>MyDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ProblemForm.resx">
-      <DependentUpon>ProblemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TextbookForm.resx">
       <DependentUpon>TextbookForm.cs</DependentUpon>

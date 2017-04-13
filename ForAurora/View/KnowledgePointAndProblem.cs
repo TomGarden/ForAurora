@@ -15,8 +15,11 @@ using System.Windows.Forms;
 
 namespace ForAurora
 {
+    //添加知识点
     public delegate void AddKnowlPoint(KnowledgePoint knowlPoin, CourseSpreadKnowl courseSpreadKnowlt);
-    public delegate void UpdateKnowlPoint(KnowledgePoint knowlPoint); 
+    public delegate void UpdateKnowlPoint(KnowledgePoint knowlPoint);
+    //添加试题
+    public delegate void AddProblem(Problem Problem);
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
@@ -94,7 +97,7 @@ namespace ForAurora
         private void tvKnowlTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.CurrentSelKnol = (KnowledgePoint)this.tvKnowlTree.SelectedNode.Tag;
-            MessageBox.Show("AfterSelect"+this.CurrentSelKnol.Name);
+            //MessageBox.Show("AfterSelect"+this.CurrentSelKnol.Name);
         }
 
 
@@ -149,6 +152,20 @@ namespace ForAurora
         private void UpdateKnowlPoint(KnowledgePoint knowlPoint) {
             this.IKnowltAndProblemFormReq.UpdateOneKnowl(knowlPoint);
             this.initData();
+        }
+
+        private void AddProblem(Problem Problem) {
+            this.IKnowltAndProblemFormReq.AddOneProblem(Problem);
+        }
+
+        //================试题操作相关
+        private void btnAddProblem_Click(object sender, EventArgs e)
+        {
+            AddProblem addProblem = new AddProblem(this.AddProblem);
+            //Array treeNodeArray = new TreeNode[this.tvKnowlTree.Nodes.Count];
+            //this.tvKnowlTree.Nodes.CopyTo(treeNodeArray, 0);
+            ProblemEidtForm problemEidtForm = new ProblemEidtForm(addProblem, this.IKnowltAndProblemFormReq);
+            problemEidtForm.ShowDialog();
         }
     }
 }

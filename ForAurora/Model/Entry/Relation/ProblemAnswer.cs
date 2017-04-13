@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model.Entry.Relation
 {
-    /// <summary>
-    /// 知识点组成试题
-    /// </summary>
-    public class KnowlComposeProblem:Entry
+    public class ProblemAnswer:Entry
     {
         private string uk_problem_id;
-        private string uk_knowledge_point_ids;
+        private string content;
+        private string source;
 
         public string ProblemId 
         {
@@ -27,16 +25,29 @@ namespace ForAurora.Model.Entry.Relation
             }
         }
 
-        public string KnowlIds   
+        public string Content
         {
             get
             {
-                return uk_knowledge_point_ids;
+                return content;
             }
 
             set
             {
-                uk_knowledge_point_ids = value;
+                content = value;
+            }
+        }
+
+        public string Source
+        {
+            get
+            {
+                return source;
+            }
+
+            set
+            {
+                source = value;
             }
         }
     }
