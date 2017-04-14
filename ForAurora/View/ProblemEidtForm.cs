@@ -22,14 +22,16 @@ namespace ForAurora.View
         private List<string> checkIDs = new List<string>();
         private IProblemEditFormReq iProblemEditFormReq;
         private string TipEditType = "编辑试题类型";
+        private RefreshProblem RefreshProblem;
 
-        public ProblemEidtForm(string knowlID, IKnowltAndProblemFormReq IKnowltAndProblemFormReq)
+        public ProblemEidtForm(string knowlID, IKnowltAndProblemFormReq IKnowltAndProblemFormReq, RefreshProblem RefreshProblem)
         {
             InitializeComponent();
 
             this.IKnowltAndProblemFormReq = IKnowltAndProblemFormReq;
             this.currentSelKnowlID = knowlID;
             this.iProblemEditFormReq = ImplProblemEditFormReq.NewInstance();
+            this.RefreshProblem = RefreshProblem;
             this.initData();
             this.initView();
         }
@@ -74,13 +76,11 @@ namespace ForAurora.View
             this.cbProblemType.Items.Clear();
             foreach (Model.Entry.Single.ProblemType type in typeList)
             {
-                this.cbProblemType.Items.Add(type.Name);
+                this.cbProblemType.Items.Add(type);
             }
 
             this.cbProblemType.Items.Add(TipEditType);
-            this.cbProblemType.Tag = typeList;
         }
-
 
         /// <summary>
         ///  叶子节点深度递归,一直传参过来的都是叶子节点啊说
@@ -121,7 +121,6 @@ namespace ForAurora.View
             }
         }
 
-
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             Problem problem = new Problem();
@@ -130,10 +129,19 @@ namespace ForAurora.View
             problem.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             problem.Content = this.rtxContent.Text;
             problem.Other = this.rtxOther.Text;
-
+            ProblemType type = (ProblemType)this.cbProblemType.SelectedItem;
+            if (type != null)
+            {
+                problem.TypeId = type.Id;
+            }
             //
-
             this.iProblemEditFormReq.InsertOneProblem(problem, this.checkIDs);
+            this.Close();
+        }
+
+        private void btnCancelSubmit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void tvKnowl_AfterCheck(object sender, TreeViewEventArgs e)
@@ -153,7 +161,8 @@ namespace ForAurora.View
 
         private void cbProblemType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.cbProblemType.SelectedItem.ToString().Equals(TipEditType))
+            ProblemType type = (ProblemType)this.cbProblemType.SelectedItem;
+            if (type.Name.Equals(TipEditType))
             {
                 RefreshType RefreshType = new RefreshType(this.RefreshType);
                 ProblemTypeForm problemTypeForm = new ProblemTypeForm(this.iProblemEditFormReq, RefreshType);
@@ -161,10 +170,17 @@ namespace ForAurora.View
             }
         }
 
+        private void ProblemEidtForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.RefreshProblem();
+        }
+
         //委托们
         private void RefreshType()
         {
             this.initType();
         }
+
+
     }
 }

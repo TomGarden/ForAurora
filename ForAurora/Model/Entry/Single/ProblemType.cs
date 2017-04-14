@@ -22,5 +22,10 @@ namespace ForAurora.Model.Entry.Single
                 name = value;
             }
         }
+
+        public override string ToString()
+        {
+            if (name == null) { return ""; } else { return this.Name; }
+        }
     }
 }

@@ -106,6 +106,7 @@
             this.btnCancelSubmit.TabIndex = 3;
             this.btnCancelSubmit.Text = "取消";
             this.btnCancelSubmit.UseVisualStyleBackColor = true;
+            this.btnCancelSubmit.Click += new System.EventHandler(this.btnCancelSubmit_Click);
             // 
             // gbKnowl
             // 
@@ -143,6 +144,7 @@
             this.Name = "ProblemEidtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "试题编辑";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProblemEidtForm_FormClosing);
             this.gbProblemContent.ResumeLayout(false);
             this.gbOther.ResumeLayout(false);
             this.gbKnowl.ResumeLayout(false);

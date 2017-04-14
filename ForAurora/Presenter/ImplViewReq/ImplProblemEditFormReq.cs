@@ -40,7 +40,7 @@ namespace ForAurora.Presenter.ImplViewReq
                         new MySqlParameter("@modife", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                         new MySqlParameter("@other", null),
                         new MySqlParameter("@problemId", problem.Id),
-                        new MySqlParameter("@knowlIds", checkIDs));
+                        new MySqlParameter("@knowlIds", checkId));
                 }
             }
             catch (Exception exc)

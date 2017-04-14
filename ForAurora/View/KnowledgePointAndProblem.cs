@@ -19,7 +19,7 @@ namespace ForAurora
     public delegate void AddKnowlPoint(KnowledgePoint knowlPoin, CourseSpreadKnowl courseSpreadKnowlt);
     public delegate void UpdateKnowlPoint(KnowledgePoint knowlPoint);
     //添加试题
-    //public delegate void AddProblem(Problem Problem);
+    public delegate void RefreshProblem();
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
@@ -153,11 +153,14 @@ namespace ForAurora
             this.IKnowltAndProblemFormReq.UpdateOneKnowl(knowlPoint);
             this.initData();
         }
-
+        private void RefreshProblem() {
+            MessageBox.Show("刷新试题");
+        }
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)
         {
-            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurrentSelKnol.Id, this.IKnowltAndProblemFormReq);
+            RefreshProblem RefreshProblem = new RefreshProblem(this.RefreshProblem);
+                ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurrentSelKnol.Id, this.IKnowltAndProblemFormReq, RefreshProblem);
             problemEidtForm.ShowDialog();
         }
     }
