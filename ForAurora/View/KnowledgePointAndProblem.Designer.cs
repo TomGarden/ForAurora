@@ -59,6 +59,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.gbKnowledgePoint.SuspendLayout();
             this.gbProblem.SuspendLayout();
             this.gbProblemInfo.SuspendLayout();
@@ -137,6 +138,7 @@
             // 
             // gbProblem
             // 
+            this.gbProblem.Controls.Add(this.button5);
             this.gbProblem.Controls.Add(this.panelProblemGroup);
             this.gbProblem.Controls.Add(this.label1);
             this.gbProblem.Controls.Add(this.comboBox1);
@@ -380,6 +382,17 @@
             this.richTextBox2.TabIndex = 4;
             this.richTextBox2.Text = "";
             // 
+            // button5
+            // 
+            this.button5.AutoSize = true;
+            this.button5.BackgroundImage = global::ForAurora.Properties.Resources.test_32;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Location = new System.Drawing.Point(397, 509);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(23, 23);
+            this.button5.TabIndex = 17;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // KnowledgePointAndProblem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -438,5 +451,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

@@ -82,10 +82,11 @@
             // cbProblemType
             // 
             this.cbProblemType.FormattingEnabled = true;
-            this.cbProblemType.Location = new System.Drawing.Point(12, 480);
+            this.cbProblemType.Location = new System.Drawing.Point(12, 444);
             this.cbProblemType.Name = "cbProblemType";
             this.cbProblemType.Size = new System.Drawing.Size(158, 20);
             this.cbProblemType.TabIndex = 0;
+            this.cbProblemType.SelectedIndexChanged += new System.EventHandler(this.cbProblemType_SelectedIndexChanged);
             // 
             // btnSubmit
             // 
@@ -111,7 +112,7 @@
             this.gbKnowl.Controls.Add(this.tvKnowl);
             this.gbKnowl.Location = new System.Drawing.Point(12, 12);
             this.gbKnowl.Name = "gbKnowl";
-            this.gbKnowl.Size = new System.Drawing.Size(158, 452);
+            this.gbKnowl.Size = new System.Drawing.Size(158, 426);
             this.gbKnowl.TabIndex = 4;
             this.gbKnowl.TabStop = false;
             this.gbKnowl.Text = "包含知识点";
@@ -121,8 +122,9 @@
             this.tvKnowl.CheckBoxes = true;
             this.tvKnowl.Location = new System.Drawing.Point(6, 24);
             this.tvKnowl.Name = "tvKnowl";
-            this.tvKnowl.Size = new System.Drawing.Size(146, 422);
+            this.tvKnowl.Size = new System.Drawing.Size(146, 396);
             this.tvKnowl.TabIndex = 0;
+            this.tvKnowl.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvKnowl_AfterCheck);
             // 
             // ProblemEidtForm
             // 

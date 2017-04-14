@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model.Entry.Single
 {
-    public class Type:Entry
+    public class ProblemType:Entry
     {
         private string name;
 

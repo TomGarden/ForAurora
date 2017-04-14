@@ -60,12 +60,14 @@
     <Compile Include="Model\Entry\Single\Problem.cs" />
     <Compile Include="Model\Entry\Single\Teacher.cs" />
     <Compile Include="Model\Entry\Single\Textbook.cs" />
-    <Compile Include="Model\Entry\Single\Type.cs" />
+    <Compile Include="Model\Entry\Single\ProblemType.cs" />
     <Compile Include="Model\MySqlHelper.cs" />
     <Compile Include="Model\OperateDB.cs" />
     <Compile Include="Model\OperateTeacher.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplCourseFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplKnowltAndProblemFormReq.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplProblemEditFormReq.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplProblemTypeFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplTeacherFormReq.cs" />
     <Compile Include="Presenter\ImplViewReq\ImplTextbookFormReq.cs" />
     <Compile Include="Presenter\OperateTable\OperTeacherTeachCourse.cs" />
@@ -93,7 +95,15 @@
     <Compile Include="View\ProblemEidtForm.Designer.cs">
       <DependentUpon>ProblemEidtForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ProblemTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProblemTypeForm.Designer.cs">
+      <DependentUpon>ProblemTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Requirement\IKnowltAndProblemReq.cs" />
+    <Compile Include="View\Requirement\IProblemEditFormReq.cs" />
+    <Compile Include="View\Requirement\IProblemTypeFormReq.cs" />
     <Compile Include="View\Requirement\ITextbookFormReq.cs" />
     <Compile Include="View\TeacherForm.cs">
       <SubType>Form</SubType>
@@ -144,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ProblemEidtForm.resx">
       <DependentUpon>ProblemEidtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProblemTypeForm.resx">
+      <DependentUpon>ProblemTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TeacherForm.resx">
       <DependentUpon>TeacherForm.cs</DependentUpon>
