@@ -36,6 +36,7 @@
             this.btnAddKnowl = new System.Windows.Forms.Button();
             this.tvKnowlTree = new System.Windows.Forms.TreeView();
             this.gbProblem = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.panelProblemGroup = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -59,7 +60,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.gbKnowledgePoint.SuspendLayout();
             this.gbProblem.SuspendLayout();
             this.gbProblemInfo.SuspendLayout();
@@ -130,6 +130,8 @@
             // 
             // tvKnowlTree
             // 
+            this.tvKnowlTree.BackColor = System.Drawing.SystemColors.Control;
+            this.tvKnowlTree.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tvKnowlTree.Location = new System.Drawing.Point(6, 20);
             this.tvKnowlTree.Name = "tvKnowlTree";
             this.tvKnowlTree.Size = new System.Drawing.Size(213, 483);
@@ -152,6 +154,17 @@
             this.gbProblem.TabIndex = 1;
             this.gbProblem.TabStop = false;
             this.gbProblem.Text = "题目";
+            // 
+            // button5
+            // 
+            this.button5.AutoSize = true;
+            this.button5.BackgroundImage = global::ForAurora.Properties.Resources.test_32;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Location = new System.Drawing.Point(397, 509);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(23, 23);
+            this.button5.TabIndex = 17;
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // panelProblemGroup
             // 
@@ -247,6 +260,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Location = new System.Drawing.Point(8, 61);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(289, 90);
@@ -255,9 +269,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(65, 19);
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(65, 23);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 21);
+            this.textBox1.Size = new System.Drawing.Size(232, 14);
             this.textBox1.TabIndex = 1;
             // 
             // label2
@@ -301,6 +316,7 @@
             // 
             // richTextBox3
             // 
+            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox3.Location = new System.Drawing.Point(6, 292);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(291, 48);
@@ -351,9 +367,10 @@
             // 
             // textBox2
             // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Location = new System.Drawing.Point(41, 253);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 21);
+            this.textBox2.Size = new System.Drawing.Size(256, 14);
             this.textBox2.TabIndex = 4;
             // 
             // label5
@@ -376,22 +393,12 @@
             // 
             // richTextBox2
             // 
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Location = new System.Drawing.Point(6, 37);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(291, 210);
             this.richTextBox2.TabIndex = 4;
             this.richTextBox2.Text = "";
-            // 
-            // button5
-            // 
-            this.button5.AutoSize = true;
-            this.button5.BackgroundImage = global::ForAurora.Properties.Resources.test_32;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(397, 509);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 17;
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // KnowledgePointAndProblem
             // 
@@ -402,7 +409,10 @@
             this.Controls.Add(this.gbProblemInfo);
             this.Controls.Add(this.gbProblem);
             this.Controls.Add(this.gbKnowledgePoint);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "KnowledgePointAndProblem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "知识点-题目";

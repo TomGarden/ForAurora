@@ -194,6 +194,7 @@
             this.ClientSize = new System.Drawing.Size(491, 321);
             this.Controls.Add(this.gbEidtPanel);
             this.Controls.Add(this.gbType);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseForm));
             this.gbCourseList = new System.Windows.Forms.GroupBox();
-            this.btnRefreshCourse = new System.Windows.Forms.Button();
-            this.btnDelCourse = new System.Windows.Forms.Button();
-            this.btnAddCourse = new System.Windows.Forms.Button();
             this.lvCourse = new System.Windows.Forms.ListView();
             this.contextMenuStrip_Course = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.添加课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,15 +44,18 @@
             this.rtbOther = new System.Windows.Forms.RichTextBox();
             this.gbTextbook = new System.Windows.Forms.GroupBox();
             this.lvTextbook = new System.Windows.Forms.ListView();
+            this.gbTeacher = new System.Windows.Forms.GroupBox();
+            this.lvTeacher = new System.Windows.Forms.ListView();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnRefreshTextbook = new System.Windows.Forms.Button();
             this.btnAddTextbook = new System.Windows.Forms.Button();
             this.btnDelTextbook = new System.Windows.Forms.Button();
-            this.gbTeacher = new System.Windows.Forms.GroupBox();
-            this.lvTeacher = new System.Windows.Forms.ListView();
             this.btnRefreshTecher = new System.Windows.Forms.Button();
             this.btnAddTeacher = new System.Windows.Forms.Button();
             this.btnDelTeacher = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnRefreshCourse = new System.Windows.Forms.Button();
+            this.btnDelCourse = new System.Windows.Forms.Button();
+            this.btnAddCourse = new System.Windows.Forms.Button();
             this.gbCourseList.SuspendLayout();
             this.contextMenuStrip_Course.SuspendLayout();
             this.gbCourseInfo.SuspendLayout();
@@ -77,45 +77,10 @@
             this.gbCourseList.TabStop = false;
             this.gbCourseList.Text = "课程列表";
             // 
-            // btnRefreshCourse
-            // 
-            this.btnRefreshCourse.AutoSize = true;
-            this.btnRefreshCourse.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
-            this.btnRefreshCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRefreshCourse.Location = new System.Drawing.Point(194, 509);
-            this.btnRefreshCourse.Name = "btnRefreshCourse";
-            this.btnRefreshCourse.Size = new System.Drawing.Size(23, 23);
-            this.btnRefreshCourse.TabIndex = 5;
-            this.btnRefreshCourse.UseVisualStyleBackColor = true;
-            this.btnRefreshCourse.Click += new System.EventHandler(this.btnRefreshCourse_Click);
-            // 
-            // btnDelCourse
-            // 
-            this.btnDelCourse.AutoSize = true;
-            this.btnDelCourse.BackgroundImage = global::ForAurora.Properties.Resources.delete;
-            this.btnDelCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelCourse.Location = new System.Drawing.Point(100, 509);
-            this.btnDelCourse.Name = "btnDelCourse";
-            this.btnDelCourse.Size = new System.Drawing.Size(23, 23);
-            this.btnDelCourse.TabIndex = 2;
-            this.btnDelCourse.UseVisualStyleBackColor = true;
-            this.btnDelCourse.Click += new System.EventHandler(this.btnDelCourse_Click);
-            // 
-            // btnAddCourse
-            // 
-            this.btnAddCourse.AutoSize = true;
-            this.btnAddCourse.BackgroundImage = global::ForAurora.Properties.Resources.add;
-            this.btnAddCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddCourse.Location = new System.Drawing.Point(6, 509);
-            this.btnAddCourse.Name = "btnAddCourse";
-            this.btnAddCourse.Size = new System.Drawing.Size(23, 23);
-            this.btnAddCourse.TabIndex = 1;
-            this.btnAddCourse.UseVisualStyleBackColor = true;
-            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
-            // 
             // lvCourse
             // 
             this.lvCourse.BackColor = System.Drawing.SystemColors.Window;
+            this.lvCourse.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvCourse.ContextMenuStrip = this.contextMenuStrip_Course;
             this.lvCourse.Location = new System.Drawing.Point(6, 34);
             this.lvCourse.Name = "lvCourse";
@@ -211,6 +176,7 @@
             // 
             // rtbOther
             // 
+            this.rtbOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbOther.Location = new System.Drawing.Point(6, 21);
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.ReadOnly = true;
@@ -233,11 +199,44 @@
             // 
             // lvTextbook
             // 
+            this.lvTextbook.BackColor = System.Drawing.SystemColors.Control;
+            this.lvTextbook.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvTextbook.Location = new System.Drawing.Point(6, 24);
             this.lvTextbook.Name = "lvTextbook";
             this.lvTextbook.Size = new System.Drawing.Size(158, 150);
             this.lvTextbook.TabIndex = 4;
             this.lvTextbook.UseCompatibleStateImageBehavior = false;
+            // 
+            // gbTeacher
+            // 
+            this.gbTeacher.Controls.Add(this.lvTeacher);
+            this.gbTeacher.Controls.Add(this.btnRefreshTecher);
+            this.gbTeacher.Controls.Add(this.btnAddTeacher);
+            this.gbTeacher.Controls.Add(this.btnDelTeacher);
+            this.gbTeacher.Location = new System.Drawing.Point(50, 150);
+            this.gbTeacher.Name = "gbTeacher";
+            this.gbTeacher.Size = new System.Drawing.Size(170, 180);
+            this.gbTeacher.TabIndex = 3;
+            this.gbTeacher.TabStop = false;
+            this.gbTeacher.Text = "执教老师";
+            // 
+            // lvTeacher
+            // 
+            this.lvTeacher.BackColor = System.Drawing.SystemColors.Control;
+            this.lvTeacher.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvTeacher.Location = new System.Drawing.Point(6, 24);
+            this.lvTeacher.Name = "lvTeacher";
+            this.lvTeacher.Size = new System.Drawing.Size(158, 150);
+            this.lvTeacher.TabIndex = 4;
+            this.lvTeacher.UseCompatibleStateImageBehavior = false;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(113, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(300, 1);
+            this.label2.TabIndex = 2;
             // 
             // btnRefreshTextbook
             // 
@@ -275,27 +274,6 @@
             this.btnDelTextbook.UseVisualStyleBackColor = true;
             this.btnDelTextbook.Click += new System.EventHandler(this.btnDelTextbook_Click);
             // 
-            // gbTeacher
-            // 
-            this.gbTeacher.Controls.Add(this.lvTeacher);
-            this.gbTeacher.Controls.Add(this.btnRefreshTecher);
-            this.gbTeacher.Controls.Add(this.btnAddTeacher);
-            this.gbTeacher.Controls.Add(this.btnDelTeacher);
-            this.gbTeacher.Location = new System.Drawing.Point(50, 150);
-            this.gbTeacher.Name = "gbTeacher";
-            this.gbTeacher.Size = new System.Drawing.Size(170, 180);
-            this.gbTeacher.TabIndex = 3;
-            this.gbTeacher.TabStop = false;
-            this.gbTeacher.Text = "执教老师";
-            // 
-            // lvTeacher
-            // 
-            this.lvTeacher.Location = new System.Drawing.Point(6, 24);
-            this.lvTeacher.Name = "lvTeacher";
-            this.lvTeacher.Size = new System.Drawing.Size(158, 150);
-            this.lvTeacher.TabIndex = 4;
-            this.lvTeacher.UseCompatibleStateImageBehavior = false;
-            // 
             // btnRefreshTecher
             // 
             this.btnRefreshTecher.AutoSize = true;
@@ -332,13 +310,41 @@
             this.btnDelTeacher.UseVisualStyleBackColor = true;
             this.btnDelTeacher.Click += new System.EventHandler(this.btnDelTeacher_Click);
             // 
-            // label2
+            // btnRefreshCourse
             // 
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(113, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(300, 1);
-            this.label2.TabIndex = 2;
+            this.btnRefreshCourse.AutoSize = true;
+            this.btnRefreshCourse.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnRefreshCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRefreshCourse.Location = new System.Drawing.Point(194, 509);
+            this.btnRefreshCourse.Name = "btnRefreshCourse";
+            this.btnRefreshCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnRefreshCourse.TabIndex = 5;
+            this.btnRefreshCourse.UseVisualStyleBackColor = true;
+            this.btnRefreshCourse.Click += new System.EventHandler(this.btnRefreshCourse_Click);
+            // 
+            // btnDelCourse
+            // 
+            this.btnDelCourse.AutoSize = true;
+            this.btnDelCourse.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnDelCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDelCourse.Location = new System.Drawing.Point(100, 509);
+            this.btnDelCourse.Name = "btnDelCourse";
+            this.btnDelCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnDelCourse.TabIndex = 2;
+            this.btnDelCourse.UseVisualStyleBackColor = true;
+            this.btnDelCourse.Click += new System.EventHandler(this.btnDelCourse_Click);
+            // 
+            // btnAddCourse
+            // 
+            this.btnAddCourse.AutoSize = true;
+            this.btnAddCourse.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAddCourse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddCourse.Location = new System.Drawing.Point(6, 509);
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(23, 23);
+            this.btnAddCourse.TabIndex = 1;
+            this.btnAddCourse.UseVisualStyleBackColor = true;
+            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
             // 
             // CourseForm
             // 
@@ -347,7 +353,10 @@
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.gbCourseInfo);
             this.Controls.Add(this.gbCourseList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CourseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "课程";

@@ -48,7 +48,7 @@
             this.gbProblemContent.Controls.Add(this.rtxContent);
             this.gbProblemContent.Location = new System.Drawing.Point(176, 12);
             this.gbProblemContent.Name = "gbProblemContent";
-            this.gbProblemContent.Size = new System.Drawing.Size(583, 347);
+            this.gbProblemContent.Size = new System.Drawing.Size(492, 347);
             this.gbProblemContent.TabIndex = 0;
             this.gbProblemContent.TabStop = false;
             this.gbProblemContent.Text = "试题内容";
@@ -57,7 +57,7 @@
             // 
             this.rtxContent.Location = new System.Drawing.Point(6, 24);
             this.rtxContent.Name = "rtxContent";
-            this.rtxContent.Size = new System.Drawing.Size(571, 317);
+            this.rtxContent.Size = new System.Drawing.Size(480, 317);
             this.rtxContent.TabIndex = 0;
             this.rtxContent.Text = "";
             // 
@@ -66,7 +66,7 @@
             this.gbOther.Controls.Add(this.rtxOther);
             this.gbOther.Location = new System.Drawing.Point(176, 365);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(583, 99);
+            this.gbOther.Size = new System.Drawing.Size(492, 99);
             this.gbOther.TabIndex = 1;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "未尽事项";
@@ -75,22 +75,22 @@
             // 
             this.rtxOther.Location = new System.Drawing.Point(6, 20);
             this.rtxOther.Name = "rtxOther";
-            this.rtxOther.Size = new System.Drawing.Size(571, 73);
+            this.rtxOther.Size = new System.Drawing.Size(480, 73);
             this.rtxOther.TabIndex = 2;
             this.rtxOther.Text = "";
             // 
             // cbProblemType
             // 
             this.cbProblemType.FormattingEnabled = true;
-            this.cbProblemType.Location = new System.Drawing.Point(12, 444);
+            this.cbProblemType.Location = new System.Drawing.Point(18, 444);
             this.cbProblemType.Name = "cbProblemType";
-            this.cbProblemType.Size = new System.Drawing.Size(158, 20);
+            this.cbProblemType.Size = new System.Drawing.Size(146, 20);
             this.cbProblemType.TabIndex = 0;
             this.cbProblemType.SelectedIndexChanged += new System.EventHandler(this.cbProblemType_SelectedIndexChanged);
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(684, 480);
+            this.btnSubmit.Location = new System.Drawing.Point(593, 480);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             // btnCancelSubmit
             // 
-            this.btnCancelSubmit.Location = new System.Drawing.Point(603, 481);
+            this.btnCancelSubmit.Location = new System.Drawing.Point(512, 480);
             this.btnCancelSubmit.Name = "btnCancelSubmit";
             this.btnCancelSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnCancelSubmit.TabIndex = 3;
@@ -131,13 +131,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 515);
+            this.ClientSize = new System.Drawing.Size(680, 515);
             this.Controls.Add(this.gbKnowl);
             this.Controls.Add(this.btnCancelSubmit);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.gbOther);
             this.Controls.Add(this.cbProblemType);
             this.Controls.Add(this.gbProblemContent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

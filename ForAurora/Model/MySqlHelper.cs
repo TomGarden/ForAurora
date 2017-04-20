@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ForAurora.Model
 {
-    class MySqlHelper
+class MySqlHelper
     {
         //数据库连接字符串
         public static string Conn = "Database='for_aurora';Data Source='localhost';User Id='root';Password='root';charset='utf8';pooling=true";
@@ -156,9 +156,7 @@ namespace ForAurora.Model
                 throw e;
             }
         }
-
-
-
+        
         /// <summary>
         /// 用指定的数据库连接字符串执行一个命令并返回一个数据集的第一列
         /// </summary>

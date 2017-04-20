@@ -89,6 +89,12 @@
     <Compile Include="View\KnowledgePointForm.Designer.cs">
       <DependentUpon>KnowledgePointForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OneProblemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OneProblemForm.Designer.cs">
+      <DependentUpon>OneProblemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ProblemEidtForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\KnowledgePointForm.resx">
       <DependentUpon>KnowledgePointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OneProblemForm.resx">
+      <DependentUpon>OneProblemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ProblemEidtForm.resx">
       <DependentUpon>ProblemEidtForm.cs</DependentUpon>

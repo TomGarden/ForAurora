@@ -67,6 +67,35 @@ namespace ForAurora.Presenter.ImplViewReq
             }
         }
 
+
+        public List<Problem> QueryAllProblems(string knowlId)
+        {
+            //throw new NotImplementedException();
+            Console.WriteLine("暂时先不管就是查询所有");
+            //SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;
+
+            List<Problem> ProblemList = new List<Problem>();
+            //连接查询
+            string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
+            
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
+                Model.MySqlHelper.Conn, CommandType.Text, querySQL,
+                new MySqlParameter("@knowlId", knowlId));
+
+            while (mySqlDataReader.Read())
+            {
+                Problem Problem = new Problem();
+                Problem.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                Problem.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                Problem.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                Problem.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
+                ProblemList.Add(Problem);
+            }
+            mySqlDataReader.Close();
+
+            return ProblemList;
+        }
+
         public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID)
         {
             List<KnowledgePoint> KnowlList = new List<KnowledgePoint>();
