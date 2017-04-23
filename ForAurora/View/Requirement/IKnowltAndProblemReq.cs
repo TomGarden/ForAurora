@@ -18,5 +18,10 @@ namespace ForAurora.View.Requirement
         void InsertOneKnowl(KnowledgePoint knowlPoint, CourseSpreadKnowl courseSpreadKnowl);
         void UpdateOneKnowl(KnowledgePoint knowlPoint);
         List<ProblemWithTypeName> QueryAllProblems(string knowlId);
+        void InsertOneProblem(Problem problem, List<string> checkIDs);
+        void DelOneProblem(string id);
+        void EditOneProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs);
+        //查询试题ID所关联的知识点
+        List<string> QueryKnowlByProblemId(string id);
     }
 }

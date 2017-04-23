@@ -19,7 +19,9 @@ namespace ForAurora
     public delegate void AddKnowlPoint(KnowledgePoint knowlPoin, CourseSpreadKnowl courseSpreadKnowlt);
     public delegate void UpdateKnowlPoint(KnowledgePoint knowlPoint);
     //添加试题
-    public delegate void RefreshProblem();
+    public delegate void AddProblem(Problem problem, List<string> checkIDs);
+    //修改试题
+    public delegate void EditProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs);
     //试题焦点获取
     public delegate void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn);
     public partial class KnowledgePointAndProblem : Form
@@ -28,8 +30,8 @@ namespace ForAurora
         private string courseID;
         private IKnowltAndProblemFormReq IKnowltAndProblemFormReq = ImplKnowltAndProblemFormReq.NewInstance();
         private KnowledgePoint CurSelKnol = null;//当前选中的知识点
-        private ProblemWithTypeName SelProblemWithTN = null;//当前选中的题目
-        private SelProblem selProblem = null;
+        private ProblemWithTypeName CurSelProblemWithTN = null;//当前选中的题目
+        private SelProblem selProblem = null;//委托对象
 
         public KnowledgePointAndProblem(string courseID)
         {
@@ -60,8 +62,7 @@ namespace ForAurora
                 this.RecursionNode(treeNode);
             }
         }
-
-
+        
         /// <summary>
         ///  叶子节点深度递归,一直传参过来的都是叶子节点啊说
         /// </summary>
@@ -137,8 +138,7 @@ namespace ForAurora
             }
 
         }
-
-
+        
         private void KnowledgePointAndProblem_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
@@ -180,8 +180,7 @@ namespace ForAurora
             KnowledgePointEidtForm knowledgePointEditForm = new KnowledgePointEidtForm(updateKnowlPoint, CurSelKnol);
             knowledgePointEditForm.ShowDialog();
         }
-
-
+        
         //===============委托们
         private void AddKnowlPoint(KnowledgePoint knowlPoint, CourseSpreadKnowl courseSpreadKnowl)
         {
@@ -195,36 +194,81 @@ namespace ForAurora
             this.initData();
         }
 
-        private void RefreshProblem()
+        private void AddProblem(Problem problem, List<string> checkIDs)
         {
-            MessageBox.Show("刷新试题");
+            //MessageBox.Show("添加试题委托");
+            this.IKnowltAndProblemFormReq.InsertOneProblem(problem, checkIDs);
+            this.initProblem();
+        }
+
+        private void EditProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs)
+        {
+            this.IKnowltAndProblemFormReq.EditOneProblem(problem, oldKnowl, checkIDs);
+            this.initProblem();
         }
 
         private void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn)
         {
-            if (this.SelProblemWithTN != problemWithTN)
+            if (this.CurSelProblemWithTN != problemWithTN)
             {
-                this.SelProblemWithTN = problemWithTN;
-                
+                this.CurSelProblemWithTN = problemWithTN;
+                this.tbProblemType.Text = this.CurSelProblemWithTN.TypeName;
+                this.rtbProblemOther.Text = this.CurSelProblemWithTN.Other;
             }
 
             if (IsBtn)
             {
                 MessageBox.Show("添加到试卷");
             }
+
+            this.ShowAnswer();
         }
 
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)
         {
-            RefreshProblem RefreshProblem = new RefreshProblem(this.RefreshProblem);
-            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelKnol.Id, this.IKnowltAndProblemFormReq, RefreshProblem);
+            AddProblem addProblem = new AddProblem(this.AddProblem);
+            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelKnol.Id, this.IKnowltAndProblemFormReq, addProblem);
             problemEidtForm.ShowDialog();
         }
 
         private void btnRefreshProblem_Click(object sender, EventArgs e)
         {
             this.initProblem();
+        }
+
+        private void btnDelProblem_Click(object sender, EventArgs e)
+        {
+            if (CurSelProblemWithTN == null) { return; }
+            DialogResult dr;
+            dr = MessageBox.Show(CurSelProblemWithTN.Content, "确认删除", MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.Yes)
+            {
+                this.IKnowltAndProblemFormReq.DelOneProblem(this.CurSelProblemWithTN.Id);
+                this.initProblem();
+            }
+            //else if (dr == DialogResult.No)
+            //    MessageBox.Show("你选择的为“否”按钮", "系统提示2");
+            //else if (dr == DialogResult.Cancel)
+            //    MessageBox.Show("你选择的为“取消”按钮", "系统提示3");
+            //else
+            //    MessageBox.Show("你没有进行任何的操作！", "系统提示4");
+        }
+
+        private void btnEditProblem_Click(object sender, EventArgs e)
+        {
+            if (CurSelProblemWithTN == null) { return; }
+
+            EditProblem editProblem = new EditProblem(this.EditProblem);
+            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelProblemWithTN, this.IKnowltAndProblemFormReq, editProblem);
+            problemEidtForm.ShowDialog();
+
+        }
+
+        private void ShowAnswer()
+        {
+            Console.WriteLine("展示答案部分尚未完成");
         }
     }
 }

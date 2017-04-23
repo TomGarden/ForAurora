@@ -1,14 +1,9 @@
-﻿using ForAurora.Model.Entry.Single;
+﻿using ForAurora.Model.Entry.Relation;
+using ForAurora.Model.Entry.Single;
 using ForAurora.Presenter.ImplViewReq;
 using ForAurora.View.Requirement;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ForAurora.View
@@ -22,22 +17,46 @@ namespace ForAurora.View
         private List<string> checkIDs = new List<string>();
         private IProblemEditFormReq iProblemEditFormReq;
         private string TipEditType = "编辑试题类型";
-        private RefreshProblem RefreshProblem;
+        private AddProblem addProblem;
+        //
+        private ProblemWithTypeName CurSelProblemWithTN;
+        private EditProblem editProblem;
+        private List<string> oldKnowl;
 
-        public ProblemEidtForm(string knowlID, IKnowltAndProblemFormReq IKnowltAndProblemFormReq, RefreshProblem RefreshProblem)
+
+        public ProblemEidtForm(string knowlID, IKnowltAndProblemFormReq IKnowltAndProblemFormReq, AddProblem addProblem)
         {
             InitializeComponent();
 
             this.IKnowltAndProblemFormReq = IKnowltAndProblemFormReq;
             this.currentSelKnowlID = knowlID;
+            this.addProblem = addProblem;
             this.iProblemEditFormReq = ImplProblemEditFormReq.NewInstance();
-            this.RefreshProblem = RefreshProblem;
+
+            this.initData();
+            this.initView();
+        }
+
+        public ProblemEidtForm(ProblemWithTypeName CurSelProblemWithTN, IKnowltAndProblemFormReq IKnowltAndProblemFormReq, EditProblem editProblem)
+        {
+            InitializeComponent();
+            this.IKnowltAndProblemFormReq = IKnowltAndProblemFormReq;
+            this.CurSelProblemWithTN = CurSelProblemWithTN;
+            this.editProblem = editProblem;
+            this.iProblemEditFormReq = ImplProblemEditFormReq.NewInstance();
+
             this.initData();
             this.initView();
         }
 
         private void initView()
         {
+            if (CurSelProblemWithTN!=null) {
+                this.rtxContent.Text = this.CurSelProblemWithTN.Content;
+                this.rtxOther.Text = this.CurSelProblemWithTN.Other;
+            }
+
+
             this.rtxContent.Focus();
 
             //this.tvKnowl.Nodes.AddRange((TreeNode[])this.treeNodeArray);
@@ -52,16 +71,39 @@ namespace ForAurora.View
         private void initTree()
         {
             this.tvKnowl.Nodes.Clear();
+
+
+            if (CurSelProblemWithTN != null)
+            {
+                this.checkIDs = this.IKnowltAndProblemFormReq.QueryKnowlByProblemId(this.CurSelProblemWithTN.Id);
+                this.oldKnowl = new List<string>(this.checkIDs.ToArray());//克隆列表
+            }
+
             List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root");
             foreach (KnowledgePoint KnowledgePoint in KnowlList)
             {
                 TreeNode treeNode = this.tvKnowl.Nodes.Add(KnowledgePoint.Name);
                 treeNode.Tag = KnowledgePoint;
 
-                if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
+                if (this.currentSelKnowlID != null)
                 {
-                    treeNode.Checked = true;
+                    if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
+                    {
+                        treeNode.Checked = true;
+                        this.currentSelKnowlID = null;
+                    }
                 }
+                if(this.checkIDs.Count>0)
+                {
+                    foreach(string id in this.checkIDs){
+                        if (KnowledgePoint.Id.Equals(id)) {
+                            treeNode.Checked = true;
+                            this.checkIDs.Remove(id);
+                            break;
+                        }
+                    }
+                }
+
             }
             //递归加载节点们。
             foreach (TreeNode treeNode in this.tvKnowl.Nodes)
@@ -80,6 +122,12 @@ namespace ForAurora.View
             }
 
             this.cbProblemType.Items.Add(TipEditType);
+
+            if (this.CurSelProblemWithTN != null)
+            {
+                this.cbProblemType.Text = this.CurSelProblemWithTN.TypeName == null ? "" : this.CurSelProblemWithTN.TypeName;
+            }
+
         }
 
         /// <summary>
@@ -107,9 +155,25 @@ namespace ForAurora.View
                         TreeNode treeNodeChild = treeNode.Nodes.Add(KnowledgePoint.Name);
                         treeNodeChild.Tag = KnowledgePoint;
 
-                        if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
+                        if (this.currentSelKnowlID != null)
                         {
-                            treeNodeChild.Checked = true;
+                            if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
+                            {
+                                treeNode.Checked = true;
+                                this.currentSelKnowlID = null;
+                            }
+                        }
+                        if (this.checkIDs.Count > 0)
+                        {
+                            foreach (string id in this.checkIDs)
+                            {
+                                if (KnowledgePoint.Id.Equals(id))
+                                {
+                                    treeNode.Checked = true;
+                                    this.checkIDs.Remove(id);
+                                    break;
+                                }
+                            }
                         }
                     }
                     //为叶子节点添加孩子节点后，查看孩子节点是否有孙子节点
@@ -124,8 +188,6 @@ namespace ForAurora.View
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             Problem problem = new Problem();
-            problem.Id = Guid.NewGuid().ToString("N");
-            problem.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             problem.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             problem.Content = this.rtxContent.Text;
             problem.Other = this.rtxOther.Text;
@@ -134,9 +196,21 @@ namespace ForAurora.View
             {
                 problem.TypeId = type.Id;
             }
-            //
-            this.iProblemEditFormReq.InsertOneProblem(problem, this.checkIDs);
+            //this.iProblemEditFormReq.InsertOneProblem(problem, this.checkIDs);
+
+            if (this.addProblem != null)
+            {
+                problem.Id = Guid.NewGuid().ToString("N");
+                problem.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                this.addProblem(problem, this.checkIDs);
+            }
+            if(this.editProblem!=null)
+            {
+                problem.Id = this.CurSelProblemWithTN.Id;
+                this.editProblem(problem,this.oldKnowl, this.checkIDs);
+            }
             this.Close();
+
         }
 
         private void btnCancelSubmit_Click(object sender, EventArgs e)
@@ -170,17 +244,10 @@ namespace ForAurora.View
             }
         }
 
-        private void ProblemEidtForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.RefreshProblem();
-        }
-
         //委托们
         private void RefreshType()
         {
             this.initType();
         }
-
-
     }
 }

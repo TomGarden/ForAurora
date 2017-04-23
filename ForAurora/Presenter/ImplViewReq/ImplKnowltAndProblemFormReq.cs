@@ -106,6 +106,140 @@ namespace ForAurora.Presenter.ImplViewReq
             return ProblemList;
         }
 
+        //插入试题
+        public void InsertOneProblem(Problem problem, List<string> checkIDs)
+        {
+            //throw new NotImplementedException();
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
+            string insertSql_problem = "INSERT INTO problem (problem.id,problem.utc8_create,problem.utc8_modify,problem.other,problem.content,problem.uk_problem_type_id) VALUES (@id,@create,@modife,@other,@content,@typeId);";
+            string insertSql_knowledge_point_compose_problem = "INSERT INTO knowledge_point_compose_problem(knowledge_point_compose_problem.id,knowledge_point_compose_problem.utc8_create,knowledge_point_compose_problem.utc8_modify,knowledge_point_compose_problem.other,knowledge_point_compose_problem.uk_problem_id,knowledge_point_compose_problem.uk_knowledge_point_id) VALUES (@id,@create,@modife,@other,@problemId,@knowlIds);";
+            try
+            {
+                Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql_problem,
+                    new MySqlParameter("@id", problem.Id),
+                    new MySqlParameter("@create", problem.Create),
+                    new MySqlParameter("@modife", problem.Modify),
+                    new MySqlParameter("@other", problem.Other),
+                    new MySqlParameter("@content", problem.Content),
+                    new MySqlParameter("@typeId", problem.TypeId));
+                foreach (string checkId in checkIDs)
+                {
+                    Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql_knowledge_point_compose_problem,
+                        new MySqlParameter("@id", Guid.NewGuid().ToString("N")),
+                        new MySqlParameter("@create", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                        new MySqlParameter("@modife", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                        new MySqlParameter("@other", null),
+                        new MySqlParameter("@problemId", problem.Id),
+                        new MySqlParameter("@knowlIds", checkId));
+                }
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
+                mySqlTransaction.Rollback();
+                mySqlConnection.Close();
+                MessageBox.Show("操作失败，操作已回滚。");
+            }
+            finally
+            {
+                Console.WriteLine("操作成功，状态：" + mySqlConnection.State);
+                if (mySqlConnection.State != ConnectionState.Closed)
+                {
+                    mySqlTransaction.Commit();
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
+        public void EditOneProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs)
+        {
+            //throw new NotImplementedException();
+            //old需要删除
+            //check需要添加
+            //problem需要更新
+            foreach(string old in oldKnowl)
+            {
+                foreach (string check in checkIDs)
+                {
+                    if (check.Equals(old))
+                    {
+                        oldKnowl.Remove(old);
+                        checkIDs.Remove(check);
+                    }
+                }
+            }
+
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
+            
+
+            string updateSql_problem = "UPDATE problem SET problem.utc8_modify = @modife,problem.content = @content,problem.other = @other,problem.uk_problem_type_id = @typeId WHERE problem.id = @id;";
+            string delSql_knowl = "DELETE FROM knowledge_point_compose_problem WHERE knowledge_point_compose_problem.uk_problem_id = @problemId AND knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
+            string insertSql_knowledge_point_compose_problem = "INSERT INTO knowledge_point_compose_problem(knowledge_point_compose_problem.id,knowledge_point_compose_problem.utc8_create,knowledge_point_compose_problem.utc8_modify,knowledge_point_compose_problem.other,knowledge_point_compose_problem.uk_problem_id,knowledge_point_compose_problem.uk_knowledge_point_id) VALUES (@id,@create,@modife,@other,@problemId,@knowlIds);";
+
+            Console.WriteLine("*******");
+            try
+            {
+                Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, updateSql_problem,
+                    new MySqlParameter("@modife", problem.Modify),
+                    new MySqlParameter("@content", problem.Content),
+                    new MySqlParameter("@other", problem.Other),
+                    new MySqlParameter("@typeId", problem.TypeId),
+                    new MySqlParameter("@id", problem.Id));
+
+                Console.WriteLine("更新");
+
+                foreach(string old in oldKnowl)
+                {
+                    Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, delSql_knowl,
+                        new MySqlParameter("@problemId", problem.Id),
+                        new MySqlParameter("@knowlId", old));
+                }
+
+                Console.WriteLine("删除");
+
+                foreach (string checkId in checkIDs)
+                {
+                    Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql_knowledge_point_compose_problem,
+                        new MySqlParameter("@id", Guid.NewGuid().ToString("N")),
+                        new MySqlParameter("@create", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                        new MySqlParameter("@modife", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                        new MySqlParameter("@other", null),
+                        new MySqlParameter("@problemId", problem.Id),
+                        new MySqlParameter("@knowlIds", checkId));
+                }
+
+                Console.WriteLine("添加");
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
+                mySqlTransaction.Rollback();
+                mySqlConnection.Close();
+                MessageBox.Show("操作失败，操作已回滚。");
+            }
+            finally
+            {
+                Console.WriteLine("操作成功，状态：" + mySqlConnection.State);
+                if (mySqlConnection.State != ConnectionState.Closed)
+                {
+                    mySqlTransaction.Commit();
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
+        public void DelOneProblem(string problemId)
+        {
+            //throw new NotImplementedException();
+            string delSql = "DELETE FROM problem WHERE problem.id = @problemId;";
+            Model.MySqlHelper.ExecuteNonQuery(Model.MySqlHelper.Conn, CommandType.Text, delSql,
+                new MySqlParameter("@problemId", problemId));
+        }
+
         public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID)
         {
             List<KnowledgePoint> KnowlList = new List<KnowledgePoint>();
@@ -166,6 +300,29 @@ namespace ForAurora.Presenter.ImplViewReq
                     new MySqlParameter("@name", knowlPoint.Name),
                     new MySqlParameter("@id", knowlPoint.Id));
             mySqlConnection.Close();
+        }
+
+        //查询试题ID所关联的知识点
+        public List<string> QueryKnowlByProblemId(string id)
+        {
+            //throw new NotImplementedException();
+            List<string> idList = new List<string>();
+            string querySQL = "SELECT knowledge_point_compose_problem.uk_knowledge_point_id FROM knowledge_point_compose_problem WHERE knowledge_point_compose_problem.uk_problem_id = @problemId";
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
+                Model.MySqlHelper.Conn, CommandType.Text, querySQL,
+                new MySqlParameter("@problemId", id));
+
+            while (mySqlDataReader.Read())
+            {
+                if (!mySqlDataReader.IsDBNull(0))
+                {
+                    string knowlId =  mySqlDataReader.GetString(0);
+                    idList.Add(knowlId);
+                }
+            }
+            mySqlDataReader.Close();
+
+            return idList;
         }
     }
 }

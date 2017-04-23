@@ -145,7 +145,6 @@
             this.Name = "ProblemEidtForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "试题编辑";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProblemEidtForm_FormClosing);
             this.gbProblemContent.ResumeLayout(false);
             this.gbOther.ResumeLayout(false);
             this.gbKnowl.ResumeLayout(false);

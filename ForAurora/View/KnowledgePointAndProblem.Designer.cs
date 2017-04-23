@@ -44,20 +44,20 @@
             this.btnAddProblem = new System.Windows.Forms.Button();
             this.gbProblemInfo = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rtbProblemOther = new System.Windows.Forms.RichTextBox();
+            this.tbProblemType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbProblemAnswer = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAnswerEdit = new System.Windows.Forms.Button();
+            this.rtbAnswerOther = new System.Windows.Forms.RichTextBox();
+            this.btnAnswerRefresh = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnAnswerDel = new System.Windows.Forms.Button();
+            this.btnAnswerAdd = new System.Windows.Forms.Button();
+            this.tbAnswerSRC = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.rtbAnswer = new System.Windows.Forms.RichTextBox();
             this.gbKnowledgePoint.SuspendLayout();
             this.gbProblem.SuspendLayout();
             this.gbProblemInfo.SuspendLayout();
@@ -177,6 +177,7 @@
             this.btnEditProblem.Size = new System.Drawing.Size(23, 23);
             this.btnEditProblem.TabIndex = 13;
             this.btnEditProblem.UseVisualStyleBackColor = true;
+            this.btnEditProblem.Click += new System.EventHandler(this.btnEditProblem_Click);
             // 
             // btnRefreshProblem
             // 
@@ -200,6 +201,7 @@
             this.btnDelProblem.Size = new System.Drawing.Size(23, 23);
             this.btnDelProblem.TabIndex = 11;
             this.btnDelProblem.UseVisualStyleBackColor = true;
+            this.btnDelProblem.Click += new System.EventHandler(this.btnDelProblem_Click);
             // 
             // btnAddProblem
             // 
@@ -216,8 +218,8 @@
             // gbProblemInfo
             // 
             this.gbProblemInfo.Controls.Add(this.label3);
-            this.gbProblemInfo.Controls.Add(this.richTextBox1);
-            this.gbProblemInfo.Controls.Add(this.textBox1);
+            this.gbProblemInfo.Controls.Add(this.rtbProblemOther);
+            this.gbProblemInfo.Controls.Add(this.tbProblemType);
             this.gbProblemInfo.Controls.Add(this.label2);
             this.gbProblemInfo.Location = new System.Drawing.Point(749, 12);
             this.gbProblemInfo.Name = "gbProblemInfo";
@@ -235,22 +237,25 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "未尽事项";
             // 
-            // richTextBox1
+            // rtbProblemOther
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Location = new System.Drawing.Point(8, 61);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(289, 90);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.rtbProblemOther.BackColor = System.Drawing.SystemColors.Control;
+            this.rtbProblemOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbProblemOther.Location = new System.Drawing.Point(8, 61);
+            this.rtbProblemOther.Name = "rtbProblemOther";
+            this.rtbProblemOther.ReadOnly = true;
+            this.rtbProblemOther.Size = new System.Drawing.Size(289, 90);
+            this.rtbProblemOther.TabIndex = 2;
+            this.rtbProblemOther.Text = "";
             // 
-            // textBox1
+            // tbProblemType
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(65, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 14);
-            this.textBox1.TabIndex = 1;
+            this.tbProblemType.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbProblemType.Location = new System.Drawing.Point(65, 23);
+            this.tbProblemType.Name = "tbProblemType";
+            this.tbProblemType.ReadOnly = true;
+            this.tbProblemType.Size = new System.Drawing.Size(232, 14);
+            this.tbProblemType.TabIndex = 1;
             // 
             // label2
             // 
@@ -263,16 +268,16 @@
             // 
             // gbProblemAnswer
             // 
-            this.gbProblemAnswer.Controls.Add(this.button1);
-            this.gbProblemAnswer.Controls.Add(this.richTextBox3);
-            this.gbProblemAnswer.Controls.Add(this.button2);
+            this.gbProblemAnswer.Controls.Add(this.btnAnswerEdit);
+            this.gbProblemAnswer.Controls.Add(this.rtbAnswerOther);
+            this.gbProblemAnswer.Controls.Add(this.btnAnswerRefresh);
             this.gbProblemAnswer.Controls.Add(this.label6);
-            this.gbProblemAnswer.Controls.Add(this.button3);
-            this.gbProblemAnswer.Controls.Add(this.button4);
-            this.gbProblemAnswer.Controls.Add(this.textBox2);
+            this.gbProblemAnswer.Controls.Add(this.btnAnswerDel);
+            this.gbProblemAnswer.Controls.Add(this.btnAnswerAdd);
+            this.gbProblemAnswer.Controls.Add(this.tbAnswerSRC);
             this.gbProblemAnswer.Controls.Add(this.label5);
             this.gbProblemAnswer.Controls.Add(this.label4);
-            this.gbProblemAnswer.Controls.Add(this.richTextBox2);
+            this.gbProblemAnswer.Controls.Add(this.rtbAnswer);
             this.gbProblemAnswer.Location = new System.Drawing.Point(749, 175);
             this.gbProblemAnswer.Name = "gbProblemAnswer";
             this.gbProblemAnswer.Size = new System.Drawing.Size(303, 375);
@@ -280,36 +285,36 @@
             this.gbProblemAnswer.TabStop = false;
             this.gbProblemAnswer.Text = "题目解析";
             // 
-            // button1
+            // btnAnswerEdit
             // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = global::ForAurora.Properties.Resources.edit;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(180, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 20;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAnswerEdit.AutoSize = true;
+            this.btnAnswerEdit.BackgroundImage = global::ForAurora.Properties.Resources.edit;
+            this.btnAnswerEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnswerEdit.Location = new System.Drawing.Point(180, 346);
+            this.btnAnswerEdit.Name = "btnAnswerEdit";
+            this.btnAnswerEdit.Size = new System.Drawing.Size(23, 23);
+            this.btnAnswerEdit.TabIndex = 20;
+            this.btnAnswerEdit.UseVisualStyleBackColor = true;
             // 
-            // richTextBox3
+            // rtbAnswerOther
             // 
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox3.Location = new System.Drawing.Point(6, 292);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(291, 48);
-            this.richTextBox3.TabIndex = 6;
-            this.richTextBox3.Text = "";
+            this.rtbAnswerOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAnswerOther.Location = new System.Drawing.Point(6, 292);
+            this.rtbAnswerOther.Name = "rtbAnswerOther";
+            this.rtbAnswerOther.Size = new System.Drawing.Size(291, 48);
+            this.rtbAnswerOther.TabIndex = 6;
+            this.rtbAnswerOther.Text = "";
             // 
-            // button2
+            // btnAnswerRefresh
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(243, 346);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 19;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAnswerRefresh.AutoSize = true;
+            this.btnAnswerRefresh.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
+            this.btnAnswerRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnswerRefresh.Location = new System.Drawing.Point(243, 346);
+            this.btnAnswerRefresh.Name = "btnAnswerRefresh";
+            this.btnAnswerRefresh.Size = new System.Drawing.Size(23, 23);
+            this.btnAnswerRefresh.TabIndex = 19;
+            this.btnAnswerRefresh.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -320,35 +325,35 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "未尽事项";
             // 
-            // button3
+            // btnAnswerDel
             // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImage = global::ForAurora.Properties.Resources.delete;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Location = new System.Drawing.Point(117, 346);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(23, 23);
-            this.button3.TabIndex = 18;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAnswerDel.AutoSize = true;
+            this.btnAnswerDel.BackgroundImage = global::ForAurora.Properties.Resources.delete;
+            this.btnAnswerDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnswerDel.Location = new System.Drawing.Point(117, 346);
+            this.btnAnswerDel.Name = "btnAnswerDel";
+            this.btnAnswerDel.Size = new System.Drawing.Size(23, 23);
+            this.btnAnswerDel.TabIndex = 18;
+            this.btnAnswerDel.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnAnswerAdd
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImage = global::ForAurora.Properties.Resources.add;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(54, 346);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 17;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAnswerAdd.AutoSize = true;
+            this.btnAnswerAdd.BackgroundImage = global::ForAurora.Properties.Resources.add;
+            this.btnAnswerAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAnswerAdd.Location = new System.Drawing.Point(54, 346);
+            this.btnAnswerAdd.Name = "btnAnswerAdd";
+            this.btnAnswerAdd.Size = new System.Drawing.Size(23, 23);
+            this.btnAnswerAdd.TabIndex = 17;
+            this.btnAnswerAdd.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // tbAnswerSRC
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(41, 253);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 14);
-            this.textBox2.TabIndex = 4;
+            this.tbAnswerSRC.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAnswerSRC.Location = new System.Drawing.Point(41, 253);
+            this.tbAnswerSRC.Name = "tbAnswerSRC";
+            this.tbAnswerSRC.Size = new System.Drawing.Size(256, 14);
+            this.tbAnswerSRC.TabIndex = 4;
             // 
             // label5
             // 
@@ -368,14 +373,14 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "内容";
             // 
-            // richTextBox2
+            // rtbAnswer
             // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Location = new System.Drawing.Point(6, 37);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(291, 210);
-            this.richTextBox2.TabIndex = 4;
-            this.richTextBox2.Text = "";
+            this.rtbAnswer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAnswer.Location = new System.Drawing.Point(6, 37);
+            this.rtbAnswer.Name = "rtbAnswer";
+            this.rtbAnswer.Size = new System.Drawing.Size(291, 210);
+            this.rtbAnswer.TabIndex = 4;
+            this.rtbAnswer.Text = "";
             // 
             // KnowledgePointAndProblem
             // 
@@ -424,18 +429,18 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panelProblemGroup;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox tbProblemType;
+        private System.Windows.Forms.RichTextBox rtbProblemOther;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox rtbAnswer;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.TextBox tbAnswerSRC;
+        private System.Windows.Forms.RichTextBox rtbAnswerOther;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnAnswerEdit;
+        private System.Windows.Forms.Button btnAnswerRefresh;
+        private System.Windows.Forms.Button btnAnswerDel;
+        private System.Windows.Forms.Button btnAnswerAdd;
     }
 }

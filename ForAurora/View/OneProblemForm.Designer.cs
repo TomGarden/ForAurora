@@ -30,6 +30,7 @@
         {
             this.rtxProblem = new System.Windows.Forms.RichTextBox();
             this.btnAddToPage = new System.Windows.Forms.Button();
+            this.labelTip = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rtxProblem
@@ -38,11 +39,11 @@
             this.rtxProblem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtxProblem.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.rtxProblem.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rtxProblem.Location = new System.Drawing.Point(3, 3);
+            this.rtxProblem.Location = new System.Drawing.Point(5, 3);
             this.rtxProblem.Name = "rtxProblem";
             this.rtxProblem.ReadOnly = true;
             this.rtxProblem.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.rtxProblem.Size = new System.Drawing.Size(457, 129);
+            this.rtxProblem.Size = new System.Drawing.Size(452, 129);
             this.rtxProblem.TabIndex = 0;
             this.rtxProblem.Text = "";
             this.rtxProblem.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.rtxProblem_ContentsResized);
@@ -59,13 +60,23 @@
             this.btnAddToPage.UseVisualStyleBackColor = true;
             this.btnAddToPage.Click += new System.EventHandler(this.btnAddToPage_Click);
             // 
+            // labelTip
+            // 
+            this.labelTip.BackColor = System.Drawing.Color.Black;
+            this.labelTip.Location = new System.Drawing.Point(0, 0);
+            this.labelTip.Name = "labelTip";
+            this.labelTip.Size = new System.Drawing.Size(2, 50);
+            this.labelTip.TabIndex = 2;
+            this.labelTip.Text = "label1";
+            // 
             // OneProblemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(460, 173);
+            this.ClientSize = new System.Drawing.Size(465, 173);
+            this.Controls.Add(this.labelTip);
             this.Controls.Add(this.btnAddToPage);
             this.Controls.Add(this.rtxProblem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -80,5 +91,6 @@
 
         private System.Windows.Forms.RichTextBox rtxProblem;
         private System.Windows.Forms.Button btnAddToPage;
+        private System.Windows.Forms.Label labelTip;
     }
 }
