@@ -51,6 +51,7 @@
     <Compile Include="Model\Entry\Relation\KnowlComposeProblem.cs" />
     <Compile Include="Model\Entry\Relation\ProblemAnswer.cs" />
     <Compile Include="Model\Entry\Relation\ProblemComposePapers.cs" />
+    <Compile Include="Model\Entry\Relation\ProblemWithTypeName.cs" />
     <Compile Include="Model\Entry\Relation\TeacherTeachCourse.cs" />
     <Compile Include="Model\Entry\Relation\TextbookBelongCourse.cs" />
     <Compile Include="Model\Entry\Single\Account.cs" />

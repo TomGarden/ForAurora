@@ -36,9 +36,7 @@
             this.btnAddKnowl = new System.Windows.Forms.Button();
             this.tvKnowlTree = new System.Windows.Forms.TreeView();
             this.gbProblem = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.panelProblemGroup = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnEditProblem = new System.Windows.Forms.Button();
             this.btnRefreshProblem = new System.Windows.Forms.Button();
@@ -140,9 +138,7 @@
             // 
             // gbProblem
             // 
-            this.gbProblem.Controls.Add(this.button5);
             this.gbProblem.Controls.Add(this.panelProblemGroup);
-            this.gbProblem.Controls.Add(this.label1);
             this.gbProblem.Controls.Add(this.comboBox1);
             this.gbProblem.Controls.Add(this.btnEditProblem);
             this.gbProblem.Controls.Add(this.btnRefreshProblem);
@@ -155,38 +151,18 @@
             this.gbProblem.TabStop = false;
             this.gbProblem.Text = "题目";
             // 
-            // button5
-            // 
-            this.button5.AutoSize = true;
-            this.button5.BackgroundImage = global::ForAurora.Properties.Resources.test_32;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(397, 509);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 17;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // panelProblemGroup
             // 
             this.panelProblemGroup.AutoScroll = true;
-            this.panelProblemGroup.Location = new System.Drawing.Point(8, 46);
+            this.panelProblemGroup.Location = new System.Drawing.Point(8, 23);
             this.panelProblemGroup.Name = "panelProblemGroup";
-            this.panelProblemGroup.Size = new System.Drawing.Size(486, 457);
+            this.panelProblemGroup.Size = new System.Drawing.Size(486, 480);
             this.panelProblemGroup.TabIndex = 16;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "排序方式";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 20);
+            this.comboBox1.Location = new System.Drawing.Point(358, 511);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 14;
@@ -196,7 +172,7 @@
             this.btnEditProblem.AutoSize = true;
             this.btnEditProblem.BackgroundImage = global::ForAurora.Properties.Resources.edit;
             this.btnEditProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEditProblem.Location = new System.Drawing.Point(226, 509);
+            this.btnEditProblem.Location = new System.Drawing.Point(177, 509);
             this.btnEditProblem.Name = "btnEditProblem";
             this.btnEditProblem.Size = new System.Drawing.Size(23, 23);
             this.btnEditProblem.TabIndex = 13;
@@ -207,18 +183,19 @@
             this.btnRefreshProblem.AutoSize = true;
             this.btnRefreshProblem.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
             this.btnRefreshProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRefreshProblem.Location = new System.Drawing.Point(289, 509);
+            this.btnRefreshProblem.Location = new System.Drawing.Point(240, 509);
             this.btnRefreshProblem.Name = "btnRefreshProblem";
             this.btnRefreshProblem.Size = new System.Drawing.Size(23, 23);
             this.btnRefreshProblem.TabIndex = 12;
             this.btnRefreshProblem.UseVisualStyleBackColor = true;
+            this.btnRefreshProblem.Click += new System.EventHandler(this.btnRefreshProblem_Click);
             // 
             // btnDelProblem
             // 
             this.btnDelProblem.AutoSize = true;
             this.btnDelProblem.BackgroundImage = global::ForAurora.Properties.Resources.delete;
             this.btnDelProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDelProblem.Location = new System.Drawing.Point(163, 509);
+            this.btnDelProblem.Location = new System.Drawing.Point(114, 509);
             this.btnDelProblem.Name = "btnDelProblem";
             this.btnDelProblem.Size = new System.Drawing.Size(23, 23);
             this.btnDelProblem.TabIndex = 11;
@@ -229,7 +206,7 @@
             this.btnAddProblem.AutoSize = true;
             this.btnAddProblem.BackgroundImage = global::ForAurora.Properties.Resources.add;
             this.btnAddProblem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddProblem.Location = new System.Drawing.Point(100, 509);
+            this.btnAddProblem.Location = new System.Drawing.Point(51, 509);
             this.btnAddProblem.Name = "btnAddProblem";
             this.btnAddProblem.Size = new System.Drawing.Size(23, 23);
             this.btnAddProblem.TabIndex = 10;
@@ -444,7 +421,6 @@
         private System.Windows.Forms.Button btnRefreshProblem;
         private System.Windows.Forms.Button btnDelProblem;
         private System.Windows.Forms.Button btnAddProblem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panelProblemGroup;
         private System.Windows.Forms.Label label2;
@@ -461,6 +437,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
     }
 }

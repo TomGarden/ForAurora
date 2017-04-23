@@ -46,6 +46,7 @@
             this.rtxProblem.TabIndex = 0;
             this.rtxProblem.Text = "";
             this.rtxProblem.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.rtxProblem_ContentsResized);
+            this.rtxProblem.Click += new System.EventHandler(this.rtxProblem_Click);
             // 
             // btnAddToPage
             // 
@@ -70,6 +71,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OneProblemForm";
             this.Text = "OneProblemForm";
+            this.Click += new System.EventHandler(this.OneProblemForm_Click);
             this.ResumeLayout(false);
 
         }

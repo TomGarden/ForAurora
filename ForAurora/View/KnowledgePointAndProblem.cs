@@ -20,12 +20,16 @@ namespace ForAurora
     public delegate void UpdateKnowlPoint(KnowledgePoint knowlPoint);
     //添加试题
     public delegate void RefreshProblem();
+    //试题焦点获取
+    public delegate void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn);
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
         private string courseID;
         private IKnowltAndProblemFormReq IKnowltAndProblemFormReq = ImplKnowltAndProblemFormReq.NewInstance();
-        private KnowledgePoint CurrentSelKnol = null;
+        private KnowledgePoint CurSelKnol = null;//当前选中的知识点
+        private ProblemWithTypeName SelProblemWithTN = null;//当前选中的题目
+        private SelProblem selProblem = null;
 
         public KnowledgePointAndProblem(string courseID)
         {
@@ -43,11 +47,6 @@ namespace ForAurora
 
         private void initData()
         {
-            this.initKnowl();
-        }
-
-        private void initKnowl()
-        {
             this.tvKnowlTree.Nodes.Clear();
 
             List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root");
@@ -61,6 +60,7 @@ namespace ForAurora
                 this.RecursionNode(treeNode);
             }
         }
+
 
         /// <summary>
         ///  叶子节点深度递归,一直传参过来的都是叶子节点啊说
@@ -102,35 +102,38 @@ namespace ForAurora
 
         private void tvKnowlTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            this.CurrentSelKnol = (KnowledgePoint)this.tvKnowlTree.SelectedNode.Tag;
-            MessageBox.Show("AfterSelect" + this.CurrentSelKnol.Name);
+            this.CurSelKnol = (KnowledgePoint)this.tvKnowlTree.SelectedNode.Tag;
+            //MessageBox.Show("AfterSelect" + this.CurrentSelKnol.Name);
 
-            this.initProblem(this.CurrentSelKnol.Id);
+            this.initProblem();
         }
 
-        private void initProblem(string knowlId)
+        private void initProblem()
         {
-            List<Problem> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(knowlId);
+            if (this.selProblem == null)
+            {
+                this.selProblem = new SelProblem(this.SelProblem);
+            }
 
-            int hei = 0;
-            foreach (Problem problem in ProblemList) {
-                //RichTextBox rtb = new RichTextBox();
-                //rtb.Width = 450;
-                //rtb.Text = problem.Content;
-                
-                //rtb.ReadOnly = true;
-                //rtb.Tag = problem;
-                //rtb.Location = new Point(0, hei);
-                //hei += rtb.Height + 5;
+            this.panelProblemGroup.Controls.Clear();
+            if (this.CurSelKnol != null)
+            {
+                List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id);
 
-                //this.panelProblemGroup.Controls.Add(rtb);
-
-                OneProblemForm porblemForm = new OneProblemForm(problem);
-                porblemForm.TopLevel = false;
-                porblemForm.Location = new Point(0, hei);
-                this.panelProblemGroup.Controls.Add(porblemForm);
-                porblemForm.Show();
-                hei += porblemForm.Height + 5;
+                int hei = 0;
+                foreach (ProblemWithTypeName problemWithTN in ProblemList)
+                {
+                    OneProblemForm porblemForm = new OneProblemForm(problemWithTN, this.selProblem);
+                    porblemForm.TopLevel = false;
+                    porblemForm.Location = new Point(0, hei);
+                    this.panelProblemGroup.Controls.Add(porblemForm);
+                    porblemForm.Show();
+                    hei += porblemForm.Height + 5;
+                }
+                if (hei == 0)
+                {
+                    MessageBox.Show("无内容");
+                }
             }
 
         }
@@ -145,23 +148,23 @@ namespace ForAurora
         private void btnAddKnowl_Click(object sender, EventArgs e)
         {
             AddKnowlPoint addKnowlPoint = new AddKnowlPoint(this.AddKnowlPoint);
-            KnowledgePointForm knowledgePointForm = new KnowledgePointForm(this.courseID, addKnowlPoint, this.CurrentSelKnol);
+            KnowledgePointForm knowledgePointForm = new KnowledgePointForm(this.courseID, addKnowlPoint, this.CurSelKnol);
             knowledgePointForm.ShowDialog();
         }
 
         private void btnDelKnowl_Click(object sender, EventArgs e)
         {
-            if (this.CurrentSelKnol == null)
+            if (this.CurSelKnol == null)
             {
                 MessageBox.Show("请先选中要删除的知识点");
                 return;
             }
             //MessageBox.Show("确定删除知识点“" + this.CurrentSelKnol.Name + "”和其子知识点", "确认删除？", new MessageBoxButtons());
-            DialogResult dr = MessageBox.Show("确定删除知识点“" + this.CurrentSelKnol.Name + "”和其子知识点？", "提示", MessageBoxButtons.OKCancel);
+            DialogResult dr = MessageBox.Show("确定删除知识点“" + this.CurSelKnol.Name + "”和其子知识点？", "提示", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.OK)
             {
                 //用户选择确认的操作
-                this.IKnowltAndProblemFormReq.DelKnowlByID(this.CurrentSelKnol.Id);
+                this.IKnowltAndProblemFormReq.DelKnowlByID(this.CurSelKnol.Id);
                 this.initData();
             }
             else if (dr == DialogResult.Cancel)
@@ -174,7 +177,7 @@ namespace ForAurora
         private void btnEditKnowl_Click(object sender, EventArgs e)
         {
             UpdateKnowlPoint updateKnowlPoint = new UpdateKnowlPoint(this.UpdateKnowlPoint);
-            KnowledgePointEidtForm knowledgePointEditForm = new KnowledgePointEidtForm(updateKnowlPoint, CurrentSelKnol);
+            KnowledgePointEidtForm knowledgePointEditForm = new KnowledgePointEidtForm(updateKnowlPoint, CurSelKnol);
             knowledgePointEditForm.ShowDialog();
         }
 
@@ -197,13 +200,31 @@ namespace ForAurora
             MessageBox.Show("刷新试题");
         }
 
+        private void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn)
+        {
+            if (this.SelProblemWithTN != problemWithTN)
+            {
+                this.SelProblemWithTN = problemWithTN;
+                
+            }
+
+            if (IsBtn)
+            {
+                MessageBox.Show("添加到试卷");
+            }
+        }
+
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)
         {
             RefreshProblem RefreshProblem = new RefreshProblem(this.RefreshProblem);
-            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurrentSelKnol.Id, this.IKnowltAndProblemFormReq, RefreshProblem);
+            ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelKnol.Id, this.IKnowltAndProblemFormReq, RefreshProblem);
             problemEidtForm.ShowDialog();
         }
 
+        private void btnRefreshProblem_Click(object sender, EventArgs e)
+        {
+            this.initProblem();
+        }
     }
 }

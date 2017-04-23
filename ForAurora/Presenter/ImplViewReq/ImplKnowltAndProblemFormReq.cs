@@ -67,29 +67,39 @@ namespace ForAurora.Presenter.ImplViewReq
             }
         }
 
-
-        public List<Problem> QueryAllProblems(string knowlId)
+        //查询和本知识点相关的试题出来
+        public List<ProblemWithTypeName> QueryAllProblems(string knowlId)
         {
             //throw new NotImplementedException();
             Console.WriteLine("暂时先不管就是查询所有");
             //SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;
 
-            List<Problem> ProblemList = new List<Problem>();
-            //连接查询
-            string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
-            
+            List<ProblemWithTypeName> ProblemList = new List<ProblemWithTypeName>();
+            //连接查询不包含题目类型
+            //string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
+            //包含题目类型
+            string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id,problem_type.`name` FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id       LEFT JOIN problem_type ON problem.uk_problem_type_id = problem_type.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
             MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
                 Model.MySqlHelper.Conn, CommandType.Text, querySQL,
                 new MySqlParameter("@knowlId", knowlId));
 
             while (mySqlDataReader.Read())
             {
-                Problem Problem = new Problem();
-                Problem.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
-                Problem.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
-                Problem.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
-                Problem.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
-                ProblemList.Add(Problem);
+                //Problem Problem = new Problem();
+                //Problem.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                //Problem.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                //Problem.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                //Problem.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
+                //ProblemList.Add(Problem);
+
+                ProblemWithTypeName pwt = new ProblemWithTypeName();
+                pwt.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                pwt.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                pwt.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                pwt.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
+                pwt.TypeName = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(4);
+                ProblemList.Add(pwt);
+
             }
             mySqlDataReader.Close();
 

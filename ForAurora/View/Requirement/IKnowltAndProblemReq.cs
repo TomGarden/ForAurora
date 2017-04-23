@@ -17,6 +17,6 @@ namespace ForAurora.View.Requirement
         void DelKnowlByID(string id);
         void InsertOneKnowl(KnowledgePoint knowlPoint, CourseSpreadKnowl courseSpreadKnowl);
         void UpdateOneKnowl(KnowledgePoint knowlPoint);
-        List<Problem> QueryAllProblems(string knowlId);
+        List<ProblemWithTypeName> QueryAllProblems(string knowlId);
     }
 }

@@ -1,24 +1,20 @@
-﻿using ForAurora.Model.Entry.Single;
+﻿using ForAurora.Model.Entry.Relation;
+using ForAurora.Model.Entry.Single;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ForAurora.View
 {
     public partial class OneProblemForm : Form
     {
-        private Problem problem;
-        public OneProblemForm(Problem problem)
+        private ProblemWithTypeName cuProblemWithTN;
+        private SelProblem selProblem;
+        public OneProblemForm(ProblemWithTypeName problem, SelProblem selProblem)
         {
             InitializeComponent();
 
-            this.problem = problem;
+            this.cuProblemWithTN = problem;
+            this.selProblem = selProblem;
             this.rtxProblem.Text = problem.Content;
         }
 
@@ -33,7 +29,22 @@ namespace ForAurora.View
 
         private void btnAddToPage_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.problem.Content);
+            this.FormFocus(true);
+        }
+
+        private void OneProblemForm_Click(object sender, EventArgs e)
+        {
+            this.FormFocus(false);
+        }
+
+        private void rtxProblem_Click(object sender, EventArgs e)
+        {
+            this.FormFocus(false);
+        }
+        private void FormFocus(bool isAddToPaper)
+        {
+            //MessageBox.Show("当前焦点窗口：" + this.problem.Content);
+            this.selProblem(this.cuProblemWithTN, isAddToPaper);
         }
     }
 }
