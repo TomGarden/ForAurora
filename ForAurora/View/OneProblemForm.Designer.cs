@@ -62,12 +62,11 @@
             // 
             // labelTip
             // 
-            this.labelTip.BackColor = System.Drawing.Color.Black;
+            this.labelTip.BackColor = System.Drawing.Color.White;
             this.labelTip.Location = new System.Drawing.Point(0, 0);
             this.labelTip.Name = "labelTip";
             this.labelTip.Size = new System.Drawing.Size(2, 50);
             this.labelTip.TabIndex = 2;
-            this.labelTip.Text = "label1";
             // 
             // OneProblemForm
             // 

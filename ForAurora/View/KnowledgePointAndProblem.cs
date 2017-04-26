@@ -23,7 +23,7 @@ namespace ForAurora
     //修改试题
     public delegate void EditProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs);
     //试题焦点获取
-    public delegate void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn);
+    public delegate void SelProblem(OneProblemForm oneProblemForm, ProblemWithTypeName problemWithTN, bool IsBtn);
     //编辑试题答案
     public delegate void EditAnswer(ProblemAnswer pa);
     public partial class KnowledgePointAndProblem : Form
@@ -33,8 +33,10 @@ namespace ForAurora
         private IKnowltAndProblemFormReq IKnowltAndProblemFormReq = ImplKnowltAndProblemFormReq.NewInstance();
         private KnowledgePoint CurSelKnol = null;//当前选中的知识点
         private ProblemWithTypeName CurSelProblemWithTN = null;//当前选中的题目
+        private OneProblemForm CurSelProblemForm; //当前选中的试题窗口
         private ProblemAnswer CurAnswer = null;//当前正在现实的答案
         private SelProblem selProblem = null;//委托对象
+        private string tipSelProblem = "需要先选中试题";
 
         public KnowledgePointAndProblem(string courseID)
         {
@@ -122,25 +124,11 @@ namespace ForAurora
                 this.selProblem = new SelProblem(this.SelProblem);
             }
 
-            
+
             if (this.CurSelKnol != null)
             {
                 List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id);
                 this.ShowProblem(ProblemList);
-                //int hei = 0;
-                //foreach (ProblemWithTypeName problemWithTN in ProblemList)
-                //{
-                //    OneProblemForm porblemForm = new OneProblemForm(problemWithTN, this.selProblem);
-                //    porblemForm.TopLevel = false;
-                //    porblemForm.Location = new Point(0, hei);
-                //    this.panelProblemGroup.Controls.Add(porblemForm);
-                //    porblemForm.Show();
-                //    hei += porblemForm.Height + 5;
-                //}
-                //if (hei == 0)
-                //{
-                //    MessageBox.Show("无内容");
-                //}
             }
 
         }
@@ -213,11 +201,22 @@ namespace ForAurora
             this.initProblem();
         }
 
-        private void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn)
+        private void SelProblem(OneProblemForm oneProblemForm, ProblemWithTypeName problemWithTN, bool IsBtn) 
         {
-            if (this.CurSelProblemWithTN != problemWithTN)
+            //if (this.CurSelProblemWithTN != problemWithTN)
+            //{
+            //    this.CurSelProblemWithTN = problemWithTN;
+            //    this.tbProblemType.Text = this.CurSelProblemWithTN.TypeName;
+            //    this.rtbProblemOther.Text = this.CurSelProblemWithTN.Other;
+            //}
+
+            if (CurSelProblemForm != oneProblemForm)
             {
-                this.CurSelProblemWithTN = problemWithTN;
+                if (CurSelProblemForm != null) { CurSelProblemForm.CancelFocus(); }
+                CurSelProblemForm = oneProblemForm;
+                CurSelProblemForm.SetFocus();
+
+                this.CurSelProblemWithTN = CurSelProblemForm.cuProblemWithTN;
                 this.tbProblemType.Text = this.CurSelProblemWithTN.TypeName;
                 this.rtbProblemOther.Text = this.CurSelProblemWithTN.Other;
             }
@@ -226,6 +225,8 @@ namespace ForAurora
             {
                 MessageBox.Show("添加到试卷");
             }
+
+
 
 
             this.ShowAnswer();
@@ -246,7 +247,8 @@ namespace ForAurora
                 pa.Id = Guid.NewGuid().ToString("N");
                 pa.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 this.IKnowltAndProblemFormReq.InsertOneAnswer(pa);
-            }else
+            }
+            else
             {
                 pa.Id = this.CurAnswer.Id;
                 this.IKnowltAndProblemFormReq.UpdateOneAnswer(pa);
@@ -270,7 +272,7 @@ namespace ForAurora
 
         private void btnDelProblem_Click(object sender, EventArgs e)
         {
-            if (CurSelProblemWithTN == null) { return; }
+            if (CurSelProblemWithTN == null) { MessageBox.Show(this.tipSelProblem); return; }
             DialogResult dr;
             dr = MessageBox.Show(CurSelProblemWithTN.Content, "确认删除", MessageBoxButtons.YesNo,
                      MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -289,7 +291,7 @@ namespace ForAurora
 
         private void btnEditProblem_Click(object sender, EventArgs e)
         {
-            if (CurSelProblemWithTN == null) { return; }
+            if (CurSelProblemWithTN == null) { MessageBox.Show(this.tipSelProblem); return; }
 
             EditProblem editProblem = new EditProblem(this.EditProblem);
             ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelProblemWithTN, this.IKnowltAndProblemFormReq, editProblem);
@@ -326,7 +328,7 @@ namespace ForAurora
         {
             if (this.CurSelProblemWithTN == null)
             {
-                MessageBox.Show("需要先选中试题");
+                MessageBox.Show(this.tipSelProblem);
                 return;
             }
             EditAnswer editeAnswer = new EditAnswer(this.EditAnswer);
@@ -356,7 +358,7 @@ namespace ForAurora
             {
                 type = (ProblemType)this.cbProblemType.SelectedItem;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 type = null;
             }
@@ -365,9 +367,10 @@ namespace ForAurora
             {
                 this.initProblem();
             }
-            else {
+            else
+            {
                 //MessageBox.Show("按类型筛选题目:"+type.Id);
-                List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id,type.Id);
+                List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id, type.Id);
                 this.ShowProblem(ProblemList);
             }
 

@@ -7,7 +7,7 @@ namespace ForAurora.View
 {
     public partial class OneProblemForm : Form
     {
-        private ProblemWithTypeName cuProblemWithTN;
+        public ProblemWithTypeName cuProblemWithTN;
         private SelProblem selProblem;
         public OneProblemForm(ProblemWithTypeName problem, SelProblem selProblem)
         {
@@ -25,6 +25,10 @@ namespace ForAurora.View
             this.btnAddToPage.Top = rtxProblem.Height + 8;
 
             this.Height = rtxProblem.Height + this.btnAddToPage.Height + 8 + rtxProblem.Top;
+
+            this.labelTip.Height = this.Height;
+
+
         }
 
         private void btnAddToPage_Click(object sender, EventArgs e)
@@ -44,7 +48,16 @@ namespace ForAurora.View
         private void FormFocus(bool isAddToPaper)
         {
             //MessageBox.Show("当前焦点窗口：" + this.problem.Content);
-            this.selProblem(this.cuProblemWithTN, isAddToPaper);
+            this.selProblem(this, this.cuProblemWithTN, isAddToPaper);
+        }
+
+        public void SetFocus()
+        {
+            this.labelTip.BackColor = System.Drawing.Color.Black;
+        }
+        public void CancelFocus()
+        {
+            this.labelTip.BackColor = System.Drawing.Color.White;
         }
     }
 }
