@@ -81,6 +81,7 @@
             // 
             // cbProblemType
             // 
+            this.cbProblemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProblemType.FormattingEnabled = true;
             this.cbProblemType.Location = new System.Drawing.Point(18, 444);
             this.cbProblemType.Name = "cbProblemType";

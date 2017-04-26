@@ -24,6 +24,8 @@ namespace ForAurora
     public delegate void EditProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs);
     //试题焦点获取
     public delegate void SelProblem(ProblemWithTypeName problemWithTN, bool IsBtn);
+    //编辑试题答案
+    public delegate void EditAnswer(ProblemAnswer pa);
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
@@ -31,6 +33,7 @@ namespace ForAurora
         private IKnowltAndProblemFormReq IKnowltAndProblemFormReq = ImplKnowltAndProblemFormReq.NewInstance();
         private KnowledgePoint CurSelKnol = null;//当前选中的知识点
         private ProblemWithTypeName CurSelProblemWithTN = null;//当前选中的题目
+        private ProblemAnswer CurAnswer = null;//当前正在现实的答案
         private SelProblem selProblem = null;//委托对象
 
         public KnowledgePointAndProblem(string courseID)
@@ -39,18 +42,12 @@ namespace ForAurora
 
             this.courseID = courseID;
             this.initData();
-            this.initView();
-        }
-
-        private void initView()
-        {
-            //throw new NotImplementedException();
         }
 
         private void initData()
         {
+            //知识点树
             this.tvKnowlTree.Nodes.Clear();
-
             List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root");
             foreach (KnowledgePoint KnowledgePoint in KnowlList)
             {
@@ -61,8 +58,17 @@ namespace ForAurora
             {
                 this.RecursionNode(treeNode);
             }
+            //试题类型
+            List<Model.Entry.Single.ProblemType> typeList = this.IKnowltAndProblemFormReq.QueryAllType();
+            this.cbProblemType.Items.Clear();
+            foreach (Model.Entry.Single.ProblemType type in typeList)
+            {
+                this.cbProblemType.Items.Add(type);
+            }
+            this.cbProblemType.Items.Add("所有类型");
+            this.cbProblemType.SelectedIndex = this.cbProblemType.Items.Count - 1;
         }
-        
+
         /// <summary>
         ///  叶子节点深度递归,一直传参过来的都是叶子节点啊说
         /// </summary>
@@ -116,29 +122,29 @@ namespace ForAurora
                 this.selProblem = new SelProblem(this.SelProblem);
             }
 
-            this.panelProblemGroup.Controls.Clear();
+            
             if (this.CurSelKnol != null)
             {
                 List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id);
-
-                int hei = 0;
-                foreach (ProblemWithTypeName problemWithTN in ProblemList)
-                {
-                    OneProblemForm porblemForm = new OneProblemForm(problemWithTN, this.selProblem);
-                    porblemForm.TopLevel = false;
-                    porblemForm.Location = new Point(0, hei);
-                    this.panelProblemGroup.Controls.Add(porblemForm);
-                    porblemForm.Show();
-                    hei += porblemForm.Height + 5;
-                }
-                if (hei == 0)
-                {
-                    MessageBox.Show("无内容");
-                }
+                this.ShowProblem(ProblemList);
+                //int hei = 0;
+                //foreach (ProblemWithTypeName problemWithTN in ProblemList)
+                //{
+                //    OneProblemForm porblemForm = new OneProblemForm(problemWithTN, this.selProblem);
+                //    porblemForm.TopLevel = false;
+                //    porblemForm.Location = new Point(0, hei);
+                //    this.panelProblemGroup.Controls.Add(porblemForm);
+                //    porblemForm.Show();
+                //    hei += porblemForm.Height + 5;
+                //}
+                //if (hei == 0)
+                //{
+                //    MessageBox.Show("无内容");
+                //}
             }
 
         }
-        
+
         private void KnowledgePointAndProblem_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
@@ -180,7 +186,7 @@ namespace ForAurora
             KnowledgePointEidtForm knowledgePointEditForm = new KnowledgePointEidtForm(updateKnowlPoint, CurSelKnol);
             knowledgePointEditForm.ShowDialog();
         }
-        
+
         //===============委托们
         private void AddKnowlPoint(KnowledgePoint knowlPoint, CourseSpreadKnowl courseSpreadKnowl)
         {
@@ -221,9 +227,34 @@ namespace ForAurora
                 MessageBox.Show("添加到试卷");
             }
 
+
             this.ShowAnswer();
         }
 
+        private void EditAnswer(ProblemAnswer pa)
+        {
+            if (this.CurSelProblemWithTN == null)
+            {
+                MessageBox.Show("没有先选中试题，本次操作无效");
+                return;
+            }
+
+            pa.Modify = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            pa.ProblemId = this.CurSelProblemWithTN.Id;//试题ID很关键啊
+            if (this.CurAnswer == null)
+            {
+                pa.Id = Guid.NewGuid().ToString("N");
+                pa.Create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                this.IKnowltAndProblemFormReq.InsertOneAnswer(pa);
+            }else
+            {
+                pa.Id = this.CurAnswer.Id;
+                this.IKnowltAndProblemFormReq.UpdateOneAnswer(pa);
+            }
+            //刷新下
+            this.ShowAnswer();
+            //MessageBox.Show("暂时什么都没做呢" + pa.Content);
+        }
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)
         {
@@ -268,7 +299,97 @@ namespace ForAurora
 
         private void ShowAnswer()
         {
-            Console.WriteLine("展示答案部分尚未完成");
+            if (CurSelProblemWithTN == null) { return; }
+
+            List<ProblemAnswer> paList = this.IKnowltAndProblemFormReq.QueryOneAnswerByProblemId(this.CurSelProblemWithTN.Id);
+
+            if (paList.Count > 0)
+            {
+                this.CurAnswer = paList[0];
+                this.rtbAnswer.Text = paList[0].Content;
+                this.rtbAnswerOther.Text = paList[0].Other;
+                this.tbAnswerSRC.Text = paList[0].Source;
+            }
+            else
+            {
+                this.CurAnswer = null;
+                this.rtbAnswer.Text = "";
+                this.rtbAnswerOther.Text = "";
+                this.tbAnswerSRC.Text = "";
+            }
+
+            Console.WriteLine("设置完成答案");
+        }
+
+        //==========================答案编辑
+        private void btnAnswerEdit_Click(object sender, EventArgs e)
+        {
+            if (this.CurSelProblemWithTN == null)
+            {
+                MessageBox.Show("需要先选中试题");
+                return;
+            }
+            EditAnswer editeAnswer = new EditAnswer(this.EditAnswer);
+            AnswerEditForm aef = new AnswerEditForm(editeAnswer);
+            aef.ShowDialog();
+        }
+
+        private void btnAnswerRefresh_Click(object sender, EventArgs e)
+        {
+            this.ShowAnswer();
+        }
+
+        private void btnAnswerDel_Click(object sender, EventArgs e)
+        {
+            if (this.CurAnswer == null) { return; }
+
+            this.IKnowltAndProblemFormReq.DelAnswerById(this.CurAnswer.Id);
+
+            this.ShowAnswer();
+        }
+
+        //展示试题类型
+        private void cbProblemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProblemType type;
+            try
+            {
+                type = (ProblemType)this.cbProblemType.SelectedItem;
+            }
+            catch (Exception ex )
+            {
+                type = null;
+            }
+
+            if (type == null)
+            {
+                this.initProblem();
+            }
+            else {
+                //MessageBox.Show("按类型筛选题目:"+type.Id);
+                List<ProblemWithTypeName> ProblemList = this.IKnowltAndProblemFormReq.QueryAllProblems(this.CurSelKnol.Id,type.Id);
+                this.ShowProblem(ProblemList);
+            }
+
+        }
+
+        private void ShowProblem(List<ProblemWithTypeName> ProblemList)
+        {
+            this.panelProblemGroup.Controls.Clear();
+            int hei = 0;
+            foreach (ProblemWithTypeName problemWithTN in ProblemList)
+            {
+                OneProblemForm porblemForm = new OneProblemForm(problemWithTN, this.selProblem);
+                porblemForm.TopLevel = false;
+                porblemForm.Location = new Point(0, hei);
+                this.panelProblemGroup.Controls.Add(porblemForm);
+                porblemForm.Show();
+                hei += porblemForm.Height + 5;
+            }
+            if (hei == 0)
+            {
+                MessageBox.Show("无内容");
+            }
         }
     }
 }

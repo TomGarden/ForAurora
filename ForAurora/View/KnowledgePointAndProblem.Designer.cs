@@ -37,7 +37,7 @@
             this.tvKnowlTree = new System.Windows.Forms.TreeView();
             this.gbProblem = new System.Windows.Forms.GroupBox();
             this.panelProblemGroup = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbProblemType = new System.Windows.Forms.ComboBox();
             this.btnEditProblem = new System.Windows.Forms.Button();
             this.btnRefreshProblem = new System.Windows.Forms.Button();
             this.btnDelProblem = new System.Windows.Forms.Button();
@@ -53,7 +53,6 @@
             this.btnAnswerRefresh = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAnswerDel = new System.Windows.Forms.Button();
-            this.btnAnswerAdd = new System.Windows.Forms.Button();
             this.tbAnswerSRC = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -139,7 +138,7 @@
             // gbProblem
             // 
             this.gbProblem.Controls.Add(this.panelProblemGroup);
-            this.gbProblem.Controls.Add(this.comboBox1);
+            this.gbProblem.Controls.Add(this.cbProblemType);
             this.gbProblem.Controls.Add(this.btnEditProblem);
             this.gbProblem.Controls.Add(this.btnRefreshProblem);
             this.gbProblem.Controls.Add(this.btnDelProblem);
@@ -159,13 +158,15 @@
             this.panelProblemGroup.Size = new System.Drawing.Size(486, 480);
             this.panelProblemGroup.TabIndex = 16;
             // 
-            // comboBox1
+            // cbProblemType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(358, 511);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 14;
+            this.cbProblemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProblemType.FormattingEnabled = true;
+            this.cbProblemType.Location = new System.Drawing.Point(358, 511);
+            this.cbProblemType.Name = "cbProblemType";
+            this.cbProblemType.Size = new System.Drawing.Size(121, 20);
+            this.cbProblemType.TabIndex = 14;
+            this.cbProblemType.SelectedIndexChanged += new System.EventHandler(this.cbProblemType_SelectedIndexChanged);
             // 
             // btnEditProblem
             // 
@@ -273,7 +274,6 @@
             this.gbProblemAnswer.Controls.Add(this.btnAnswerRefresh);
             this.gbProblemAnswer.Controls.Add(this.label6);
             this.gbProblemAnswer.Controls.Add(this.btnAnswerDel);
-            this.gbProblemAnswer.Controls.Add(this.btnAnswerAdd);
             this.gbProblemAnswer.Controls.Add(this.tbAnswerSRC);
             this.gbProblemAnswer.Controls.Add(this.label5);
             this.gbProblemAnswer.Controls.Add(this.label4);
@@ -290,14 +290,16 @@
             this.btnAnswerEdit.AutoSize = true;
             this.btnAnswerEdit.BackgroundImage = global::ForAurora.Properties.Resources.edit;
             this.btnAnswerEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAnswerEdit.Location = new System.Drawing.Point(180, 346);
+            this.btnAnswerEdit.Location = new System.Drawing.Point(145, 346);
             this.btnAnswerEdit.Name = "btnAnswerEdit";
             this.btnAnswerEdit.Size = new System.Drawing.Size(23, 23);
             this.btnAnswerEdit.TabIndex = 20;
             this.btnAnswerEdit.UseVisualStyleBackColor = true;
+            this.btnAnswerEdit.Click += new System.EventHandler(this.btnAnswerEdit_Click);
             // 
             // rtbAnswerOther
             // 
+            this.rtbAnswerOther.BackColor = System.Drawing.SystemColors.Control;
             this.rtbAnswerOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAnswerOther.Location = new System.Drawing.Point(6, 292);
             this.rtbAnswerOther.Name = "rtbAnswerOther";
@@ -310,11 +312,12 @@
             this.btnAnswerRefresh.AutoSize = true;
             this.btnAnswerRefresh.BackgroundImage = global::ForAurora.Properties.Resources.refresh;
             this.btnAnswerRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAnswerRefresh.Location = new System.Drawing.Point(243, 346);
+            this.btnAnswerRefresh.Location = new System.Drawing.Point(208, 346);
             this.btnAnswerRefresh.Name = "btnAnswerRefresh";
             this.btnAnswerRefresh.Size = new System.Drawing.Size(23, 23);
             this.btnAnswerRefresh.TabIndex = 19;
             this.btnAnswerRefresh.UseVisualStyleBackColor = true;
+            this.btnAnswerRefresh.Click += new System.EventHandler(this.btnAnswerRefresh_Click);
             // 
             // label6
             // 
@@ -330,25 +333,16 @@
             this.btnAnswerDel.AutoSize = true;
             this.btnAnswerDel.BackgroundImage = global::ForAurora.Properties.Resources.delete;
             this.btnAnswerDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAnswerDel.Location = new System.Drawing.Point(117, 346);
+            this.btnAnswerDel.Location = new System.Drawing.Point(82, 346);
             this.btnAnswerDel.Name = "btnAnswerDel";
             this.btnAnswerDel.Size = new System.Drawing.Size(23, 23);
             this.btnAnswerDel.TabIndex = 18;
             this.btnAnswerDel.UseVisualStyleBackColor = true;
-            // 
-            // btnAnswerAdd
-            // 
-            this.btnAnswerAdd.AutoSize = true;
-            this.btnAnswerAdd.BackgroundImage = global::ForAurora.Properties.Resources.add;
-            this.btnAnswerAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAnswerAdd.Location = new System.Drawing.Point(54, 346);
-            this.btnAnswerAdd.Name = "btnAnswerAdd";
-            this.btnAnswerAdd.Size = new System.Drawing.Size(23, 23);
-            this.btnAnswerAdd.TabIndex = 17;
-            this.btnAnswerAdd.UseVisualStyleBackColor = true;
+            this.btnAnswerDel.Click += new System.EventHandler(this.btnAnswerDel_Click);
             // 
             // tbAnswerSRC
             // 
+            this.tbAnswerSRC.BackColor = System.Drawing.SystemColors.Control;
             this.tbAnswerSRC.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbAnswerSRC.Location = new System.Drawing.Point(41, 253);
             this.tbAnswerSRC.Name = "tbAnswerSRC";
@@ -375,6 +369,7 @@
             // 
             // rtbAnswer
             // 
+            this.rtbAnswer.BackColor = System.Drawing.SystemColors.Control;
             this.rtbAnswer.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAnswer.Location = new System.Drawing.Point(6, 37);
             this.rtbAnswer.Name = "rtbAnswer";
@@ -394,7 +389,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "KnowledgePointAndProblem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "知识点-题目";
@@ -426,7 +420,7 @@
         private System.Windows.Forms.Button btnRefreshProblem;
         private System.Windows.Forms.Button btnDelProblem;
         private System.Windows.Forms.Button btnAddProblem;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbProblemType;
         private System.Windows.Forms.Panel panelProblemGroup;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbProblemType;
@@ -441,6 +435,5 @@
         private System.Windows.Forms.Button btnAnswerEdit;
         private System.Windows.Forms.Button btnAnswerRefresh;
         private System.Windows.Forms.Button btnAnswerDel;
-        private System.Windows.Forms.Button btnAnswerAdd;
     }
 }

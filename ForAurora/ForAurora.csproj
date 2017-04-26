@@ -78,6 +78,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="View\AnswerEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AnswerEditForm.Designer.cs">
+      <DependentUpon>AnswerEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\KnowledgePointEidtForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
       <DependentUpon>TextbookForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ViewGlobal.cs" />
+    <EmbeddedResource Include="View\AnswerEditForm.resx">
+      <DependentUpon>AnswerEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\KnowledgePointEidtForm.resx">
       <DependentUpon>KnowledgePointEidtForm.cs</DependentUpon>
     </EmbeddedResource>

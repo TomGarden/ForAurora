@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ForAurora.Presenter.ImplViewReq
 {
-    class ImplKnowltAndProblemFormReq: IKnowltAndProblemFormReq
+    class ImplKnowltAndProblemFormReq : IKnowltAndProblemFormReq
     {
         public static ImplKnowltAndProblemFormReq NewInstance()
         {
@@ -70,13 +70,7 @@ namespace ForAurora.Presenter.ImplViewReq
         //查询和本知识点相关的试题出来
         public List<ProblemWithTypeName> QueryAllProblems(string knowlId)
         {
-            //throw new NotImplementedException();
-            Console.WriteLine("暂时先不管就是查询所有");
-            //SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;
-
             List<ProblemWithTypeName> ProblemList = new List<ProblemWithTypeName>();
-            //连接查询不包含题目类型
-            //string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
             //包含题目类型
             string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id,problem_type.`name` FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id       LEFT JOIN problem_type ON problem.uk_problem_type_id = problem_type.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
             MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
@@ -85,13 +79,31 @@ namespace ForAurora.Presenter.ImplViewReq
 
             while (mySqlDataReader.Read())
             {
-                //Problem Problem = new Problem();
-                //Problem.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
-                //Problem.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
-                //Problem.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
-                //Problem.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
-                //ProblemList.Add(Problem);
+                ProblemWithTypeName pwt = new ProblemWithTypeName();
+                pwt.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                pwt.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                pwt.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                pwt.TypeId = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
+                pwt.TypeName = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(4);
+                ProblemList.Add(pwt);
 
+            }
+            mySqlDataReader.Close();
+
+            return ProblemList;
+        }
+        public List<ProblemWithTypeName> QueryAllProblems(string knowlId, string typeId)
+        {
+            List<ProblemWithTypeName> ProblemList = new List<ProblemWithTypeName>();
+            //包含题目类型
+            string querySQL = "SELECT problem.id,problem.content,problem.other,problem.uk_problem_type_id,problem_type.`name` FROM knowledge_point_compose_problem INNER JOIN problem ON knowledge_point_compose_problem.uk_problem_id = problem.id LEFT JOIN problem_type ON problem.uk_problem_type_id = problem_type.id WHERE knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId AND problem.uk_problem_type_id = @typeId;";
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
+                Model.MySqlHelper.Conn, CommandType.Text, querySQL,
+                new MySqlParameter("@knowlId", knowlId),
+                new MySqlParameter("@typeId", typeId));
+
+            while (mySqlDataReader.Read())
+            {
                 ProblemWithTypeName pwt = new ProblemWithTypeName();
                 pwt.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
                 pwt.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
@@ -159,7 +171,7 @@ namespace ForAurora.Presenter.ImplViewReq
             //old需要删除
             //check需要添加
             //problem需要更新
-            foreach(string old in oldKnowl)
+            foreach (string old in oldKnowl)
             {
                 foreach (string check in checkIDs)
                 {
@@ -174,7 +186,7 @@ namespace ForAurora.Presenter.ImplViewReq
             MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
             mySqlConnection.Open();
             MySqlTransaction mySqlTransaction = mySqlConnection.BeginTransaction();
-            
+
 
             string updateSql_problem = "UPDATE problem SET problem.utc8_modify = @modife,problem.content = @content,problem.other = @other,problem.uk_problem_type_id = @typeId WHERE problem.id = @id;";
             string delSql_knowl = "DELETE FROM knowledge_point_compose_problem WHERE knowledge_point_compose_problem.uk_problem_id = @problemId AND knowledge_point_compose_problem.uk_knowledge_point_id = @knowlId;";
@@ -192,7 +204,7 @@ namespace ForAurora.Presenter.ImplViewReq
 
                 Console.WriteLine("更新");
 
-                foreach(string old in oldKnowl)
+                foreach (string old in oldKnowl)
                 {
                     Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, delSql_knowl,
                         new MySqlParameter("@problemId", problem.Id),
@@ -264,7 +276,6 @@ namespace ForAurora.Presenter.ImplViewReq
             return KnowlList;
         }
 
-
         public List<KnowledgePoint> QuerySingleKnowlBySuperID(string upperID)
         {
             List<KnowledgePoint> KnowlList = new List<KnowledgePoint>();
@@ -316,13 +327,96 @@ namespace ForAurora.Presenter.ImplViewReq
             {
                 if (!mySqlDataReader.IsDBNull(0))
                 {
-                    string knowlId =  mySqlDataReader.GetString(0);
+                    string knowlId = mySqlDataReader.GetString(0);
                     idList.Add(knowlId);
                 }
             }
             mySqlDataReader.Close();
 
             return idList;
+        }
+
+        public List<ProblemAnswer> QueryOneAnswerByProblemId(string id)
+        {
+            //throw new NotImplementedException();
+            List<ProblemAnswer> paList = new List<ProblemAnswer>();
+            string querySQL = "SELECT problem_answer.id,problem_answer.content,problem_answer.other,problem_answer.source FROM problem_answer WHERE problem_answer.uk_problem_id = @problemId;";
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
+                Model.MySqlHelper.Conn, CommandType.Text, querySQL,
+                new MySqlParameter("@problemId", id));
+
+            while (mySqlDataReader.Read())
+            {
+                ProblemAnswer pa = new ProblemAnswer();
+                pa.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                pa.Content = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                pa.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                pa.Source = mySqlDataReader.IsDBNull(3) ? "" : mySqlDataReader.GetString(3);
+                paList.Add(pa);
+            }
+            mySqlDataReader.Close();
+
+            return paList;
+        }
+
+        public void DelAnswerById(string id)
+        {
+            //throw new NotImplementedException();
+            string delSql = "DELETE FROM problem_answer WHERE problem_answer.id = @answerId;";
+            Model.MySqlHelper.ExecuteNonQuery(Model.MySqlHelper.Conn, CommandType.Text, delSql, new MySqlParameter("@answerId", id));
+        }
+
+        public void InsertOneAnswer(ProblemAnswer pa)
+        {
+            //throw new NotImplementedException();
+            string insertSql = "INSERT INTO problem_answer (problem_answer.id,problem_answer.utc8_create,problem_answer.utc8_modify,problem_answer.other,problem_answer.uk_problem_id,problem_answer.content,problem_answer.source)VALUES (@id, @create, @modife, @other, @problemId, @content, @source)";
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql,
+                    new MySqlParameter("@id", pa.Id),
+                    new MySqlParameter("@create", pa.Create),
+                    new MySqlParameter("@modife", pa.Modify),
+                    new MySqlParameter("@other", pa.Other),
+                    new MySqlParameter("@problemId", pa.ProblemId),
+                    new MySqlParameter("@content", pa.Content),
+                    new MySqlParameter("@source", pa.Source));
+            mySqlConnection.Close();
+        }
+
+        public void UpdateOneAnswer(ProblemAnswer pa)
+        {
+            throw new NotImplementedException();
+            string updateSql = "UPDATE problem_answer SET problem_answer.utc8_modify = @modife,problem_answer.content = @content,problem_answer.source = @source,problem_answer.other= @other WHERE problem_answer.id = @answerId;";
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, updateSql,
+                    new MySqlParameter("@modify", pa.Modify),
+                    new MySqlParameter("@content", pa.Content),
+                    new MySqlParameter("@source", pa.Source),
+                    new MySqlParameter("@other", pa.Other),
+                    new MySqlParameter("@answerId", pa.Id));
+            mySqlConnection.Close();
+        }
+        //查询所有的试题类型
+        public List<Model.Entry.Single.ProblemType> QueryAllType()
+        {
+            //throw new NotImplementedException();
+            List<Model.Entry.Single.ProblemType> TypeList = new List<Model.Entry.Single.ProblemType>();
+
+            string querySql = "SELECT problem_type.id,problem_type.`name`,problem_type.other FROM problem_type;";
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(Model.MySqlHelper.Conn, CommandType.Text, querySql, null);
+
+
+            while (mySqlDataReader.Read())
+            {
+                Model.Entry.Single.ProblemType type = new Model.Entry.Single.ProblemType();
+                type.Id = mySqlDataReader.IsDBNull(0) ? "" : mySqlDataReader.GetString(0);
+                type.Name = mySqlDataReader.IsDBNull(1) ? "" : mySqlDataReader.GetString(1);
+                type.Other = mySqlDataReader.IsDBNull(2) ? "" : mySqlDataReader.GetString(2);
+                TypeList.Add(type);
+            }
+            mySqlDataReader.Close();
+            return TypeList;
         }
     }
 }
