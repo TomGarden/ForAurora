@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProblemInPaper));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxContent = new System.Windows.Forms.RichTextBox();
             this.btnAnswerDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // rtxContent
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(454, 96);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.rtxContent.Location = new System.Drawing.Point(0, 0);
+            this.rtxContent.Name = "rtxContent";
+            this.rtxContent.Size = new System.Drawing.Size(454, 96);
+            this.rtxContent.TabIndex = 0;
+            this.rtxContent.Text = "";
             // 
             // btnAnswerDel
             // 
@@ -56,9 +56,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 121);
+            this.ClientSize = new System.Drawing.Size(484, 96);
             this.Controls.Add(this.btnAnswerDel);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ProblemInPaper";
@@ -70,7 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxContent;
         private System.Windows.Forms.Button btnAnswerDel;
     }
 }

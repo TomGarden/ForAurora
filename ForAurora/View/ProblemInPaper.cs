@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ForAurora.Model.Entry.Relation;
+using ForAurora.View.Requirement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,20 +14,13 @@ namespace ForAurora.View
 {
     public partial class ProblemInPaper : Form
     {
-        private static ProblemInPaper instance;
-        private ProblemInPaper()
+        private ProblemWithTypeName problemWithTN;
+        public ProblemInPaper(ProblemWithTypeName problemWithTN)
         {
             InitializeComponent();
-        }
-        public static ProblemInPaper getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ProblemInPaper();
-            }
-            return instance;
-        }
 
-
+            this.problemWithTN = problemWithTN;
+            this.rtxContent.Text = problemWithTN.Content;
+        }
     }
 }

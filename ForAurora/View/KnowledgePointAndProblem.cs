@@ -26,6 +26,8 @@ namespace ForAurora
     public delegate void SelProblem(OneProblemForm oneProblemForm, ProblemWithTypeName problemWithTN, bool IsBtn);
     //编辑试题答案
     public delegate void EditAnswer(ProblemAnswer pa);
+    //试卷断后
+    public delegate void ClosePaper(string closeStr);
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
@@ -37,6 +39,7 @@ namespace ForAurora
         private ProblemAnswer CurAnswer = null;//当前正在现实的答案
         private SelProblem selProblem = null;//委托对象
         private string tipSelProblem = "需要先选中试题";
+        private ClosePaper varClosePaper;
 
         public KnowledgePointAndProblem(string courseID)
         {
@@ -223,7 +226,15 @@ namespace ForAurora
 
             if (IsBtn)
             {
-                MessageBox.Show("添加到试卷");
+                //MessageBox.Show("添加到试卷");
+                if (this.IKnowltAndProblemFormReq.InsertOneProblem(this.CurSelProblemWithTN) == 1)
+                {
+                    if(this.varClosePaper == null)
+                    {
+                        this.varClosePaper = new ClosePaper(this.ClosePaper);
+                    }
+                    PaperForm.getInstance(this.varClosePaper).AddChild(new ProblemInPaper(this.CurSelProblemWithTN));
+                }
             }
 
 
@@ -256,6 +267,15 @@ namespace ForAurora
             //刷新下
             this.ShowAnswer();
             //MessageBox.Show("暂时什么都没做呢" + pa.Content);
+        }
+
+        private void ClosePaper(string closeStr) {
+            if (closeStr.Equals("btnExport")) {
+                MessageBox.Show("导出");
+            }
+            this.IKnowltAndProblemFormReq.ClearPaper();
+            MessageBox.Show("清空");
+
         }
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)

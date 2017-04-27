@@ -118,7 +118,7 @@ namespace ForAurora.Presenter.ImplViewReq
             return ProblemList;
         }
 
-        //插入试题
+        //插入试题到试题表
         public void InsertOneProblem(Problem problem, List<string> checkIDs)
         {
             //throw new NotImplementedException();
@@ -163,6 +163,23 @@ namespace ForAurora.Presenter.ImplViewReq
                     mySqlConnection.Close();
                 }
             }
+        }
+        //想试题组成试卷表添加内容
+        public int InsertOneProblem(ProblemWithTypeName problemWithTN)
+        {
+            //throw new NotImplementedException();
+            int result = -1;
+            string insertSql = "INSERT INTO problem_compose_examination_papers(problem_compose_examination_papers.id,problem_compose_examination_papers.utc8_create,problem_compose_examination_papers.utc8_modify,problem_compose_examination_papers.other,problem_compose_examination_papers.uk_problem_id)	SELECT	@id, @create, @modife, @other, @problemId FROM  DUAL WHERE NOT EXISTS (SELECT * FROM problem_compose_examination_papers WHERE problem_compose_examination_papers.uk_problem_id = @problemId);";
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            result = Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, insertSql,
+                    new MySqlParameter("@id", Guid.NewGuid().ToString("N")),
+                    new MySqlParameter("@create", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                    new MySqlParameter("@modife", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
+                    new MySqlParameter("@other", null),
+                    new MySqlParameter("@problemId", problemWithTN.Id));
+            mySqlConnection.Close();
+            return result;
         }
 
         public void EditOneProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs)
@@ -417,6 +434,15 @@ namespace ForAurora.Presenter.ImplViewReq
             }
             mySqlDataReader.Close();
             return TypeList;
+        }
+
+        public void ClearPaper()
+        {
+            string truncateSql = "TRUNCATE TABLE problem_compose_examination_papers;";
+            MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
+            mySqlConnection.Open();
+            Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, truncateSql,null);
+            mySqlConnection.Close();
         }
     }
 }

@@ -31,46 +31,49 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaperForm));
             this.panelPaper = new System.Windows.Forms.Panel();
             this.btnExport = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancle = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panelPaper
             // 
             this.panelPaper.Location = new System.Drawing.Point(3, 12);
             this.panelPaper.Name = "panelPaper";
-            this.panelPaper.Size = new System.Drawing.Size(499, 697);
+            this.panelPaper.Size = new System.Drawing.Size(499, 520);
             this.panelPaper.TabIndex = 0;
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(417, 715);
+            this.btnExport.Location = new System.Drawing.Point(417, 538);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 23);
             this.btnExport.TabIndex = 1;
             this.btnExport.Text = "导出";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // button2
+            // btnCancle
             // 
-            this.button2.Location = new System.Drawing.Point(336, 715);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "取消";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancle.Location = new System.Drawing.Point(336, 538);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(75, 23);
+            this.btnCancle.TabIndex = 2;
+            this.btnCancle.Text = "取消";
+            this.btnCancle.UseVisualStyleBackColor = true;
+            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
             // PaperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 750);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(504, 573);
+            this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.panelPaper);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PaperForm";
             this.Text = "选中的试题";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaperForm_FormClosed);
             this.ResumeLayout(false);
 
         }
@@ -79,6 +82,6 @@
 
         private System.Windows.Forms.Panel panelPaper;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancle;
     }
 }

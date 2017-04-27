@@ -20,6 +20,7 @@ namespace ForAurora.View.Requirement
         List<ProblemWithTypeName> QueryAllProblems(string knowlId);
         //双条件进行查询按类型和知识点展示试题
         List<ProblemWithTypeName> QueryAllProblems(string knowlId,string typeId);
+        //想试题表添加内容
         void InsertOneProblem(Problem problem, List<string> checkIDs);
         void DelOneProblem(string id);
         void EditOneProblem(Problem problem, List<string> oldKnowl, List<string> checkIDs);
@@ -31,5 +32,8 @@ namespace ForAurora.View.Requirement
         void InsertOneAnswer(ProblemAnswer pa);
         void UpdateOneAnswer(ProblemAnswer pa);
         List<ProblemType> QueryAllType();
+        //向试题组成试卷表添加内容
+        int InsertOneProblem(ProblemWithTypeName curSelProblemWithTN);
+        void ClearPaper();
     }
 }

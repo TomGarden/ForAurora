@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Entry\Relation\CourseSpreadKnowl.cs" />
+    <Compile Include="Presenter\ImplViewReq\ImplProblemInPaper.cs" />
     <Compile Include="Model\Entry\Relation\KnowlComposeProblem.cs" />
     <Compile Include="Model\Entry\Relation\ProblemAnswer.cs" />
     <Compile Include="Model\Entry\Relation\ProblemComposePapers.cs" />
@@ -128,6 +129,7 @@
     </Compile>
     <Compile Include="View\Requirement\IKnowltAndProblemReq.cs" />
     <Compile Include="View\Requirement\IProblemEditFormReq.cs" />
+    <Compile Include="View\Requirement\IProblemInPaper.cs" />
     <Compile Include="View\Requirement\IProblemTypeFormReq.cs" />
     <Compile Include="View\Requirement\ITextbookFormReq.cs" />
     <Compile Include="View\TeacherForm.cs">
