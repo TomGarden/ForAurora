@@ -22,5 +22,10 @@ namespace ForAurora.View
             this.problemWithTN = problemWithTN;
             this.rtxContent.Text = problemWithTN.Content;
         }
+
+        private void rtxContent_ContentsResized(object sender, ContentsResizedEventArgs e)
+        {
+            this.Height = this.rtxContent.Height = e.NewRectangle.Height;
+        }
     }
 }

@@ -30,47 +30,38 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProblemInPaper));
             this.rtxContent = new System.Windows.Forms.RichTextBox();
-            this.btnAnswerDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtxContent
             // 
-            this.rtxContent.Location = new System.Drawing.Point(0, 0);
+            this.rtxContent.BackColor = System.Drawing.Color.White;
+            this.rtxContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtxContent.Location = new System.Drawing.Point(4, 0);
             this.rtxContent.Name = "rtxContent";
-            this.rtxContent.Size = new System.Drawing.Size(454, 96);
+            this.rtxContent.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.rtxContent.Size = new System.Drawing.Size(477, 96);
             this.rtxContent.TabIndex = 0;
             this.rtxContent.Text = "";
-            // 
-            // btnAnswerDel
-            // 
-            this.btnAnswerDel.AutoSize = true;
-            this.btnAnswerDel.BackgroundImage = global::ForAurora.Properties.Resources.delete;
-            this.btnAnswerDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAnswerDel.Location = new System.Drawing.Point(460, 36);
-            this.btnAnswerDel.Name = "btnAnswerDel";
-            this.btnAnswerDel.Size = new System.Drawing.Size(23, 23);
-            this.btnAnswerDel.TabIndex = 19;
-            this.btnAnswerDel.UseVisualStyleBackColor = true;
+            this.rtxContent.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.rtxContent_ContentsResized);
             // 
             // ProblemInPaper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(484, 96);
-            this.Controls.Add(this.btnAnswerDel);
             this.Controls.Add(this.rtxContent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ProblemInPaper";
             this.Text = "试卷-试题";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.RichTextBox rtxContent;
-        private System.Windows.Forms.Button btnAnswerDel;
     }
 }

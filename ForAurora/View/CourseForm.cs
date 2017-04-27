@@ -66,7 +66,7 @@ namespace ForAurora
                 chCourse.TextAlign = HorizontalAlignment.Left;   //设置列的对齐方式
                 this.lvCourse.Columns.Add(chCourse);    //将列头添加到ListView控件。
                 this.lvCourse.FullRowSelect = true;  //选中整行
-                //this.lvCourse.HeaderStyle = ColumnHeaderStyle.None;
+                this.lvCourse.HeaderStyle = ColumnHeaderStyle.None;
                 this.lvCourse.View = System.Windows.Forms.View.Details;
             }
 

@@ -36,9 +36,10 @@
             // 
             // panelPaper
             // 
+            this.panelPaper.AutoScroll = true;
             this.panelPaper.Location = new System.Drawing.Point(3, 12);
             this.panelPaper.Name = "panelPaper";
-            this.panelPaper.Size = new System.Drawing.Size(499, 520);
+            this.panelPaper.Size = new System.Drawing.Size(502, 520);
             this.panelPaper.TabIndex = 0;
             // 
             // btnExport
@@ -65,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 573);
+            this.ClientSize = new System.Drawing.Size(507, 573);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.panelPaper);

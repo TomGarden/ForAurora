@@ -272,10 +272,9 @@ namespace ForAurora
             {
                 List<string> exportProblem = this.IKnowltAndProblemFormReq.QueryAllPaper();
                 //如果真的要使用word那要求用户必须安装word
-                exportPath += "\\"+ DateTime.Now.ToString("yyyy-MM-dd HHmmss") + ".doc";
-                MessageBox.Show("导出"+exportPath);
+                //MessageBox.Show("导出"+exportPath);
 
-                FileStream fs = new FileStream(exportPath, FileMode.Create);
+                FileStream fs = new FileStream(exportPath+ "\\" + DateTime.Now.ToString("yyyy-MM-dd HHmmss") + ".doc", FileMode.Create);
                 StreamWriter sw = new StreamWriter(fs);
                 foreach(string str in exportProblem)
                 {
@@ -289,7 +288,9 @@ namespace ForAurora
                 fs.Close();
             }
             this.IKnowltAndProblemFormReq.ClearPaper();
-            MessageBox.Show("清空");
+            //MessageBox.Show("清空");
+            //打开文件夹
+            System.Diagnostics.Process.Start("Explorer.exe", exportPath);
 
         }
         //================试题操作相关
