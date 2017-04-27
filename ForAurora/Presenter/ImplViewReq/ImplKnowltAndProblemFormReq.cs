@@ -444,5 +444,25 @@ namespace ForAurora.Presenter.ImplViewReq
             Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, truncateSql,null);
             mySqlConnection.Close();
         }
-    }
+
+        public List<string> QueryAllPaper()
+        {
+            //throw new NotImplementedException();
+            List<string> problemList = new List<string>();
+
+            string querySql = "SELECT problem.content FROM problem_compose_examination_papers INNER JOIN problem ON problem_compose_examination_papers.uk_problem_id = problem.id ORDER BY problem.uk_problem_type_id;";
+            MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(Model.MySqlHelper.Conn, CommandType.Text, querySql, null);
+
+
+            while (mySqlDataReader.Read())
+            {
+                if (!mySqlDataReader.IsDBNull(0))
+                {
+                    problemList.Add(mySqlDataReader.GetString(0));
+                }
+            }
+            mySqlDataReader.Close();
+            return problemList;
+        }
+    } 
 }

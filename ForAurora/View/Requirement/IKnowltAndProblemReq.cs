@@ -35,5 +35,6 @@ namespace ForAurora.View.Requirement
         //向试题组成试卷表添加内容
         int InsertOneProblem(ProblemWithTypeName curSelProblemWithTN);
         void ClearPaper();
+        List<string> QueryAllPaper();
     }
 }

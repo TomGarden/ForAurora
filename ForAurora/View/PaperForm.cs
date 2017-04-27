@@ -15,6 +15,7 @@ namespace ForAurora.View
         private static PaperForm instance;
         private ClosePaper ClosePaper;
         private string closeStr = "def";
+        private string exportPath;
         private int height;
         private PaperForm(ClosePaper ClosePaper)
         {
@@ -34,7 +35,7 @@ namespace ForAurora.View
         private void PaperForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             instance = null;
-            this.ClosePaper(this.closeStr);
+            this.ClosePaper(this.closeStr,this.exportPath);
         }
 
         public void AddChild(Form form)
@@ -48,8 +49,16 @@ namespace ForAurora.View
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            this.closeStr = "btnExport";
-            this.Close();
+            System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                //this.BrowserPathTextBox.Text = folderBrowserDialog.SelectedPath;
+                this.closeStr = "btnExport";
+                this.exportPath = folderBrowserDialog.SelectedPath;
+                this.Close();
+
+            }
         }
 
         private void btnCancle_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace ForAurora
     //编辑试题答案
     public delegate void EditAnswer(ProblemAnswer pa);
     //试卷断后
-    public delegate void ClosePaper(string closeStr);
+    public delegate void ClosePaper(string closeStr,string exportPath);
     public partial class KnowledgePointAndProblem : Form
     {
         //从CourseFrom携带过来的课程ID
@@ -204,7 +205,7 @@ namespace ForAurora
             this.initProblem();
         }
 
-        private void SelProblem(OneProblemForm oneProblemForm, ProblemWithTypeName problemWithTN, bool IsBtn) 
+        private void SelProblem(OneProblemForm oneProblemForm, ProblemWithTypeName problemWithTN, bool IsBtn)
         {
             //if (this.CurSelProblemWithTN != problemWithTN)
             //{
@@ -229,17 +230,13 @@ namespace ForAurora
                 //MessageBox.Show("添加到试卷");
                 if (this.IKnowltAndProblemFormReq.InsertOneProblem(this.CurSelProblemWithTN) == 1)
                 {
-                    if(this.varClosePaper == null)
+                    if (this.varClosePaper == null)
                     {
                         this.varClosePaper = new ClosePaper(this.ClosePaper);
                     }
                     PaperForm.getInstance(this.varClosePaper).AddChild(new ProblemInPaper(this.CurSelProblemWithTN));
                 }
             }
-
-
-
-
             this.ShowAnswer();
         }
 
@@ -269,9 +266,27 @@ namespace ForAurora
             //MessageBox.Show("暂时什么都没做呢" + pa.Content);
         }
 
-        private void ClosePaper(string closeStr) {
-            if (closeStr.Equals("btnExport")) {
-                MessageBox.Show("导出");
+        private void ClosePaper(string closeStr, string exportPath)
+        {
+            if (closeStr.Equals("btnExport"))
+            {
+                List<string> exportProblem = this.IKnowltAndProblemFormReq.QueryAllPaper();
+                //如果真的要使用word那要求用户必须安装word
+                exportPath += "\\"+ DateTime.Now.ToString("yyyy-MM-dd HHmmss") + ".doc";
+                MessageBox.Show("导出"+exportPath);
+
+                FileStream fs = new FileStream(exportPath, FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach(string str in exportProblem)
+                {
+                    //开始写入
+                    sw.Write(str+"\n\n\n");
+                    //清空缓冲区
+                    sw.Flush();
+                }
+                //关闭流
+                sw.Close();
+                fs.Close();
             }
             this.IKnowltAndProblemFormReq.ClearPaper();
             MessageBox.Show("清空");
