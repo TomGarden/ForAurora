@@ -188,17 +188,32 @@ namespace ForAurora.Presenter.ImplViewReq
             //old需要删除
             //check需要添加
             //problem需要更新
-            foreach (string old in oldKnowl)
+            //foreach (string old in oldKnowl)
+            //{
+            //    foreach (string check in checkIDs)
+            //    {
+            //        if (check.Equals(old))
+            //        {
+            //            oldKnowl.Remove(old);
+            //            checkIDs.Remove(check);
+            //        }
+            //    }
+            //}
+            for (int i = 0; i < oldKnowl.Count; i++)
             {
-                foreach (string check in checkIDs)
+                for (int j = 0; j < checkIDs.Count; j++)
                 {
-                    if (check.Equals(old))
+                    if (checkIDs[j].Equals(oldKnowl[i]))
                     {
-                        oldKnowl.Remove(old);
-                        checkIDs.Remove(check);
+                        oldKnowl.RemoveAt(i);
+                        checkIDs.RemoveAt(j);
+                        i--;
+                        j--;
                     }
+                    if (i < 0) { break; }
                 }
             }
+
 
             MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
             mySqlConnection.Open();
@@ -269,7 +284,7 @@ namespace ForAurora.Presenter.ImplViewReq
                 new MySqlParameter("@problemId", problemId));
         }
 
-        public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID,string courseID)
+        public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID, string courseID)
         {
             List<KnowledgePoint> KnowlList = new List<KnowledgePoint>();
             //连接查询
@@ -443,7 +458,7 @@ namespace ForAurora.Presenter.ImplViewReq
             string truncateSql = "TRUNCATE TABLE problem_compose_examination_papers;";
             MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
             mySqlConnection.Open();
-            Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, truncateSql,null);
+            Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, truncateSql, null);
             mySqlConnection.Close();
         }
 
@@ -466,5 +481,5 @@ namespace ForAurora.Presenter.ImplViewReq
             mySqlDataReader.Close();
             return problemList;
         }
-    } 
+    }
 }

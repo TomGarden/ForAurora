@@ -77,6 +77,7 @@ namespace ForAurora.View
             {
                 this.checkIDs = this.IKnowltAndProblemFormReq.QueryKnowlByProblemId(this.CurSelProblemWithTN.Id);
                 this.oldKnowl = new List<string>(this.checkIDs.ToArray());//克隆列表
+                Console.WriteLine("adfg");
             }
 
             List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root",ViewGlobal.courseForm.getCurrentCourse().Id);
@@ -85,7 +86,7 @@ namespace ForAurora.View
                 TreeNode treeNode = this.tvKnowl.Nodes.Add(KnowledgePoint.Name);
                 treeNode.Tag = KnowledgePoint;
 
-                if (this.currentSelKnowlID != null)
+                if (this.currentSelKnowlID != null)//这是添加试题
                 {
                     if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
                     {
@@ -93,7 +94,7 @@ namespace ForAurora.View
                         this.currentSelKnowlID = null;
                     }
                 }
-                if(this.checkIDs.Count>0)
+                if(this.checkIDs.Count>0)//这是编辑试题
                 {
                     foreach(string id in this.checkIDs){
                         if (KnowledgePoint.Id.Equals(id)) {
@@ -169,7 +170,7 @@ namespace ForAurora.View
                             {
                                 if (KnowledgePoint.Id.Equals(id))
                                 {
-                                    treeNode.Checked = true;
+                                    treeNodeChild.Checked = true;
                                     this.checkIDs.Remove(id);
                                     break;
                                 }
