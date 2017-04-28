@@ -35,7 +35,7 @@ namespace ForAurora.View
         private void PaperForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             instance = null;
-            this.ClosePaper(this.closeStr,this.exportPath);
+                this.ClosePaper(this.closeStr, this.exportPath);
         }
 
         public void AddChild(Form form)

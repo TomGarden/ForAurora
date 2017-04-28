@@ -160,7 +160,7 @@ namespace ForAurora.View
                         {
                             if (KnowledgePoint.Id.Equals(this.currentSelKnowlID))
                             {
-                                treeNode.Checked = true;
+                                treeNodeChild.Checked = true;
                                 this.currentSelKnowlID = null;
                             }
                         }

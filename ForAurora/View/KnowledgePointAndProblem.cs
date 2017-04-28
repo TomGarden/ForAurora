@@ -295,7 +295,10 @@ namespace ForAurora
             this.IKnowltAndProblemFormReq.ClearPaper();
             //MessageBox.Show("清空");
             //打开文件夹
-            System.Diagnostics.Process.Start("Explorer.exe", exportPath);
+            if (closeStr.Equals("btnExport"))
+            {
+                System.Diagnostics.Process.Start("Explorer.exe", exportPath);
+            }
 
         }
         //================试题操作相关
