@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ForAurora</RootNamespace>
-    <AssemblyName>ForAurora</AssemblyName>
+    <AssemblyName>试题库管理系统</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>G:\Happy\试题库管理系统\</PublishUrl>
+    <PublishUrl>G:\Happy\试题库管理系统\Release\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,9 +23,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ProductName>试题库管理系统</ProductName>
+    <PublisherName>tom.work%40foxmail.com</PublisherName>
+    <SuiteName>试题库管理系统</SuiteName>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -269,6 +273,7 @@
     <None Include="Resources\refresh.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\test_32.png" />
+    <Content Include="ReadMe.txt" />
     <Content Include="View\Requirement\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
