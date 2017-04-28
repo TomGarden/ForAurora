@@ -28,17 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseForm));
             this.gbCourseList = new System.Windows.Forms.GroupBox();
             this.btnRefreshCourse = new System.Windows.Forms.Button();
             this.btnDelCourse = new System.Windows.Forms.Button();
             this.btnAddCourse = new System.Windows.Forms.Button();
             this.lvCourse = new System.Windows.Forms.ListView();
-            this.contextMenuStrip_Course = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.添加课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除课程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbCourseInfo = new System.Windows.Forms.GroupBox();
             this.tbCourseName = new System.Windows.Forms.TextBox();
             this.btnLeft = new System.Windows.Forms.Button();
@@ -57,7 +52,6 @@
             this.btnDelTeacher = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.gbCourseList.SuspendLayout();
-            this.contextMenuStrip_Course.SuspendLayout();
             this.gbCourseInfo.SuspendLayout();
             this.gbOthrer.SuspendLayout();
             this.gbTextbook.SuspendLayout();
@@ -115,42 +109,14 @@
             // 
             // lvCourse
             // 
-            this.lvCourse.BackColor = System.Drawing.SystemColors.Window;
+            this.lvCourse.BackColor = System.Drawing.SystemColors.Control;
             this.lvCourse.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvCourse.ContextMenuStrip = this.contextMenuStrip_Course;
             this.lvCourse.Location = new System.Drawing.Point(6, 34);
             this.lvCourse.Name = "lvCourse";
             this.lvCourse.Size = new System.Drawing.Size(213, 469);
             this.lvCourse.TabIndex = 0;
             this.lvCourse.UseCompatibleStateImageBehavior = false;
             this.lvCourse.SelectedIndexChanged += new System.EventHandler(this.lvCourse_SelectedIndexChanged);
-            // 
-            // contextMenuStrip_Course
-            // 
-            this.contextMenuStrip_Course.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加课程ToolStripMenuItem,
-            this.修改课程ToolStripMenuItem,
-            this.删除课程ToolStripMenuItem});
-            this.contextMenuStrip_Course.Name = "contextMenuStrip_Course";
-            this.contextMenuStrip_Course.Size = new System.Drawing.Size(125, 70);
-            // 
-            // 添加课程ToolStripMenuItem
-            // 
-            this.添加课程ToolStripMenuItem.Name = "添加课程ToolStripMenuItem";
-            this.添加课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.添加课程ToolStripMenuItem.Text = "添加课程";
-            // 
-            // 修改课程ToolStripMenuItem
-            // 
-            this.修改课程ToolStripMenuItem.Name = "修改课程ToolStripMenuItem";
-            this.修改课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.修改课程ToolStripMenuItem.Text = "修改课程";
-            // 
-            // 删除课程ToolStripMenuItem
-            // 
-            this.删除课程ToolStripMenuItem.Name = "删除课程ToolStripMenuItem";
-            this.删除课程ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除课程ToolStripMenuItem.Text = "删除课程";
             // 
             // gbCourseInfo
             // 
@@ -361,7 +327,6 @@
             this.Text = "课程";
             this.gbCourseList.ResumeLayout(false);
             this.gbCourseList.PerformLayout();
-            this.contextMenuStrip_Course.ResumeLayout(false);
             this.gbCourseInfo.ResumeLayout(false);
             this.gbCourseInfo.PerformLayout();
             this.gbOthrer.ResumeLayout(false);
@@ -387,10 +352,6 @@
         private System.Windows.Forms.GroupBox gbOthrer;
         private System.Windows.Forms.RichTextBox rtbOther;
         private System.Windows.Forms.TextBox tbCourseName;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Course;
-        private System.Windows.Forms.ToolStripMenuItem 添加课程ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 修改课程ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除课程ToolStripMenuItem;
         private System.Windows.Forms.Button btnAddCourse;
         private System.Windows.Forms.Button btnDelCourse;
         private System.Windows.Forms.Button btnRefreshCourse;

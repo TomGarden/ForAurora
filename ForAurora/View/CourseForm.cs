@@ -524,5 +524,9 @@ namespace ForAurora
 
             this.initData();
         }
+
+        public Course getCurrentCourse() {
+            return CurrentlCourse;
+        }
     }
 }

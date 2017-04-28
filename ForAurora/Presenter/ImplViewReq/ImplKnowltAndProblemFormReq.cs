@@ -269,15 +269,17 @@ namespace ForAurora.Presenter.ImplViewReq
                 new MySqlParameter("@problemId", problemId));
         }
 
-        public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID)
+        public List<KnowledgePoint> QueryConnectKnowlBySuperID(string upperID,string courseID)
         {
             List<KnowledgePoint> KnowlList = new List<KnowledgePoint>();
             //连接查询
             //string cmdText = "SELECT knowledge_point.id,knowledge_point.`name`,knowledge_point.uk_upper_knowledge_point_id FROM knowledge_point WHERE knowledge_point.uk_upper_knowledge_point_id = @upperID;";
-            string querySQL = "SELECT knowledge_point.id,knowledge_point.`name`,knowledge_point.other,knowledge_point.uk_upper_knowledge_point_id FROM course_spread_knowledge_point INNER JOIN knowledge_point ON course_spread_knowledge_point.uk_knowledge_point_id = knowledge_point.id WHERE knowledge_point.uk_upper_knowledge_point_id = @upperID;";
+            //string querySQL = "SELECT knowledge_point.id,knowledge_point.`name`,knowledge_point.other,knowledge_point.uk_upper_knowledge_point_id FROM course_spread_knowledge_point INNER JOIN knowledge_point ON course_spread_knowledge_point.uk_knowledge_point_id = knowledge_point.id WHERE knowledge_point.uk_upper_knowledge_point_id = @upperID;";
+            string querySQL = "SELECT knowledge_point.id,knowledge_point.`name`,knowledge_point.other,knowledge_point.uk_upper_knowledge_point_id FROM course_spread_knowledge_point INNER JOIN knowledge_point ON course_spread_knowledge_point.uk_knowledge_point_id = knowledge_point.id WHERE knowledge_point.uk_upper_knowledge_point_id = @upperID AND course_spread_knowledge_point.uk_course_id = @courseId;";
             MySqlDataReader mySqlDataReader = Model.MySqlHelper.ExecuteReader(
                 Model.MySqlHelper.Conn, CommandType.Text, querySQL,
-                new MySqlParameter("@upperID", upperID));
+                new MySqlParameter("@upperID", upperID),
+                new MySqlParameter("@courseId", courseID));
 
             while (mySqlDataReader.Read())
             {

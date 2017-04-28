@@ -24,6 +24,15 @@ namespace ForAurora.View
             this.CurrentSelKnowl = CurrentSelKnowl;
             this.addKnowlPoint = addKnowlPoint;
             this.courseId = courseId;
+
+            //如果没有上层知识点，就只能是根节点了
+            if (this.CurrentSelKnowl == null)
+            {
+                this.rbNotRoot.Hide();
+                this.rbNotRoot.Checked = false;
+                this.rbRoot.Checked = true;
+
+            }
         }
 
         private void btnCancelSubmit_Click(object sender, EventArgs e)

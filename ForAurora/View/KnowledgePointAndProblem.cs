@@ -54,7 +54,7 @@ namespace ForAurora
         {
             //知识点树
             this.tvKnowlTree.Nodes.Clear();
-            List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root");
+            List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root", courseID);
             foreach (KnowledgePoint KnowledgePoint in KnowlList)
             {
                 this.tvKnowlTree.Nodes.Add(KnowledgePoint.Name).Tag = KnowledgePoint;
@@ -174,6 +174,11 @@ namespace ForAurora
 
         private void btnEditKnowl_Click(object sender, EventArgs e)
         {
+            if (this.CurSelKnol == null)
+            {
+                MessageBox.Show("请先选中要编辑的知识点");
+                return;
+            }
             UpdateKnowlPoint updateKnowlPoint = new UpdateKnowlPoint(this.UpdateKnowlPoint);
             KnowledgePointEidtForm knowledgePointEditForm = new KnowledgePointEidtForm(updateKnowlPoint, CurSelKnol);
             knowledgePointEditForm.ShowDialog();
@@ -296,6 +301,11 @@ namespace ForAurora
         //================试题操作相关
         private void btnAddProblem_Click(object sender, EventArgs e)
         {
+            if (this.CurSelKnol == null)
+            {
+                MessageBox.Show("需要先选中知识点");
+                return;
+            }
             AddProblem addProblem = new AddProblem(this.AddProblem);
             ProblemEidtForm problemEidtForm = new ProblemEidtForm(this.CurSelKnol.Id, this.IKnowltAndProblemFormReq, addProblem);
             problemEidtForm.ShowDialog();
@@ -389,6 +399,11 @@ namespace ForAurora
         //展示试题类型
         private void cbProblemType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.CurSelKnol==null)
+            {
+                return;
+            }
+
             ProblemType type;
             try
             {
@@ -427,7 +442,7 @@ namespace ForAurora
             }
             if (hei == 0)
             {
-                MessageBox.Show("无内容");
+                //MessageBox.Show("无内容");
             }
         }
     }

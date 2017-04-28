@@ -79,7 +79,7 @@ namespace ForAurora.View
                 this.oldKnowl = new List<string>(this.checkIDs.ToArray());//克隆列表
             }
 
-            List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root");
+            List<KnowledgePoint> KnowlList = this.IKnowltAndProblemFormReq.QueryConnectKnowlBySuperID("root",ViewGlobal.courseForm.getCurrentCourse().Id);
             foreach (KnowledgePoint KnowledgePoint in KnowlList)
             {
                 TreeNode treeNode = this.tvKnowl.Nodes.Add(KnowledgePoint.Name);

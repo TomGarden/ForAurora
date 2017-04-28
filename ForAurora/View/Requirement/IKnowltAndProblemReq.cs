@@ -11,7 +11,7 @@ namespace ForAurora.View.Requirement
     public interface IKnowltAndProblemFormReq
     {
         //多表连接查询，主要用来查询根知识点
-        List<KnowledgePoint> QueryConnectKnowlBySuperID(string super);
+        List<KnowledgePoint> QueryConnectKnowlBySuperID(string super,string courseID);
         //单表查询，主要用来查询子知识点
         List<KnowledgePoint> QuerySingleKnowlBySuperID(string super);
         void DelKnowlByID(string id);
