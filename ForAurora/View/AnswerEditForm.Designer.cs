@@ -39,6 +39,7 @@
             // rtbAnswer
             // 
             this.rtbAnswer.Location = new System.Drawing.Point(12, 12);
+            this.rtbAnswer.MaxLength = 500;
             this.rtbAnswer.Name = "rtbAnswer";
             this.rtbAnswer.Size = new System.Drawing.Size(499, 175);
             this.rtbAnswer.TabIndex = 0;
@@ -47,6 +48,7 @@
             // tbSrc
             // 
             this.tbSrc.Location = new System.Drawing.Point(12, 194);
+            this.tbSrc.MaxLength = 50;
             this.tbSrc.Name = "tbSrc";
             this.tbSrc.Size = new System.Drawing.Size(499, 21);
             this.tbSrc.TabIndex = 1;
@@ -54,6 +56,7 @@
             // rtbOther
             // 
             this.rtbOther.Location = new System.Drawing.Point(12, 221);
+            this.rtbOther.MaxLength = 255;
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.Size = new System.Drawing.Size(499, 57);
             this.rtbOther.TabIndex = 2;

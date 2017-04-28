@@ -139,6 +139,7 @@
             this.tbCourseName.BackColor = System.Drawing.SystemColors.Control;
             this.tbCourseName.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbCourseName.Location = new System.Drawing.Point(113, 57);
+            this.tbCourseName.MaxLength = 64;
             this.tbCourseName.Name = "tbCourseName";
             this.tbCourseName.ReadOnly = true;
             this.tbCourseName.Size = new System.Drawing.Size(300, 29);
@@ -180,6 +181,7 @@
             // 
             this.rtbOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbOther.Location = new System.Drawing.Point(6, 21);
+            this.rtbOther.MaxLength = 255;
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.ReadOnly = true;
             this.rtbOther.Size = new System.Drawing.Size(396, 96);

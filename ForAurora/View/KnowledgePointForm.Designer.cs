@@ -51,6 +51,7 @@
             // tbKnowlName
             // 
             this.tbKnowlName.Location = new System.Drawing.Point(49, 13);
+            this.tbKnowlName.MaxLength = 64;
             this.tbKnowlName.Name = "tbKnowlName";
             this.tbKnowlName.Size = new System.Drawing.Size(223, 21);
             this.tbKnowlName.TabIndex = 1;
@@ -67,6 +68,7 @@
             // rtbOther
             // 
             this.rtbOther.Location = new System.Drawing.Point(28, 74);
+            this.rtbOther.MaxLength = 255;
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.Size = new System.Drawing.Size(244, 142);
             this.rtbOther.TabIndex = 3;

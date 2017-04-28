@@ -157,6 +157,7 @@
             // rtbTypeOther
             // 
             this.rtbTypeOther.Location = new System.Drawing.Point(53, 62);
+            this.rtbTypeOther.MaxLength = 255;
             this.rtbTypeOther.Name = "rtbTypeOther";
             this.rtbTypeOther.Size = new System.Drawing.Size(202, 200);
             this.rtbTypeOther.TabIndex = 3;
@@ -174,6 +175,7 @@
             // tbTypeName
             // 
             this.tbTypeName.Location = new System.Drawing.Point(53, 20);
+            this.tbTypeName.MaxLength = 64;
             this.tbTypeName.Name = "tbTypeName";
             this.tbTypeName.Size = new System.Drawing.Size(202, 21);
             this.tbTypeName.TabIndex = 1;

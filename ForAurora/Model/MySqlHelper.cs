@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ForAurora.Model
 {
@@ -115,7 +116,9 @@ class MySqlHelper
                 Console.WriteLine(exception.ToString());
                 //关闭连接，抛出异常
                 conn.Close();
-                throw;
+                //throw;
+                MyThrowError();
+                return null;
             }
         }
 
@@ -153,7 +156,9 @@ class MySqlHelper
             }
             catch (Exception e)
             {
-                throw e;
+                //throw e;
+                MyThrowError();
+                return null;
             }
         }
         
@@ -263,6 +268,11 @@ class MySqlHelper
                 foreach (MySqlParameter parm in cmdParms)
                     cmd.Parameters.Add(parm);
             }
+        }
+        private static void MyThrowError()
+        {
+            MessageBox.Show("请安装并启动MySQL来支持本应用");
+            System.Environment.Exit(0);
         }
     }
 }

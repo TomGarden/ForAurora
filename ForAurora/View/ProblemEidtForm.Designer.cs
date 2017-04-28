@@ -56,6 +56,7 @@
             // rtxContent
             // 
             this.rtxContent.Location = new System.Drawing.Point(6, 24);
+            this.rtxContent.MaxLength = 500;
             this.rtxContent.Name = "rtxContent";
             this.rtxContent.Size = new System.Drawing.Size(480, 317);
             this.rtxContent.TabIndex = 0;
@@ -74,6 +75,7 @@
             // rtxOther
             // 
             this.rtxOther.Location = new System.Drawing.Point(6, 20);
+            this.rtxOther.MaxLength = 255;
             this.rtxOther.Name = "rtxOther";
             this.rtxOther.Size = new System.Drawing.Size(480, 73);
             this.rtxOther.TabIndex = 2;

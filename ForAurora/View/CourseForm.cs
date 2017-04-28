@@ -357,11 +357,11 @@ namespace ForAurora
                     this.btnRight.Text = this.btnOpenStr;
                     this.btnLeft.Text = this.btnEditStr;
 
-                    int currentIndex = this.CourseList.IndexOf(this.CurrentlCourse);
+                    //int currentIndex = this.CourseList.IndexOf(this.CurrentlCourse);
                     //this.IsAdd = false;
                     this.IsEdit = false;
-                    this.lvCourse.Items[currentIndex].Selected = false;
-                    this.lvCourse.Items[currentIndex].Selected = true;
+                    //this.lvCourse.Items[currentIndex].Selected = false;
+                    //this.lvCourse.Items[currentIndex].Selected = true;
                     break;
             }
         }

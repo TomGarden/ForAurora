@@ -167,12 +167,6 @@
     </Compile>
     <Compile Include="Presenter\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\MyDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MyDialog.Designer.cs">
-      <DependentUpon>MyDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Requirement\ICourseFormReq.cs" />
     <Compile Include="View\Requirement\ITeacherFormReq.cs" />
     <Compile Include="View\TextbookForm.cs">
@@ -222,9 +216,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MyDialog.resx">
-      <DependentUpon>MyDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TextbookForm.resx">
       <DependentUpon>TextbookForm.cs</DependentUpon>

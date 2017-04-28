@@ -192,6 +192,7 @@
             // rtbOther
             // 
             this.rtbOther.Location = new System.Drawing.Point(55, 155);
+            this.rtbOther.MaxLength = 255;
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.Size = new System.Drawing.Size(217, 97);
             this.rtbOther.TabIndex = 8;
@@ -209,6 +210,7 @@
             // tbOffice
             // 
             this.tbOffice.Location = new System.Drawing.Point(100, 103);
+            this.tbOffice.MaxLength = 40;
             this.tbOffice.Name = "tbOffice";
             this.tbOffice.Size = new System.Drawing.Size(172, 21);
             this.tbOffice.TabIndex = 6;
@@ -226,6 +228,7 @@
             // tbContact
             // 
             this.tbContact.Location = new System.Drawing.Point(100, 65);
+            this.tbContact.MaxLength = 100;
             this.tbContact.Name = "tbContact";
             this.tbContact.Size = new System.Drawing.Size(172, 21);
             this.tbContact.TabIndex = 3;
@@ -243,6 +246,7 @@
             // tbName
             // 
             this.tbName.Location = new System.Drawing.Point(100, 28);
+            this.tbName.MaxLength = 32;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(172, 21);
             this.tbName.TabIndex = 1;

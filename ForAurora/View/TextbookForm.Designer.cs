@@ -90,6 +90,7 @@
             // tbEdition
             // 
             this.tbEdition.Location = new System.Drawing.Point(100, 115);
+            this.tbEdition.MaxLength = 32;
             this.tbEdition.Name = "tbEdition";
             this.tbEdition.Size = new System.Drawing.Size(172, 21);
             this.tbEdition.TabIndex = 14;
@@ -129,6 +130,7 @@
             // rtbOther
             // 
             this.rtbOther.Location = new System.Drawing.Point(55, 178);
+            this.rtbOther.MaxLength = 255;
             this.rtbOther.Name = "rtbOther";
             this.rtbOther.Size = new System.Drawing.Size(217, 74);
             this.rtbOther.TabIndex = 8;
@@ -146,6 +148,7 @@
             // tbPress
             // 
             this.tbPress.Location = new System.Drawing.Point(100, 86);
+            this.tbPress.MaxLength = 50;
             this.tbPress.Name = "tbPress";
             this.tbPress.Size = new System.Drawing.Size(172, 21);
             this.tbPress.TabIndex = 6;
@@ -163,6 +166,7 @@
             // tbISBN
             // 
             this.tbISBN.Location = new System.Drawing.Point(100, 57);
+            this.tbISBN.MaxLength = 13;
             this.tbISBN.Name = "tbISBN";
             this.tbISBN.Size = new System.Drawing.Size(172, 21);
             this.tbISBN.TabIndex = 3;
@@ -180,6 +184,7 @@
             // tbName
             // 
             this.tbName.Location = new System.Drawing.Point(100, 28);
+            this.tbName.MaxLength = 100;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(172, 21);
             this.tbName.TabIndex = 1;
