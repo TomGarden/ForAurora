@@ -419,12 +419,13 @@ namespace ForAurora.Presenter.ImplViewReq
 
         public void UpdateOneAnswer(ProblemAnswer pa)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             string updateSql = "UPDATE problem_answer SET problem_answer.utc8_modify = @modife,problem_answer.content = @content,problem_answer.source = @source,problem_answer.other= @other WHERE problem_answer.id = @answerId;";
+            updateSql = "UPDATE problem_answer SET problem_answer.utc8_modify = @modife,problem_answer.content = @content,problem_answer.source = @source,problem_answer.other = @other WHERE problem_answer.id = @answerId; ";
             MySqlConnection mySqlConnection = new MySqlConnection(Model.MySqlHelper.Conn);
             mySqlConnection.Open();
             Model.MySqlHelper.ExecuteNonQuery(mySqlConnection, CommandType.Text, updateSql,
-                    new MySqlParameter("@modify", pa.Modify),
+                    new MySqlParameter("@modife", pa.Modify),
                     new MySqlParameter("@content", pa.Content),
                     new MySqlParameter("@source", pa.Source),
                     new MySqlParameter("@other", pa.Other),

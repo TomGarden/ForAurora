@@ -14,10 +14,8 @@ class MySqlHelper
     {
         //数据库连接字符串
         public static string Conn = "Database='for_aurora';Data Source='localhost';User Id='root';Password='root';charset='utf8';pooling=true";
-
         // 用于缓存参数的HASH表
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
-
         /// <summary>
         ///  给定连接的数据库用假设参数执行一个sql命令（不返回数据集）
         /// </summary>
@@ -39,7 +37,6 @@ class MySqlHelper
                 return val;
             }
         }
-
         /// <summary>
         /// 用现有的数据库连接执行一个sql命令（不返回数据集）
         /// </summary>
@@ -58,7 +55,6 @@ class MySqlHelper
             cmd.Parameters.Clear();
             return val;
         }
-
         /// <summary>
         ///使用现有的SQL事务执行一个sql命令（不返回数据集）
         /// </summary>
@@ -79,7 +75,6 @@ class MySqlHelper
             cmd.Parameters.Clear();
             return val;
         }
-
         /// <summary>
         /// 用执行的数据库连接执行一个返回数据集的sql命令
         /// </summary>
@@ -121,7 +116,6 @@ class MySqlHelper
                 return null;
             }
         }
-
         /// <summary>
         /// 返回DataSet
         /// </summary>
@@ -161,7 +155,6 @@ class MySqlHelper
                 return null;
             }
         }
-        
         /// <summary>
         /// 用指定的数据库连接字符串执行一个命令并返回一个数据集的第一列
         /// </summary>
@@ -186,7 +179,6 @@ class MySqlHelper
                 return val;
             }
         }
-
         /// <summary>
         /// 用指定的数据库连接执行一个命令并返回一个数据集的第一列
         /// </summary>
@@ -209,7 +201,6 @@ class MySqlHelper
             cmd.Parameters.Clear();
             return val;
         }
-
         /// <summary>
         /// 将参数集合添加到缓存
         /// </summary>
@@ -219,7 +210,6 @@ class MySqlHelper
         {
             parmCache[cacheKey] = commandParameters;
         }
-
         /// <summary>
         /// 找回缓存参数集合
         /// </summary>
@@ -239,7 +229,6 @@ class MySqlHelper
 
             return clonedParms;
         }
-
         /// <summary>
         /// 准备执行一个命令
         /// </summary>

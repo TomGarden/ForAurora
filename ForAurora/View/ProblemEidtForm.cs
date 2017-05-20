@@ -236,8 +236,16 @@ namespace ForAurora.View
 
         private void cbProblemType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ProblemType type = (ProblemType)this.cbProblemType.SelectedItem;
-            if (type.Name.Equals(TipEditType))
+            ProblemType type;
+            try {  type = (ProblemType)this.cbProblemType.SelectedItem;
+            }
+            catch
+            {
+                type = new ProblemType();
+                type.Name = this.TipEditType;
+            }
+            
+            if (type.Name.Equals(this.TipEditType))
             {
                 RefreshType RefreshType = new RefreshType(this.RefreshType);
                 ProblemTypeForm problemTypeForm = new ProblemTypeForm(this.iProblemEditFormReq, RefreshType);
