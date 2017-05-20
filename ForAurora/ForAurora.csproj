@@ -26,7 +26,7 @@
     <ProductName>试题库管理系统</ProductName>
     <PublisherName>tom.work%40foxmail.com</PublisherName>
     <SuiteName>试题库管理系统</SuiteName>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -265,6 +265,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Other\for_aurora.sql" />
     <Content Include="Presenter\ImplViewReq\ReadMe.txt" />
     <Content Include="Presenter\OperateTable\ReadMe.txt" />
     <None Include="Resources\add.png" />
@@ -287,6 +288,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Other\Doc\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
