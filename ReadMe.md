@@ -6,7 +6,7 @@ For Aurora
 
 ----
 
-从本项目来看我对一个项目的把控还有上升的控件
+从本项目来看我对一个项目的把控还有上升的空间
 
 MVP  面向接口
 
@@ -22,7 +22,7 @@ Other文件夹内有数据库备份文件for_aurora.sql(用Navicat)可以方便�
 Other/Doc 存放开发过程中的一些笔记和草稿
 
 - 课程管理界面
-- ![课程管理界面](https://github.com/TomGarden/ForAurora/images/Image1.png)
+- ![课程管理界面](https://github.com/TomGarden/ForAurora/Image1.png)
 
 - 教师管理界面
 - ![教师管理界面](https://github.com/TomGarden/ForAurora/images/Image2.png)
