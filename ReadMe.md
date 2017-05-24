@@ -22,10 +22,10 @@ Other文件夹内有数据库备份文件for_aurora.sql(用Navicat)可以方便�
 Other/Doc 存放开发过程中的一些笔记和草稿
 
 - 课程管理界面
-![课程管理界面](https://github.com/TomGarden/ForAurora/Image1.png)
+![课程管理界面](https://github.com/TomGarden/ForAurora/blob/master/images/Image1.png)
 
 - 教师管理界面
-- ![教师管理界面](https://github.com/TomGarden/ForAurora/images/Image2.png)
+- ![教师管理界面](https://github.com/TomGarden/ForAurora/blob/master/images/Image2.png)
 
 - 知识点试题管理界面
-- ![知识点试题管理界面](https://github.com/TomGarden/ForAurora/images/Image4.png)
+- ![知识点试题管理界面](https://github.com/TomGarden/ForAurora/blob/master/images/Image4.png)
